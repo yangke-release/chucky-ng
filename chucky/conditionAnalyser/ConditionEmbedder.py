@@ -5,11 +5,11 @@ from conditionAnalyser.FunctionConditions import FunctionConditions
 
 class ConditionEmbedder:
     
-    def __init__(self, cachedir,outputdir):
+    def __init__(self, outputdir):
         
-        self.outputdir = outputdir 
-
-        self.dataDirCreator = SallyDataDirectoryCreator(self.outputdir,cachedir)
+        self.outputdir = outputdir
+                
+        self.dataDirCreator = SallyDataDirectoryCreator(self.outputdir)
         self.embedder = SallyBasedEmbedder()
     
     def embed(self, functions, symbolName, symbolType):

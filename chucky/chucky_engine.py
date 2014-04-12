@@ -2,7 +2,7 @@ from joernInterface.JoernInterface import jutils
 
 import logging
 import subprocess
-import os
+
 from nearestNeighbor.NearestNeighborSelector import NearestNeighborSelector
 from ChuckyWorkingEnvironment import ChuckyWorkingEnvironment
 from nearestNeighbor.FunctionSelector import FunctionSelector
@@ -45,16 +45,18 @@ class ChuckyEngine():
     current job.
     """
     def _getKNearestNeighbors(self):
-        symbol = self.job.getSymbol()
-        entitySelector = FunctionSelector()
-        symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol) 
         
+        symbol = self.job.getSymbol()
         self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir)
         self.knn.setK(self.job.n_neighbors)
+    
+        entitySelector = FunctionSelector()
+        symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol)
         return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
+    
     def _calculateCheckModels(self, symbolUsers):
-        cachedir = os.path.join(self.workingEnv.basedir, "exprcache")
-        embedder = ConditionEmbedder(cachedir,self.workingEnv.exprdir)
+        
+        embedder = ConditionEmbedder(self.workingEnv.exprdir)
         symbolName = self.job.getSymbolName()
         symbolType = self.job.getSymbolType()
         embedder.embed(symbolUsers, symbolName, symbolType)
@@ -81,4 +83,3 @@ class ChuckyEngine():
         score, feat = max(result)
         print '{:< 6.5f}\t{:40}\t{:10}\t{}'.format(score, self.job.function, self.job.function.node_id, feat)
     
-
