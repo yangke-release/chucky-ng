@@ -1,0 +1,1453 @@
+[DEBUG] Creating directory /home/user/Program/Fabian-Yamaguchi/yangke/joern-projects/chucky/.chucky.
+[INFO] Base directory is /home/user/Program/Fabian-Yamaguchi/yangke/joern-projects/chucky/.chucky.
+[DEBUG] Working directory is .chucky/tmpQSYaMD.
+[DEBUG] [IDENTIFIER] sid
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( sid || $ARG )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] foundation
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] id
+[DEBUG] [IDENTIFIER] ip
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] protocol
+[DEBUG] [IDENTIFIER] type
+[DEBUG] [BINARY_OPERATION] ( protocol || type )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( protocol || type ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( $ARG || ( protocol || type ) ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( foundation || ( $ARG || ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( foundation || ( $ARG || ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) ) ) ) )
+[DEBUG] [IDENTIFIER] sh -> jid
+[DEBUG] [IDENTIFIER] sh -> host
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( sh -> host && ( $RET $CMP $NUM ) )
+[DEBUG] [BINARY_OPERATION] ( sh -> jid && ( sh -> host && ( $RET $CMP $NUM ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] encoding_name
+[DEBUG] [BINARY_OPERATION] ( $ARG && encoding_name )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] streamhost
+[DEBUG] [ARGUMENT] streamhost
+[DEBUG] [PRIMARY_EXPRESSION] "jid"
+[DEBUG] [ARGUMENT] "jid"
+[DEBUG] [ARGUMENTLIST] streamhost, "jid"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( streamhost, "jid" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_attrib ( streamhost, "jid" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] streamhost
+[DEBUG] [ARGUMENT] streamhost
+[DEBUG] [PRIMARY_EXPRESSION] "zeroconf"
+[DEBUG] [ARGUMENT] "zeroconf"
+[DEBUG] [ARGUMENTLIST] streamhost, "zeroconf"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( streamhost, "zeroconf" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_attrib ( streamhost, "zeroconf" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] streamhost
+[DEBUG] [ARGUMENT] streamhost
+[DEBUG] [PRIMARY_EXPRESSION] "host"
+[DEBUG] [ARGUMENT] "host"
+[DEBUG] [ARGUMENTLIST] streamhost, "host"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( streamhost, "host" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_attrib ( streamhost, "host" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] streamhost
+[DEBUG] [ARGUMENT] streamhost
+[DEBUG] [PRIMARY_EXPRESSION] "port"
+[DEBUG] [ARGUMENT] "port"
+[DEBUG] [ARGUMENTLIST] streamhost, "port"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( streamhost, "port" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_attrib ( streamhost, "port" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] atoi
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [ARGUMENTLIST] $RET
+[DEBUG] [CALL_EXPRESSION] atoi ( $RET )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = atoi ( $RET )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_attrib ( streamhost, "zeroconf" ) || ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_attrib ( streamhost, "jid" ) && ( $RET = xmlnode_get_attrib ( streamhost, "zeroconf" ) || ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ) ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( $ARG && $ARG )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] message
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) || message )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( $ARG && $ARG )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] id
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] ip
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( ip || $ARG )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( ip || $ARG ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( $ARG || ( ip || $ARG ) ) )
+[DEBUG] [BINARY_OPERATION] ( id || ( $ARG || ( $ARG || ( ip || $ARG ) ) ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [CALLEE] g_list_length
+[DEBUG] [IDENTIFIER] priv -> remote_candidates
+[DEBUG] [ARGUMENT] priv -> remote_candidates
+[DEBUG] [ARGUMENTLIST] priv -> remote_candidates
+[DEBUG] [CALL_EXPRESSION] g_list_length ( priv -> remote_candidates )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1)
+[DEBUG] [BINARY_OPERATION] ( g_list_length ( priv -> remote_candidates ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP NULL ) && ( g_list_length ( priv -> remote_candidates ) $CMP $NUM ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [IDENTIFIER] xf -> buddy_ip
+[DEBUG] [ARGUMENT] xf -> buddy_ip
+[DEBUG] [ARGUMENTLIST] $RET, xf -> buddy_ip
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, xf -> buddy_ip )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] streamhost
+[DEBUG] [ARGUMENT] streamhost
+[DEBUG] [PRIMARY_EXPRESSION] "jid"
+[DEBUG] [ARGUMENT] "jid"
+[DEBUG] [ARGUMENTLIST] streamhost, "jid"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( streamhost, "jid" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_attrib ( streamhost, "jid" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] streamhost
+[DEBUG] [ARGUMENT] streamhost
+[DEBUG] [PRIMARY_EXPRESSION] "host"
+[DEBUG] [ARGUMENT] "host"
+[DEBUG] [ARGUMENTLIST] streamhost, "host"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( streamhost, "host" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_attrib ( streamhost, "host" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] streamhost
+[DEBUG] [ARGUMENT] streamhost
+[DEBUG] [PRIMARY_EXPRESSION] "port"
+[DEBUG] [ARGUMENT] "port"
+[DEBUG] [ARGUMENTLIST] streamhost, "port"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( streamhost, "port" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_attrib ( streamhost, "port" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] atoi
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [ARGUMENTLIST] $RET
+[DEBUG] [CALL_EXPRESSION] atoi ( $RET )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = atoi ( $RET )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_attrib ( streamhost, "jid" ) && ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ) )
+[DEBUG] [IDENTIFIER] cname
+[DEBUG] [IDENTIFIER] type
+[DEBUG] [IDENTIFIER] address
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( address && $ARG )
+[DEBUG] [BINARY_OPERATION] ( type && ( address && $ARG ) )
+[DEBUG] [BINARY_OPERATION] ( cname && ( type && ( address && $ARG ) ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (5)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (6)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) || ( $RET $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] host
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( host && $ARG )
+[DEBUG] [IDENTIFIER] acct_name
+[DEBUG] [IDENTIFIER] proto
+[DEBUG] [IDENTIFIER] protocol
+[DEBUG] [BINARY_OPERATION] ( proto && protocol )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( ( proto && protocol ) || $ARG )
+[DEBUG] [BINARY_OPERATION] ( acct_name || ( ( proto && protocol ) || $ARG ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] jabber_ibb_session_get_recv_seq
+[DEBUG] [IDENTIFIER] sess
+[DEBUG] [ARGUMENT] sess
+[DEBUG] [ARGUMENTLIST] sess
+[DEBUG] [CALL_EXPRESSION] jabber_ibb_session_get_recv_seq ( sess )
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP jabber_ibb_session_get_recv_seq ( sess ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG && ( $RET $CMP jabber_ibb_session_get_recv_seq ( sess ) ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] file
+[DEBUG] [ARGUMENT] file
+[DEBUG] [PRIMARY_EXPRESSION] "size"
+[DEBUG] [ARGUMENT] "size"
+[DEBUG] [ARGUMENTLIST] file, "size"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( file, "size" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_attrib ( file, "size" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) || ( $RET $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] MSN_LIST_RL_OP
+[DEBUG] [BINARY_OPERATION] ( $RET & MSN_LIST_RL_OP )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] -0.68747 ( sid || $ARG ).
+[DEBUG] -0.68747 sid.
+[DEBUG] +0.01144 ( $ARG || ( foundation || ( $ARG || ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) ) ) ) ).
+[DEBUG] +0.01144 ( $ARG || ( $ARG || ( protocol || type ) ) ).
+[DEBUG] +0.08887 ( $ARG $CMP NULL ).
+[DEBUG] +0.02534 type.
+[DEBUG] +0.02048 xmlnode_get_attrib ( streamhost, "jid" ).
+[DEBUG] +0.02048 ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ).
+[DEBUG] +0.01133 ( $RET = xmlnode_get_attrib ( streamhost, "jid" ) && ( $RET = xmlnode_get_attrib ( streamhost, "zeroconf" ) || ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ) ) ).
+[DEBUG] +0.01715 ( acct_name || ( ( proto && protocol ) || $ARG ) ).
+[DEBUG] +0.02048 atoi.
+[DEBUG] +0.01144 ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ).
+[DEBUG] +0.02049 ( $ARG && $ARG ).
+[DEBUG] +0.01144 ( $ARG || ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) ) ).
+[DEBUG] +0.02049 ( ( $RET $CMP $NUM ) || message ).
+[DEBUG] +0.01229 ( ip || $ARG ).
+[DEBUG] +0.01229 ( ( $RET $CMP NULL ) && ( g_list_length ( priv -> remote_candidates ) $CMP $NUM ) ).
+[DEBUG] +0.03880 xmlnode_get_attrib.
+[DEBUG] +0.04176 ( $RET $CMP NULL ).
+[DEBUG] +0.01715 address.
+[DEBUG] +0.01229 ( $ARG || ( ip || $ARG ) ).
+[DEBUG] +0.01715 ( address && $ARG ).
+[DEBUG] +0.02534 protocol.
+[DEBUG] +0.01686 ( sh -> host && ( $RET $CMP $NUM ) ).
+[DEBUG] +0.02104 id.
+[DEBUG] +0.01144 ( $ARG || ( protocol || type ) ).
+[DEBUG] +0.01178 strcmp ( $RET, xf -> buddy_ip ).
+[DEBUG] +0.02000 ( $RET $CMP jabber_ibb_session_get_recv_seq ( sess ) ).
+[DEBUG] +0.01229 ( g_list_length ( priv -> remote_candidates ) $CMP $NUM ).
+[DEBUG] +0.02048 xmlnode_get_attrib ( streamhost, "host" ).
+[DEBUG] +0.02864 ( host && $ARG ).
+[DEBUG] +0.02048 ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ).
+[DEBUG] +0.02864 encoding_name.
+[DEBUG] +0.01178 strcmp.
+[DEBUG] +0.01144 foundation.
+[DEBUG] +0.11394 ( $RET $CMP $NUM ).
+[DEBUG] +0.02864 host.
+[DEBUG] +0.10814 NULL.
+[DEBUG] +0.01229 g_list_length.
+[DEBUG] +0.02048 $RET = xmlnode_get_attrib ( streamhost, "port" ).
+[DEBUG] +0.02048 $RET = xmlnode_get_attrib ( streamhost, "jid" ).
+[DEBUG] +0.01715 ( ( proto && protocol ) || $ARG ).
+[DEBUG] +0.01178 ( $RET = xmlnode_get_attrib ( streamhost, "jid" ) && ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ) ).
+[DEBUG] +0.02048 xmlnode_get_attrib ( streamhost, "port" ).
+[DEBUG] +0.01229 ( id || ( $ARG || ( $ARG || ( ip || $ARG ) ) ) ).
+[DEBUG] +0.01715 ( proto && protocol ).
+[DEBUG] +0.01229 g_list_length ( priv -> remote_candidates ).
+[DEBUG] +0.13716 $RET.
+[DEBUG] +0.02048 $RET = xmlnode_get_attrib ( streamhost, "host" ).
+[DEBUG] +0.11487 $NUM.
+[DEBUG] +0.01715 proto.
+[DEBUG] +0.01686 ( sh -> jid && ( sh -> host && ( $RET $CMP $NUM ) ) ).
+[DEBUG] +0.01229 ( $ARG || ( $ARG || ( ip || $ARG ) ) ).
+[DEBUG] +0.01144 ( protocol || type ).
+[DEBUG] +0.02104 ip.
+[DEBUG] +0.01144 ( foundation || ( $ARG || ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) ) ) ).
+[DEBUG] +0.01686 sh -> host.
+[DEBUG] +0.01686 sh -> jid.
+[DEBUG] +0.01715 ( type && ( address && $ARG ) ).
+[DEBUG] +0.01133 $RET = xmlnode_get_attrib ( streamhost, "zeroconf" ).
+[DEBUG] +0.01133 xmlnode_get_attrib ( streamhost, "zeroconf" ).
+[DEBUG] +0.02000 ( $ARG && ( $RET $CMP jabber_ibb_session_get_recv_seq ( sess ) ) ).
+[DEBUG] +0.01715 cname.
+[DEBUG] +0.05329 ( ( $RET $CMP $NUM ) || ( $RET $CMP $NUM ) ).
+[DEBUG] +0.01144 ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ).
+[DEBUG] +0.02048 atoi ( $RET ).
+[DEBUG] +0.02864 ( $ARG && encoding_name ).
+[DEBUG] +0.02048 $RET = atoi ( $RET ).
+[DEBUG] +0.02289 ( $RET & MSN_LIST_RL_OP ).
+[DEBUG] +0.01715 ( cname && ( type && ( address && $ARG ) ) ).
+[DEBUG] -0.00131 $ARG.
+[DEBUG] +0.01144 ( id || ( ip || ( $ARG || ( $ARG || ( $ARG || ( protocol || type ) ) ) ) ) ).
+[DEBUG] +0.02289 MSN_LIST_RL_OP.
+[DEBUG] +0.02049 message.
+[DEBUG] +0.02000 jabber_ibb_session_get_recv_seq.
+[DEBUG] +0.02000 jabber_ibb_session_get_recv_seq ( sess ).
+[DEBUG] +0.02506 xmlnode_get_attrib ( file, "size" ).
+[DEBUG] +0.02506 $ARG = xmlnode_get_attrib ( file, "size" ).
+[DEBUG] +0.01715 acct_name.
+[DEBUG] +0.01133 ( $RET = xmlnode_get_attrib ( streamhost, "zeroconf" ) || ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ) ).
+[DEBUG] Cleaning up.
+[DEBUG] Working directory is .chucky/tmp9KUJil.
+[DEBUG] [IDENTIFIER] body_len
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [BINARY_OPERATION] ( body_len $CMP $RET )
+[DEBUG] [IDENTIFIER] list
+[DEBUG] [IDENTIFIER] MSN_LIST_PL
+[DEBUG] [BINARY_OPERATION] ( list $CMP MSN_LIST_PL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( ( list $CMP MSN_LIST_PL ) && $ARG )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "true\n"
+[DEBUG] [ARGUMENT] "true\n"
+[DEBUG] [ARGUMENTLIST] $ARG, "true\n"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "true\n" )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "manual\n"
+[DEBUG] [ARGUMENT] "manual\n"
+[DEBUG] [ARGUMENTLIST] $ARG, "manual\n"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "manual\n" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [CALLEE] g_spawn_command_line_sync
+[DEBUG] [PRIMARY_EXPRESSION] "gconftool-2 -g /system/http_proxy/port"
+[DEBUG] [ARGUMENT] "gconftool-2 -g /system/http_proxy/port"
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] err
+[DEBUG] [ARGUMENT] err
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [ARGUMENTLIST] "gconftool-2 -g /system/http_proxy/port", $ARG, err, NULL, NULL
+[DEBUG] [CALL_EXPRESSION] g_spawn_command_line_sync ( "gconftool-2 -g /system/http_proxy/port", $ARG, err, NULL, NULL )
+[DEBUG] [CALLEE] g_spawn_command_line_sync
+[DEBUG] [PRIMARY_EXPRESSION] "gconftool-2 -g /system/proxy/mode"
+[DEBUG] [ARGUMENT] "gconftool-2 -g /system/proxy/mode"
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] err
+[DEBUG] [ARGUMENT] err
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [ARGUMENTLIST] "gconftool-2 -g /system/proxy/mode", $ARG, err, NULL, NULL
+[DEBUG] [CALL_EXPRESSION] g_spawn_command_line_sync ( "gconftool-2 -g /system/proxy/mode", $ARG, err, NULL, NULL )
+[DEBUG] [CALLEE] g_spawn_command_line_sync
+[DEBUG] [PRIMARY_EXPRESSION] "gconftool-2 -g /system/proxy/socks_port"
+[DEBUG] [ARGUMENT] "gconftool-2 -g /system/proxy/socks_port"
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] err
+[DEBUG] [ARGUMENT] err
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [ARGUMENTLIST] "gconftool-2 -g /system/proxy/socks_port", $ARG, err, NULL, NULL
+[DEBUG] [CALL_EXPRESSION] g_spawn_command_line_sync ( "gconftool-2 -g /system/proxy/socks_port", $ARG, err, NULL, NULL )
+[DEBUG] [CALLEE] g_spawn_command_line_sync
+[DEBUG] [PRIMARY_EXPRESSION] "gconftool-2 -g /system/http_proxy/use_same_proxy"
+[DEBUG] [ARGUMENT] "gconftool-2 -g /system/http_proxy/use_same_proxy"
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] err
+[DEBUG] [ARGUMENT] err
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [ARGUMENT] NULL
+[DEBUG] [ARGUMENTLIST] "gconftool-2 -g /system/http_proxy/use_same_proxy", $ARG, err, NULL, NULL
+[DEBUG] [CALL_EXPRESSION] g_spawn_command_line_sync ( "gconftool-2 -g /system/http_proxy/use_same_proxy", $ARG, err, NULL, NULL )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "none\n"
+[DEBUG] [ARGUMENT] "none\n"
+[DEBUG] [ARGUMENTLIST] $ARG, "none\n"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "none\n" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] atoi
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [ARGUMENTLIST] $ARG
+[DEBUG] [CALL_EXPRESSION] atoi ( $ARG )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( atoi ( $ARG ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( atoi ( $ARG ) $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] ip
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [BINARY_OPERATION] ( ip && $RET )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (401)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1014)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (607)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) ) || ( $RET $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] tmp_node
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( tmp_node $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data_unescaped
+[DEBUG] [IDENTIFIER] tmp_node
+[DEBUG] [ARGUMENT] tmp_node
+[DEBUG] [ARGUMENTLIST] tmp_node
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data_unescaped ( tmp_node )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data_unescaped ( tmp_node )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( tmp_node $CMP NULL ) || ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (200)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] host
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( host $CMP NULL )
+[DEBUG] [IDENTIFIER] host
+[DEBUG] [PRIMARY_EXPRESSION] '\0'
+[DEBUG] [BINARY_OPERATION] ( host $CMP '\0' )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] '\0'
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP '\0' )
+[DEBUG] [IDENTIFIER] cookie
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( cookie $CMP NULL )
+[DEBUG] [IDENTIFIER] cookie
+[DEBUG] [PRIMARY_EXPRESSION] '\0'
+[DEBUG] [BINARY_OPERATION] ( cookie $CMP '\0' )
+[DEBUG] [BINARY_OPERATION] ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) )
+[DEBUG] [BINARY_OPERATION] ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( host $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( host $CMP NULL ) || ( ( host $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] token
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( token $CMP NULL )
+[DEBUG] [IDENTIFIER] token
+[DEBUG] [PRIMARY_EXPRESSION] '\0'
+[DEBUG] [BINARY_OPERATION] ( token $CMP '\0' )
+[DEBUG] [IDENTIFIER] secret
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( secret $CMP NULL )
+[DEBUG] [IDENTIFIER] secret
+[DEBUG] [PRIMARY_EXPRESSION] '\0'
+[DEBUG] [BINARY_OPERATION] ( secret $CMP '\0' )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] '\0'
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP '\0' )
+[DEBUG] [BINARY_OPERATION] ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) )
+[DEBUG] [BINARY_OPERATION] ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( token $CMP '\0' ) || ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( token $CMP NULL ) || ( ( token $CMP '\0' ) || ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ) ) )
+[DEBUG] [IDENTIFIER] tmp_node
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( tmp_node $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data_unescaped
+[DEBUG] [IDENTIFIER] tmp_node
+[DEBUG] [ARGUMENT] tmp_node
+[DEBUG] [ARGUMENTLIST] tmp_node
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data_unescaped ( tmp_node )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data_unescaped ( tmp_node )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( tmp_node $CMP NULL ) && ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (330)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (3015)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (401)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (3019)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "200"
+[DEBUG] [ARGUMENT] "200"
+[DEBUG] [ARGUMENTLIST] $ARG, "200"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "200" )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( $ARG, "200" ) $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (330)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (3011)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] tmp_node
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( tmp_node $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data_unescaped
+[DEBUG] [IDENTIFIER] tmp_node
+[DEBUG] [ARGUMENT] tmp_node
+[DEBUG] [ARGUMENTLIST] tmp_node
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data_unescaped ( tmp_node )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data_unescaped ( tmp_node )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( tmp_node $CMP NULL ) || ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [ARRAY_INDEXING] $ARG [ $NUM ]
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1)
+[DEBUG] [ARRAY_INDEXING] $ARG [ $NUM ]
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (2)
+[DEBUG] [ARRAY_INDEXING] $ARG [ $NUM ]
+[DEBUG] [BINARY_OPERATION] ( $ARG [ $NUM ] && $ARG [ $NUM ] )
+[DEBUG] [BINARY_OPERATION] ( $ARG [ $NUM ] && ( $ARG [ $NUM ] && $ARG [ $NUM ] ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (8)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (4)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (5)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP $NUM ) && ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) ) )
+[DEBUG] [IDENTIFIER] font -> underline
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( font -> underline && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] font -> bold
+[DEBUG] [IDENTIFIER] oldfont
+[DEBUG] [IDENTIFIER] oldfont -> bold
+[DEBUG] [BINARY_OPERATION] ( oldfont && oldfont -> bold )
+[DEBUG] [BINARY_OPERATION] ( font -> bold && ( oldfont && oldfont -> bold ) )
+[DEBUG] [IDENTIFIER] oldfont
+[DEBUG] [IDENTIFIER] oldfont -> bold
+[DEBUG] [IDENTIFIER] font -> bold
+[DEBUG] [BINARY_OPERATION] ( oldfont -> bold && font -> bold )
+[DEBUG] [BINARY_OPERATION] ( oldfont && ( oldfont -> bold && font -> bold ) )
+[DEBUG] [IDENTIFIER] font -> bold
+[DEBUG] [IDENTIFIER] oldfont
+[DEBUG] [BINARY_OPERATION] ( font -> bold && oldfont )
+[DEBUG] [BINARY_OPERATION] ( ( oldfont && ( oldfont -> bold && font -> bold ) ) || ( font -> bold && oldfont ) )
+[DEBUG] [BINARY_OPERATION] ( ( font -> bold && ( oldfont && oldfont -> bold ) ) || ( ( oldfont && ( oldfont -> bold && font -> bold ) ) || ( font -> bold && oldfont ) ) )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( ( ( font -> bold && ( oldfont && oldfont -> bold ) ) || ( ( oldfont && ( oldfont -> bold && font -> bold ) ) || ( font -> bold && oldfont ) ) ) && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [IDENTIFIER] font -> size
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (3)
+[DEBUG] [BINARY_OPERATION] ( font -> size $CMP $NUM )
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_GROW
+[DEBUG] [IDENTIFIER] GTK_IMHTML_SHRINK
+[DEBUG] [BINARY_OPERATION] ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK )
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) )
+[DEBUG] [BINARY_OPERATION] ( ( font -> size $CMP $NUM ) && ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) ) )
+[DEBUG] [CALLEE] g_ascii_strcasecmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "normal"
+[DEBUG] [ARGUMENT] "normal"
+[DEBUG] [ARGUMENTLIST] $ARG, "normal"
+[DEBUG] [CALL_EXPRESSION] g_ascii_strcasecmp ( $ARG, "normal" )
+[DEBUG] [IDENTIFIER] font -> underline
+[DEBUG] [IDENTIFIER] oldfont -> underline
+[DEBUG] [BINARY_OPERATION] ( font -> underline $CMP oldfont -> underline )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( ( font -> underline $CMP oldfont -> underline ) && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [IDENTIFIER] font -> fore
+[DEBUG] [IDENTIFIER] oldfont -> fore
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] font -> fore
+[DEBUG] [ARGUMENT] font -> fore
+[DEBUG] [IDENTIFIER] oldfont -> fore
+[DEBUG] [ARGUMENT] oldfont -> fore
+[DEBUG] [ARGUMENTLIST] font -> fore, oldfont -> fore
+[DEBUG] [CALL_EXPRESSION] strcmp ( font -> fore, oldfont -> fore )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( oldfont -> fore || ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_COLOURS
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_COLOURS )
+[DEBUG] [BINARY_OPERATION] ( ( oldfont -> fore || ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) )
+[DEBUG] [BINARY_OPERATION] ( font -> fore && ( ( oldfont -> fore || ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] font -> back
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_BACKCOLOR
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_BACKCOLOR )
+[DEBUG] [BINARY_OPERATION] ( font -> back && ( imhtml -> format_functions & GTK_IMHTML_BACKCOLOR ) )
+[DEBUG] [IDENTIFIER] font -> size
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (3)
+[DEBUG] [BINARY_OPERATION] ( font -> size $CMP $NUM )
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_GROW
+[DEBUG] [IDENTIFIER] GTK_IMHTML_SHRINK
+[DEBUG] [BINARY_OPERATION] ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK )
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) )
+[DEBUG] [BINARY_OPERATION] ( ( font -> size $CMP $NUM ) && ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) ) )
+[DEBUG] [IDENTIFIER] font -> size
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (100)
+[DEBUG] [BINARY_OPERATION] ( font -> size $CMP $NUM )
+[DEBUG] [IDENTIFIER] font -> size
+[DEBUG] [IDENTIFIER] oldfont -> size
+[DEBUG] [BINARY_OPERATION] ( font -> size $CMP oldfont -> size )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_SIZES
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_SIZES )
+[DEBUG] [BINARY_OPERATION] ( ( font -> size $CMP oldfont -> size ) && ( options & GTK_IMHTML_NO_SIZES ) )
+[DEBUG] [IDENTIFIER] font -> size
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( font -> size $CMP $NUM )
+[DEBUG] [IDENTIFIER] textdec
+[DEBUG] [IDENTIFIER] font -> strike
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1)
+[DEBUG] [BINARY_OPERATION] ( font -> strike $CMP $NUM )
+[DEBUG] [CALLEE] g_ascii_strcasecmp
+[DEBUG] [IDENTIFIER] textdec
+[DEBUG] [ARGUMENT] textdec
+[DEBUG] [PRIMARY_EXPRESSION] "line-through"
+[DEBUG] [ARGUMENT] "line-through"
+[DEBUG] [ARGUMENTLIST] textdec, "line-through"
+[DEBUG] [CALL_EXPRESSION] g_ascii_strcasecmp ( textdec, "line-through" )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM )
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_STRIKE
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_STRIKE )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [BINARY_OPERATION] ( ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( font -> strike $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( textdec && ( ( font -> strike $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] oldfont -> face
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] oldfont -> face
+[DEBUG] [ARGUMENT] oldfont -> face
+[DEBUG] [ARGUMENTLIST] $ARG, oldfont -> face
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, oldfont -> face )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( oldfont -> face || ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FONTS
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FONTS )
+[DEBUG] [BINARY_OPERATION] ( ( oldfont -> face || ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_FONTS ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG && ( ( oldfont -> face || ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_FONTS ) ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (700)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] font -> back
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_BACKCOLOR
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_BACKCOLOR )
+[DEBUG] [BINARY_OPERATION] ( font -> back && ( imhtml -> format_functions & GTK_IMHTML_BACKCOLOR ) )
+[DEBUG] [IDENTIFIER] font -> fore
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_FORECOLOR
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_FORECOLOR )
+[DEBUG] [BINARY_OPERATION] ( font -> fore && ( imhtml -> format_functions & GTK_IMHTML_FORECOLOR ) )
+[DEBUG] [IDENTIFIER] font -> bold
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( font -> bold $CMP $NUM )
+[DEBUG] [CALLEE] g_ascii_strcasecmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "lighter"
+[DEBUG] [ARGUMENT] "lighter"
+[DEBUG] [ARGUMENTLIST] $ARG, "lighter"
+[DEBUG] [CALL_EXPRESSION] g_ascii_strcasecmp ( $ARG, "lighter" )
+[DEBUG] [IDENTIFIER] font -> bold
+[DEBUG] [IDENTIFIER] oldfont -> bold
+[DEBUG] [BINARY_OPERATION] ( font -> bold && oldfont -> bold )
+[DEBUG] [IDENTIFIER] oldfont -> bold
+[DEBUG] [IDENTIFIER] font -> bold
+[DEBUG] [BINARY_OPERATION] ( oldfont -> bold && font -> bold )
+[DEBUG] [BINARY_OPERATION] ( ( font -> bold && oldfont -> bold ) || ( oldfont -> bold && font -> bold ) )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( ( ( font -> bold && oldfont -> bold ) || ( oldfont -> bold && font -> bold ) ) && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [IDENTIFIER] font -> fore
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_FORECOLOR
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_FORECOLOR )
+[DEBUG] [BINARY_OPERATION] ( font -> fore && ( imhtml -> format_functions & GTK_IMHTML_FORECOLOR ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] atoi
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [ARGUMENTLIST] $ARG
+[DEBUG] [CALL_EXPRESSION] atoi ( $ARG )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (100)
+[DEBUG] [BINARY_OPERATION] ( atoi ( $ARG ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( $ARG && ( atoi ( $ARG ) $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_FACE
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_FACE )
+[DEBUG] [BINARY_OPERATION] ( $ARG && ( imhtml -> format_functions & GTK_IMHTML_FACE ) )
+[DEBUG] [IDENTIFIER] font -> bold
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( font -> bold && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [CALLEE] g_ascii_strcasecmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "bolder"
+[DEBUG] [ARGUMENT] "bolder"
+[DEBUG] [ARGUMENTLIST] $ARG, "bolder"
+[DEBUG] [CALL_EXPRESSION] g_ascii_strcasecmp ( $ARG, "bolder" )
+[DEBUG] [IDENTIFIER] font -> back
+[DEBUG] [IDENTIFIER] oldfont -> back
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] font -> back
+[DEBUG] [ARGUMENT] font -> back
+[DEBUG] [IDENTIFIER] oldfont -> back
+[DEBUG] [ARGUMENT] oldfont -> back
+[DEBUG] [ARGUMENTLIST] font -> back, oldfont -> back
+[DEBUG] [CALL_EXPRESSION] strcmp ( font -> back, oldfont -> back )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( oldfont -> back || ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_COLOURS
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_COLOURS )
+[DEBUG] [BINARY_OPERATION] ( ( oldfont -> back || ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) )
+[DEBUG] [BINARY_OPERATION] ( font -> back && ( ( oldfont -> back || ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) ) )
+[DEBUG] [IDENTIFIER] textdec
+[DEBUG] [IDENTIFIER] font -> underline
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1)
+[DEBUG] [BINARY_OPERATION] ( font -> underline $CMP $NUM )
+[DEBUG] [CALLEE] g_ascii_strcasecmp
+[DEBUG] [IDENTIFIER] textdec
+[DEBUG] [ARGUMENT] textdec
+[DEBUG] [PRIMARY_EXPRESSION] "underline"
+[DEBUG] [ARGUMENT] "underline"
+[DEBUG] [ARGUMENTLIST] textdec, "underline"
+[DEBUG] [CALL_EXPRESSION] g_ascii_strcasecmp ( textdec, "underline" )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM )
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_UNDERLINE
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [BINARY_OPERATION] ( ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( font -> underline $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( textdec && ( ( font -> underline $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) ) )
+[DEBUG] [IDENTIFIER] color
+[DEBUG] [IDENTIFIER] family
+[DEBUG] [IDENTIFIER] size
+[DEBUG] [IDENTIFIER] background
+[DEBUG] [IDENTIFIER] textdec
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] direction
+[DEBUG] [IDENTIFIER] alignment
+[DEBUG] [BINARY_OPERATION] ( direction || alignment )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( direction || alignment ) )
+[DEBUG] [BINARY_OPERATION] ( textdec || ( $ARG || ( direction || alignment ) ) )
+[DEBUG] [BINARY_OPERATION] ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( size || ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( family || ( size || ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) ) ) )
+[DEBUG] [BINARY_OPERATION] ( color || ( family || ( size || ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) ) ) ) )
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_GROW
+[DEBUG] [IDENTIFIER] GTK_IMHTML_SHRINK
+[DEBUG] [BINARY_OPERATION] ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK )
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) )
+[DEBUG] [IDENTIFIER] font -> size
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (3)
+[DEBUG] [BINARY_OPERATION] ( font -> size $CMP $NUM )
+[DEBUG] [IDENTIFIER] oldfont
+[DEBUG] [IDENTIFIER] oldfont -> size
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (3)
+[DEBUG] [BINARY_OPERATION] ( oldfont -> size $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( oldfont && ( oldfont -> size $CMP $NUM ) )
+[DEBUG] [BINARY_OPERATION] ( ( font -> size $CMP $NUM ) || ( oldfont && ( oldfont -> size $CMP $NUM ) ) )
+[DEBUG] [BINARY_OPERATION] ( ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) ) && ( ( font -> size $CMP $NUM ) || ( oldfont && ( oldfont -> size $CMP $NUM ) ) ) )
+[DEBUG] [IDENTIFIER] font -> strike
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( font -> strike && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [IDENTIFIER] font -> strike
+[DEBUG] [IDENTIFIER] oldfont -> strike
+[DEBUG] [BINARY_OPERATION] ( font -> strike $CMP oldfont -> strike )
+[DEBUG] [IDENTIFIER] options
+[DEBUG] [IDENTIFIER] GTK_IMHTML_NO_FORMATTING
+[DEBUG] [BINARY_OPERATION] ( options & GTK_IMHTML_NO_FORMATTING )
+[DEBUG] [BINARY_OPERATION] ( ( font -> strike $CMP oldfont -> strike ) && ( options & GTK_IMHTML_NO_FORMATTING ) )
+[DEBUG] [CALLEE] g_ascii_strcasecmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "bold"
+[DEBUG] [ARGUMENT] "bold"
+[DEBUG] [ARGUMENTLIST] $ARG, "bold"
+[DEBUG] [CALL_EXPRESSION] g_ascii_strcasecmp ( $ARG, "bold" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] imhtml -> format_functions
+[DEBUG] [IDENTIFIER] GTK_IMHTML_FACE
+[DEBUG] [BINARY_OPERATION] ( imhtml -> format_functions & GTK_IMHTML_FACE )
+[DEBUG] [BINARY_OPERATION] ( $ARG && ( imhtml -> format_functions & GTK_IMHTML_FACE ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] channel -> user_limit
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP channel -> user_limit )
+[DEBUG] [BINARY_OPERATION] ( $ARG && ( $RET $CMP channel -> user_limit ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] '0'
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP '0' )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( $ARG $CMP '0' ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG || ( $ARG || ( $ARG $CMP '0' ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] channel -> user_limit
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP channel -> user_limit )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( $ARG && $ARG )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strchr
+[DEBUG] [IDENTIFIER] host
+[DEBUG] [ARGUMENT] host
+[DEBUG] [PRIMARY_EXPRESSION] ':'
+[DEBUG] [ARGUMENT] ':'
+[DEBUG] [ARGUMENTLIST] host, ':'
+[DEBUG] [CALL_EXPRESSION] strchr ( host, ':' )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = strchr ( host, ':' )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = strchr ( host, ':' ) $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] PURPLE_CONNECTION_ERROR_OTHER_ERROR
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP PURPLE_CONNECTION_ERROR_OTHER_ERROR )
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( child $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [ARGUMENT] child
+[DEBUG] [ARGUMENTLIST] child
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( child )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data ( child )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data ( child ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( child $CMP NULL ) || ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] g_datalist_get_data
+[DEBUG] [IDENTIFIER] attributes
+[DEBUG] [ARGUMENT] attributes
+[DEBUG] [PRIMARY_EXPRESSION] "id"
+[DEBUG] [ARGUMENT] "id"
+[DEBUG] [ARGUMENTLIST] attributes, "id"
+[DEBUG] [CALL_EXPRESSION] g_datalist_get_data ( attributes, "id" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = g_datalist_get_data ( attributes, "id" )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = g_datalist_get_data ( attributes, "id" ) $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP $NUM )
+[DEBUG] [IDENTIFIER] records [ 1 ] -> fcount
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (11)
+[DEBUG] [BINARY_OPERATION] ( records [ 1 ] -> fcount $CMP $NUM )
+[DEBUG] [IDENTIFIER] records [ 1 ] -> fcount
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (9)
+[DEBUG] [BINARY_OPERATION] ( records [ 1 ] -> fcount $CMP $NUM )
+[DEBUG] [IDENTIFIER] pair -> key
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1)
+[DEBUG] [BINARY_OPERATION] ( pair -> key $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] pair -> key
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (13)
+[DEBUG] [BINARY_OPERATION] ( pair -> key $CMP $NUM )
+[DEBUG] [IDENTIFIER] pair -> key
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (94)
+[DEBUG] [BINARY_OPERATION] ( pair -> key $CMP $NUM )
+[DEBUG] [IDENTIFIER] cmd -> param_count
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (1)
+[DEBUG] [BINARY_OPERATION] ( cmd -> param_count $CMP $NUM )
+[DEBUG] +0.00379 ( options & GTK_IMHTML_NO_SIZES ).
+[DEBUG] +0.01786 ( $ARG [ $NUM ] && $ARG [ $NUM ] ).
+[DEBUG] +0.01544 ( $ARG || ( $ARG || ( $ARG $CMP '0' ) ) ).
+[DEBUG] +0.01558 ( $ARG $CMP '\0' ).
+[DEBUG] +0.00379 ( imhtml -> format_functions & GTK_IMHTML_BACKCOLOR ).
+[DEBUG] +0.00379 ( $ARG && ( imhtml -> format_functions & GTK_IMHTML_FACE ) ).
+[DEBUG] +0.02835 ( body_len $CMP $RET ).
+[DEBUG] +0.00852 secret.
+[DEBUG] +0.00379 ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.00852 ( token $CMP NULL ).
+[DEBUG] +0.00379 ( font -> underline $CMP oldfont -> underline ).
+[DEBUG] +0.02203 message.
+[DEBUG] +0.00379 GTK_IMHTML_UNDERLINE.
+[DEBUG] +0.16101 $ARG.
+[DEBUG] +0.00852 strcmp ( $ARG, "200" ).
+[DEBUG] +0.00379 GTK_IMHTML_BACKCOLOR.
+[DEBUG] +0.00852 ( ( token $CMP '\0' ) || ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ) ).
+[DEBUG] +0.01987 ( $ARG = strchr ( host, ':' ) $CMP NULL ).
+[DEBUG] +0.01348 $ARG = xmlnode_get_data ( child ).
+[DEBUG] +0.00379 ( oldfont && ( oldfont -> size $CMP $NUM ) ).
+[DEBUG] +0.00379 g_ascii_strcasecmp ( textdec, "line-through" ).
+[DEBUG] +0.00379 g_ascii_strcasecmp ( $ARG, "lighter" ).
+[DEBUG] +0.01333 purple_strequal ( $ARG, "manual\n" ).
+[DEBUG] +0.00852 ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ).
+[DEBUG] +0.00906 ( ( host $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ) ).
+[DEBUG] +0.00379 oldfont -> underline.
+[DEBUG] +0.00379 ( ( font -> bold && oldfont -> bold ) || ( oldfont -> bold && font -> bold ) ).
+[DEBUG] +0.02051 list.
+[DEBUG] +0.00379 ( imhtml -> format_functions & GTK_IMHTML_FACE ).
+[DEBUG] +0.00379 options.
+[DEBUG] +0.00379 GTK_IMHTML_FACE.
+[DEBUG] +0.00379 font -> bold.
+[DEBUG] +0.00379 ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ).
+[DEBUG] +0.00379 color.
+[DEBUG] +0.00379 size.
+[DEBUG] +0.00379 strcmp ( font -> fore, oldfont -> fore ).
+[DEBUG] +0.01558 $ARG = xmlnode_get_data_unescaped ( tmp_node ).
+[DEBUG] +0.00379 ( font -> fore && ( imhtml -> format_functions & GTK_IMHTML_FORECOLOR ) ).
+[DEBUG] +0.01348 PURPLE_CONNECTION_ERROR_OTHER_ERROR.
+[DEBUG] +0.00379 ( font -> bold $CMP $NUM ).
+[DEBUG] +0.01348 ( $ARG = xmlnode_get_data ( child ) $CMP NULL ).
+[DEBUG] +0.00379 ( ( font -> size $CMP oldfont -> size ) && ( options & GTK_IMHTML_NO_SIZES ) ).
+[DEBUG] +0.00852 ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ).
+[DEBUG] +0.00379 ( font -> underline $CMP $NUM ).
+[DEBUG] +0.00379 ( oldfont && oldfont -> bold ).
+[DEBUG] +0.00379 ( ( font -> underline $CMP oldfont -> underline ) && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.00379 ( textdec || ( $ARG || ( direction || alignment ) ) ).
+[DEBUG] +0.00379 ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.00379 ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM ).
+[DEBUG] +0.00852 ( ( token $CMP NULL ) || ( ( token $CMP '\0' ) || ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ) ) ).
+[DEBUG] +0.00379 ( font -> back && ( imhtml -> format_functions & GTK_IMHTML_BACKCOLOR ) ).
+[DEBUG] +0.00379 ( options & GTK_IMHTML_NO_FORMATTING ).
+[DEBUG] +0.01333 g_spawn_command_line_sync ( "gconftool-2 -g /system/http_proxy/port", $ARG, err, NULL, NULL ).
+[DEBUG] +0.00379 ( ( font -> size $CMP $NUM ) || ( oldfont && ( oldfont -> size $CMP $NUM ) ) ).
+[DEBUG] +0.00379 ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM ).
+[DEBUG] +0.00379 strcmp ( font -> back, oldfont -> back ).
+[DEBUG] +0.01851 g_datalist_get_data ( attributes, "id" ).
+[DEBUG] +0.00906 ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ).
+[DEBUG] +0.00379 ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM ).
+[DEBUG] +0.00379 ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) ).
+[DEBUG] +0.00379 g_ascii_strcasecmp ( $ARG, "bold" ).
+[DEBUG] +0.02051 MSN_LIST_PL.
+[DEBUG] +0.00906 ( cookie $CMP NULL ).
+[DEBUG] +0.00379 GTK_IMHTML_SHRINK.
+[DEBUG] +0.02709 pair -> key.
+[DEBUG] +0.02805 ( records [ 1 ] -> fcount $CMP $NUM ).
+[DEBUG] +0.01787 sh -> jid.
+[DEBUG] +0.00379 ( ( font -> size $CMP $NUM ) && ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) ) ).
+[DEBUG] +0.01787 sh -> host.
+[DEBUG] +0.00379 g_ascii_strcasecmp ( $ARG, "bolder" ).
+[DEBUG] +0.02805 records [ 1 ] -> fcount.
+[DEBUG] +0.02170 ( $ARG || ( atoi ( $ARG ) $CMP $NUM ) ).
+[DEBUG] +0.00379 font -> size.
+[DEBUG] +0.00379 background.
+[DEBUG] +0.00379 g_ascii_strcasecmp ( textdec, "underline" ).
+[DEBUG] +0.00379 ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) ).
+[DEBUG] +0.01544 channel -> user_limit.
+[DEBUG] +0.01333 g_spawn_command_line_sync ( "gconftool-2 -g /system/proxy/mode", $ARG, err, NULL, NULL ).
+[DEBUG] +0.00379 g_ascii_strcasecmp.
+[DEBUG] +0.02756 ip.
+[DEBUG] +0.01348 child.
+[DEBUG] +0.00906 ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ).
+[DEBUG] +0.00379 ( ( font -> underline $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) ).
+[DEBUG] +0.00379 ( textdec && ( ( font -> underline $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) ) ).
+[DEBUG] +0.00379 ( $ARG || ( direction || alignment ) ).
+[DEBUG] +0.01787 ( sh -> jid && ( sh -> host && ( $RET $CMP $NUM ) ) ).
+[DEBUG] +0.00379 ( ( oldfont && ( oldfont -> bold && font -> bold ) ) || ( font -> bold && oldfont ) ).
+[DEBUG] +0.01348 ( $RET $CMP PURPLE_CONNECTION_ERROR_OTHER_ERROR ).
+[DEBUG] +0.02259 ( atoi ( $ARG ) $CMP $NUM ).
+[DEBUG] +0.00379 ( ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ).
+[DEBUG] +0.13641 $NUM.
+[DEBUG] +0.00379 ( family || ( size || ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) ) ) ).
+[DEBUG] +0.00379 ( ( imhtml -> format_functions & ( GTK_IMHTML_GROW | GTK_IMHTML_SHRINK ) ) && ( ( font -> size $CMP $NUM ) || ( oldfont && ( oldfont -> size $CMP $NUM ) ) ) ).
+[DEBUG] +0.00906 ( ( host $CMP NULL ) || ( ( host $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ) ) ).
+[DEBUG] +0.15622 $RET.
+[DEBUG] +0.00852 ( strcmp ( $ARG, "200" ) $CMP $NUM ).
+[DEBUG] +0.01558 xmlnode_get_data_unescaped.
+[DEBUG] +0.01987 $ARG = strchr ( host, ':' ).
+[DEBUG] +0.01558 '\0'.
+[DEBUG] +0.01348 ( child $CMP NULL ).
+[DEBUG] +0.01851 ( $ARG = g_datalist_get_data ( attributes, "id" ) $CMP NULL ).
+[DEBUG] +0.00379 ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM ).
+[DEBUG] +0.00379 family.
+[DEBUG] +0.01544 ( $RET $CMP channel -> user_limit ).
+[DEBUG] +0.00379 imhtml -> format_functions.
+[DEBUG] +0.01558 tmp_node.
+[DEBUG] +0.02855 ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) ).
+[DEBUG] +0.00379 ( ( oldfont -> face || ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_FONTS ) ).
+[DEBUG] +0.00379 ( font -> bold && ( oldfont && oldfont -> bold ) ).
+[DEBUG] +0.00379 ( ( font -> bold && ( oldfont && oldfont -> bold ) ) || ( ( oldfont && ( oldfont -> bold && font -> bold ) ) || ( font -> bold && oldfont ) ) ).
+[DEBUG] +0.00379 ( font -> size $CMP $NUM ).
+[DEBUG] +0.00379 textdec.
+[DEBUG] +0.00379 ( oldfont -> bold && font -> bold ).
+[DEBUG] +0.02805 cmd -> param_count.
+[DEBUG] +0.00852 ( token $CMP '\0' ).
+[DEBUG] +0.00379 direction.
+[DEBUG] +0.00379 ( size || ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) ) ).
+[DEBUG] +0.01558 ( ( tmp_node $CMP NULL ) || ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ) ).
+[DEBUG] +0.00379 ( ( font -> strike $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) ).
+[DEBUG] +0.00379 alignment.
+[DEBUG] +0.02756 ( ip && $RET ).
+[DEBUG] +0.00379 oldfont -> back.
+[DEBUG] +0.00379 GTK_IMHTML_GROW.
+[DEBUG] +0.00379 oldfont -> strike.
+[DEBUG] +0.00379 ( ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ).
+[DEBUG] +0.00379 ( $ARG && ( ( oldfont -> face || ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_FONTS ) ) ).
+[DEBUG] +0.01786 $ARG [ $NUM ].
+[DEBUG] +0.12456 NULL.
+[DEBUG] +0.00906 ( host $CMP NULL ).
+[DEBUG] +0.00906 host.
+[DEBUG] +0.00379 oldfont -> face.
+[DEBUG] +0.01987 strchr.
+[DEBUG] +0.01348 xmlnode_get_data ( child ).
+[DEBUG] +0.10722 ( $RET $CMP $NUM ).
+[DEBUG] +0.00906 ( host $CMP '\0' ).
+[DEBUG] +0.00379 oldfont.
+[DEBUG] +0.01851 g_datalist_get_data.
+[DEBUG] +0.01544 '0'.
+[DEBUG] +0.00379 font -> strike.
+[DEBUG] +0.01090 strcmp.
+[DEBUG] +0.00906 ( ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) ) || ( $RET $CMP $NUM ) ).
+[DEBUG] +0.00852 ( ( tmp_node $CMP NULL ) && ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ) ).
+[DEBUG] +0.00379 font -> fore.
+[DEBUG] +0.02709 ( pair -> key $CMP $NUM ).
+[DEBUG] +0.00379 ( oldfont -> fore || ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM ) ).
+[DEBUG] +0.00379 ( oldfont && ( oldfont -> bold && font -> bold ) ).
+[DEBUG] +0.01544 ( $ARG && ( $RET $CMP channel -> user_limit ) ).
+[DEBUG] +0.00379 ( font -> fore && ( ( oldfont -> fore || ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) ) ).
+[DEBUG] +0.01348 ( ( child $CMP NULL ) || ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) ).
+[DEBUG] +0.00379 GTK_IMHTML_NO_FONTS.
+[DEBUG] +0.00852 ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ).
+[DEBUG] +0.00379 GTK_IMHTML_FORECOLOR.
+[DEBUG] +0.00379 ( options & GTK_IMHTML_NO_FONTS ).
+[DEBUG] +0.00379 ( ( ( font -> bold && oldfont -> bold ) || ( oldfont -> bold && font -> bold ) ) && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.00379 GTK_IMHTML_NO_COLOURS.
+[DEBUG] +0.00379 oldfont -> size.
+[DEBUG] +0.00379 strcmp ( $ARG, oldfont -> face ).
+[DEBUG] +0.01333 g_spawn_command_line_sync.
+[DEBUG] +0.00379 ( ( oldfont -> back || ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) ).
+[DEBUG] +0.00379 GTK_IMHTML_NO_FORMATTING.
+[DEBUG] +0.00379 font -> back.
+[DEBUG] +0.00379 ( oldfont -> back || ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM ) ).
+[DEBUG] +0.01851 $ARG = g_datalist_get_data ( attributes, "id" ).
+[DEBUG] +0.01787 ( sh -> host && ( $RET $CMP $NUM ) ).
+[DEBUG] +0.00379 ( imhtml -> format_functions & GTK_IMHTML_STRIKE ).
+[DEBUG] +0.01333 purple_strequal.
+[DEBUG] +0.01558 ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ).
+[DEBUG] +0.00852 token.
+[DEBUG] +0.00379 ( imhtml -> format_functions & GTK_IMHTML_FORECOLOR ).
+[DEBUG] +0.00852 ( secret $CMP '\0' ).
+[DEBUG] +0.01333 purple_strequal ( $ARG, "none\n" ).
+[DEBUG] +0.02051 ( list $CMP MSN_LIST_PL ).
+[DEBUG] +0.00379 ( font -> bold && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.01333 g_spawn_command_line_sync ( "gconftool-2 -g /system/proxy/socks_port", $ARG, err, NULL, NULL ).
+[DEBUG] +0.00379 ( g_ascii_strcasecmp ( textdec, "underline" ) $CMP $NUM ).
+[DEBUG] +0.00379 ( ( ( font -> bold && ( oldfont && oldfont -> bold ) ) || ( ( oldfont && ( oldfont -> bold && font -> bold ) ) || ( font -> bold && oldfont ) ) ) && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.01544 ( $ARG || ( $ARG $CMP '0' ) ).
+[DEBUG] +0.00379 ( $ARG && ( atoi ( $ARG ) $CMP $NUM ) ).
+[DEBUG] +0.01558 xmlnode_get_data_unescaped ( tmp_node ).
+[DEBUG] +0.00379 g_ascii_strcasecmp ( $ARG, "normal" ).
+[DEBUG] +0.01544 ( $ARG $CMP '0' ).
+[DEBUG] +0.00379 ( ( oldfont -> fore || ( strcmp ( font -> fore, oldfont -> fore ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) ).
+[DEBUG] +0.00379 ( font -> strike $CMP $NUM ).
+[DEBUG] +0.00379 oldfont -> fore.
+[DEBUG] +0.00379 ( font -> bold && oldfont ).
+[DEBUG] +0.00379 GTK_IMHTML_STRIKE.
+[DEBUG] +0.01786 ( $ARG [ $NUM ] && ( $ARG [ $NUM ] && $ARG [ $NUM ] ) ).
+[DEBUG] +0.00906 cookie.
+[DEBUG] +0.02805 ( cmd -> param_count $CMP $NUM ).
+[DEBUG] +0.02203 ( ( $RET $CMP $NUM ) || message ).
+[DEBUG] +0.01558 ( tmp_node $CMP NULL ).
+[DEBUG] +0.00379 ( font -> strike && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.00379 ( font -> strike $CMP oldfont -> strike ).
+[DEBUG] +0.00379 ( font -> size $CMP oldfont -> size ).
+[DEBUG] +0.05521 ( $ARG && $ARG ).
+[DEBUG] +0.00379 ( ( font -> strike $CMP oldfont -> strike ) && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.02259 atoi.
+[DEBUG] +0.00379 ( oldfont -> face || ( strcmp ( $ARG, oldfont -> face ) $CMP $NUM ) ).
+[DEBUG] +0.00852 ( secret $CMP NULL ).
+[DEBUG] +0.00379 ( textdec && ( ( font -> strike $CMP $NUM ) && ( ( g_ascii_strcasecmp ( textdec, "line-through" ) $CMP $NUM ) && ( ( imhtml -> format_functions & GTK_IMHTML_STRIKE ) && ( options & GTK_IMHTML_NO_FORMATTING ) ) ) ) ).
+[DEBUG] +0.01348 xmlnode_get_data.
+[DEBUG] +0.01786 ( ( $RET $CMP $NUM ) && ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) ) ).
+[DEBUG] +0.02259 atoi ( $ARG ).
+[DEBUG] +0.00906 ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ).
+[DEBUG] +0.00379 ( imhtml -> format_functions & GTK_IMHTML_UNDERLINE ).
+[DEBUG] +0.00379 ( font -> back && ( ( oldfont -> back || ( strcmp ( font -> back, oldfont -> back ) $CMP $NUM ) ) && ( options & GTK_IMHTML_NO_COLOURS ) ) ).
+[DEBUG] +0.00379 ( font -> underline && ( options & GTK_IMHTML_NO_FORMATTING ) ).
+[DEBUG] +0.00379 ( oldfont -> size $CMP $NUM ).
+[DEBUG] +0.00906 ( cookie $CMP '\0' ).
+[DEBUG] +0.00379 ( direction || alignment ).
+[DEBUG] +0.01333 purple_strequal ( $ARG, "true\n" ).
+[DEBUG] +0.00379 GTK_IMHTML_NO_SIZES.
+[DEBUG] +0.02051 ( ( list $CMP MSN_LIST_PL ) && $ARG ).
+[DEBUG] +0.00379 ( color || ( family || ( size || ( background || ( textdec || ( $ARG || ( direction || alignment ) ) ) ) ) ) ).
+[DEBUG] +0.00379 ( options & GTK_IMHTML_NO_COLOURS ).
+[DEBUG] +0.00379 oldfont -> bold.
+[DEBUG] +0.00379 ( font -> bold && oldfont -> bold ).
+[DEBUG] +0.00379 font -> underline.
+[DEBUG] +0.11419 ( $ARG $CMP NULL ).
+[DEBUG] +0.01333 g_spawn_command_line_sync ( "gconftool-2 -g /system/http_proxy/use_same_proxy", $ARG, err, NULL, NULL ).
+[DEBUG] +0.02835 body_len.
+[DEBUG] +0.01987 strchr ( host, ':' ).
+[DEBUG] Cleaning up.
+[DEBUG] Working directory is .chucky/tmphOQ2Qk.
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "envvar"
+[DEBUG] [ARGUMENT] "envvar"
+[DEBUG] [ARGUMENTLIST] $ARG, "envvar"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "envvar" )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "socks5"
+[DEBUG] [ARGUMENT] "socks5"
+[DEBUG] [ARGUMENTLIST] $ARG, "socks5"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "socks5" )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "http"
+[DEBUG] [ARGUMENT] "http"
+[DEBUG] [ARGUMENTLIST] $ARG, "http"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "http" )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "global"
+[DEBUG] [ARGUMENT] "global"
+[DEBUG] [ARGUMENTLIST] $ARG, "global"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "global" )
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( child $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [ARGUMENT] child
+[DEBUG] [ARGUMENTLIST] child
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( child )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data ( child )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data ( child ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( child $CMP NULL ) && ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "tor"
+[DEBUG] [ARGUMENT] "tor"
+[DEBUG] [ARGUMENTLIST] $ARG, "tor"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "tor" )
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( child $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [ARGUMENT] child
+[DEBUG] [ARGUMENTLIST] child
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( child )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data ( child )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data ( child ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( child $CMP NULL ) && ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) )
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( child $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [ARGUMENT] child
+[DEBUG] [ARGUMENTLIST] child
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( child )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data ( child )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data ( child ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( child $CMP NULL ) && ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "socks4"
+[DEBUG] [ARGUMENT] "socks4"
+[DEBUG] [ARGUMENTLIST] $ARG, "socks4"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "socks4" )
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( child $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [ARGUMENT] child
+[DEBUG] [ARGUMENTLIST] child
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( child )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data ( child )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data ( child ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( child $CMP NULL ) && ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) )
+[DEBUG] [CALLEE] purple_strequal
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "none"
+[DEBUG] [ARGUMENT] "none"
+[DEBUG] [ARGUMENTLIST] $ARG, "none"
+[DEBUG] [CALL_EXPRESSION] purple_strequal ( $ARG, "none" )
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( child $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] child
+[DEBUG] [ARGUMENT] child
+[DEBUG] [ARGUMENTLIST] child
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( child )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $ARG = xmlnode_get_data ( child )
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG = xmlnode_get_data ( child ) $CMP NULL )
+[DEBUG] [BINARY_OPERATION] ( ( child $CMP NULL ) && ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) )
+[DEBUG] [IDENTIFIER] i
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [BINARY_OPERATION] ( i $CMP $RET )
+[DEBUG] [IDENTIFIER] records [ 0 ] -> fields [ 0 ] -> len
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( records [ 0 ] -> fields [ 0 ] -> len $CMP $NUM )
+[DEBUG] [IDENTIFIER] session -> uid
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] session -> uid
+[DEBUG] [ARGUMENT] session -> uid
+[DEBUG] [IDENTIFIER] records [ 0 ] -> fields [ 0 ] -> data
+[DEBUG] [ARGUMENT] records [ 0 ] -> fields [ 0 ] -> data
+[DEBUG] [ARGUMENTLIST] session -> uid, records [ 0 ] -> fields [ 0 ] -> data
+[DEBUG] [CALL_EXPRESSION] strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( session -> uid && ( strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data ) $CMP $NUM ) )
+[DEBUG] [BINARY_OPERATION] ( ( records [ 0 ] -> fields [ 0 ] -> len $CMP $NUM ) || ( session -> uid && ( strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data ) $CMP $NUM ) ) )
+[DEBUG] [IDENTIFIER] records [ 0 ] -> fields [ f + 1 ] -> len
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (10)
+[DEBUG] [BINARY_OPERATION] ( records [ 0 ] -> fields [ f + 1 ] -> len $CMP $NUM )
+[DEBUG] -0.48667 ( $ARG || ( atoi ( $ARG ) $CMP $NUM ) ).
+[DEBUG] -0.48667 ( atoi ( $ARG ) $CMP $NUM ).
+[DEBUG] -0.48667 atoi ( $ARG ).
+[DEBUG] +0.01118 purple_strequal ( $ARG, "tor" ).
+[DEBUG] +0.02816 body_len.
+[DEBUG] +0.01352 g_spawn_command_line_sync ( "gconftool-2 -g /system/http_proxy/use_same_proxy", $ARG, err, NULL, NULL ).
+[DEBUG] +0.12445 ( $ARG $CMP NULL ).
+[DEBUG] +0.02049 ( ( list $CMP MSN_LIST_PL ) && $ARG ).
+[DEBUG] +0.01352 purple_strequal ( $ARG, "true\n" ).
+[DEBUG] +0.01098 xmlnode_get_attrib ( streamhost, "jid" ).
+[DEBUG] +0.00904 ( cookie $CMP '\0' ).
+[DEBUG] +0.00904 ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ).
+[DEBUG] +0.01098 ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ).
+[DEBUG] +0.02274 xmlnode_get_data.
+[DEBUG] +0.00849 ( secret $CMP NULL ).
+[DEBUG] +0.01682 ( acct_name || ( ( proto && protocol ) || $ARG ) ).
+[DEBUG] -0.42159 atoi.
+[DEBUG] +0.01196 ( strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data ) $CMP $NUM ).
+[DEBUG] +0.02084 ( $ARG && $ARG ).
+[DEBUG] +0.01118 ( ( child $CMP NULL ) && ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) ).
+[DEBUG] +0.01554 ( tmp_node $CMP NULL ).
+[DEBUG] +0.02084 ( ( $RET $CMP $NUM ) || message ).
+[DEBUG] +0.00904 cookie.
+[DEBUG] +0.03133 xmlnode_get_attrib.
+[DEBUG] +0.03477 ( $RET $CMP NULL ).
+[DEBUG] +0.01554 xmlnode_get_data_unescaped ( tmp_node ).
+[DEBUG] +0.01118 purple_strequal ( $ARG, "none" ).
+[DEBUG] +0.01352 g_spawn_command_line_sync ( "gconftool-2 -g /system/proxy/socks_port", $ARG, err, NULL, NULL ).
+[DEBUG] +0.02049 ( list $CMP MSN_LIST_PL ).
+[DEBUG] +0.01352 purple_strequal ( $ARG, "none\n" ).
+[DEBUG] +0.00849 ( secret $CMP '\0' ).
+[DEBUG] +0.00849 token.
+[DEBUG] +0.01554 ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ).
+[DEBUG] +0.02189 purple_strequal.
+[DEBUG] +0.01682 protocol.
+[DEBUG] +0.01764 ( sh -> host && ( $RET $CMP $NUM ) ).
+[DEBUG] +0.01352 g_spawn_command_line_sync.
+[DEBUG] +0.01118 purple_strequal ( $ARG, "global" ).
+[DEBUG] +0.00849 ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ).
+[DEBUG] +0.01098 strcmp ( $RET, xf -> buddy_ip ).
+[DEBUG] +0.01448 ( ( child $CMP NULL ) || ( $ARG = xmlnode_get_data ( child ) $CMP NULL ) ).
+[DEBUG] +0.01196 records [ 0 ] -> fields [ 0 ] -> len.
+[DEBUG] +0.01098 xmlnode_get_attrib ( streamhost, "host" ).
+[DEBUG] +0.00849 ( ( tmp_node $CMP NULL ) && ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ) ).
+[DEBUG] +0.03006 ( host && $ARG ).
+[DEBUG] +0.00904 ( ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) ) || ( $RET $CMP $NUM ) ).
+[DEBUG] +0.01098 ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ).
+[DEBUG] +0.01118 purple_strequal ( $ARG, "envvar" ).
+[DEBUG] +0.02532 strcmp.
+[DEBUG] +0.01196 ( records [ 0 ] -> fields [ 0 ] -> len $CMP $NUM ).
+[DEBUG] +0.00904 ( host $CMP '\0' ).
+[DEBUG] +0.10512 ( $RET $CMP $NUM ).
+[DEBUG] +0.02274 xmlnode_get_data ( child ).
+[DEBUG] +0.03466 host.
+[DEBUG] +0.00904 ( host $CMP NULL ).
+[DEBUG] +0.13714 NULL.
+[DEBUG] +0.01098 $RET = xmlnode_get_attrib ( streamhost, "port" ).
+[DEBUG] +0.01098 $RET = xmlnode_get_attrib ( streamhost, "jid" ).
+[DEBUG] +0.01196 ( records [ 0 ] -> fields [ f + 1 ] -> len $CMP $NUM ).
+[DEBUG] +0.01196 strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data ).
+[DEBUG] +0.01682 ( ( proto && protocol ) || $ARG ).
+[DEBUG] +0.01554 ( ( tmp_node $CMP NULL ) || ( $ARG = xmlnode_get_data_unescaped ( tmp_node ) $CMP NULL ) ).
+[DEBUG] +0.01098 ( $RET = xmlnode_get_attrib ( streamhost, "jid" ) && ( $RET = xmlnode_get_attrib ( streamhost, "host" ) && ( $RET = xmlnode_get_attrib ( streamhost, "port" ) && $RET = atoi ( $RET ) ) ) ).
+[DEBUG] +0.01196 ( session -> uid && ( strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data ) $CMP $NUM ) ).
+[DEBUG] +0.00849 ( token $CMP '\0' ).
+[DEBUG] +0.01554 ( ( $RET $CMP $NUM ) && ( $RET $CMP $NUM ) ).
+[DEBUG] +0.01554 tmp_node.
+[DEBUG] +0.01098 xmlnode_get_attrib ( streamhost, "port" ).
+[DEBUG] +0.02274 ( child $CMP NULL ).
+[DEBUG] +0.01554 '\0'.
+[DEBUG] +0.01554 xmlnode_get_data_unescaped.
+[DEBUG] +0.01682 ( proto && protocol ).
+[DEBUG] +0.00849 ( strcmp ( $ARG, "200" ) $CMP $NUM ).
+[DEBUG] +0.14807 $RET.
+[DEBUG] +0.00904 ( ( host $CMP NULL ) || ( ( host $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ) ) ).
+[DEBUG] +0.01098 $RET = xmlnode_get_attrib ( streamhost, "host" ).
+[DEBUG] -0.16605 $NUM.
+[DEBUG] +0.01682 proto.
+[DEBUG] +0.01448 ( $RET $CMP PURPLE_CONNECTION_ERROR_OTHER_ERROR ).
+[DEBUG] +0.01764 ( sh -> jid && ( sh -> host && ( $RET $CMP $NUM ) ) ).
+[DEBUG] +0.00904 ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ).
+[DEBUG] +0.02274 child.
+[DEBUG] +0.01352 g_spawn_command_line_sync ( "gconftool-2 -g /system/proxy/mode", $ARG, err, NULL, NULL ).
+[DEBUG] +0.01196 ( i $CMP $RET ).
+[DEBUG] +0.01764 sh -> host.
+[DEBUG] +0.01764 sh -> jid.
+[DEBUG] +0.01196 i.
+[DEBUG] +0.00904 ( cookie $CMP NULL ).
+[DEBUG] +0.01118 purple_strequal ( $ARG, "socks4" ).
+[DEBUG] +0.02049 MSN_LIST_PL.
+[DEBUG] +0.00904 ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ).
+[DEBUG] +0.01352 g_spawn_command_line_sync ( "gconftool-2 -g /system/http_proxy/port", $ARG, err, NULL, NULL ).
+[DEBUG] +0.02947 ( ( $RET $CMP $NUM ) || ( $RET $CMP $NUM ) ).
+[DEBUG] +0.00849 ( ( token $CMP NULL ) || ( ( token $CMP '\0' ) || ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ) ) ).
+[DEBUG] +0.00849 ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ).
+[DEBUG] +0.02274 ( $ARG = xmlnode_get_data ( child ) $CMP NULL ).
+[DEBUG] +0.01448 PURPLE_CONNECTION_ERROR_OTHER_ERROR.
+[DEBUG] +0.01098 atoi ( $RET ).
+[DEBUG] +0.01554 $ARG = xmlnode_get_data_unescaped ( tmp_node ).
+[DEBUG] +0.01196 ( ( records [ 0 ] -> fields [ 0 ] -> len $CMP $NUM ) || ( session -> uid && ( strcmp ( session -> uid, records [ 0 ] -> fields [ 0 ] -> data ) $CMP $NUM ) ) ).
+[DEBUG] +0.01196 session -> uid.
+[DEBUG] +0.02049 list.
+[DEBUG] +0.01098 $RET = atoi ( $RET ).
+[DEBUG] +0.02444 ( $RET & MSN_LIST_RL_OP ).
+[DEBUG] +0.00904 ( ( host $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( ( $ARG $CMP '\0' ) || ( ( cookie $CMP NULL ) || ( cookie $CMP '\0' ) ) ) ) ).
+[DEBUG] +0.01118 purple_strequal ( $ARG, "http" ).
+[DEBUG] +0.00849 ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ).
+[DEBUG] +0.01352 purple_strequal ( $ARG, "manual\n" ).
+[DEBUG] +0.02274 $ARG = xmlnode_get_data ( child ).
+[DEBUG] +0.00849 ( ( token $CMP '\0' ) || ( ( secret $CMP NULL ) || ( ( secret $CMP '\0' ) || ( ( $ARG $CMP NULL ) || ( $ARG $CMP '\0' ) ) ) ) ).
+[DEBUG] +0.00849 strcmp ( $ARG, "200" ).
+[DEBUG] -0.02284 $ARG.
+[DEBUG] +0.02444 MSN_LIST_RL_OP.
+[DEBUG] +0.02084 message.
+[DEBUG] +0.00849 ( token $CMP NULL ).
+[DEBUG] +0.00849 secret.
+[DEBUG] +0.02816 ( body_len $CMP $RET ).
+[DEBUG] +0.02438 xmlnode_get_attrib ( file, "size" ).
+[DEBUG] +0.01118 purple_strequal ( $ARG, "socks5" ).
+[DEBUG] +0.02438 $ARG = xmlnode_get_attrib ( file, "size" ).
+[DEBUG] +0.01196 records [ 0 ] -> fields [ f + 1 ] -> len.
+[DEBUG] +0.01554 ( $ARG $CMP '\0' ).
+[DEBUG] +0.01682 acct_name.
+[DEBUG] Cleaning up.
+[DEBUG] Working directory is .chucky/tmpTuYIzL.
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] '\0'
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP '\0' )

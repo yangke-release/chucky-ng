@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-from config_generator import ConfigRecord
+from job.JobGenerator import JobGenerator
 from chucky_engine import ChuckyEngine
 
 import logging
@@ -20,24 +20,35 @@ def n_neighbors(value):
         error_message = "N_NEIGHBORS must be greater than {}".format(MIN_N)
         raise argparse.ArgumentError(error_message)
     else:
-       return n
+        return n
 
 class Chucky():
 
     def __init__(self):
         self._init_arg_parser()
+        self.args = self.arg_parser.parse_args()
+        self._config_logger()
+        self._create_chucky_dir()
+        self.job_generator = JobGenerator(
+                identifier = self.args.identifier,
+                identifier_type = self.args.identifier_type,
+                n_neighbors = self.args.n_neighbors,
+                limit = self.args.limit)
+        self.engine = ChuckyEngine(self.args.chucky_dir)
 
     def _init_arg_parser(self):
         self.arg_parser = argparse.ArgumentParser(description=DESCRIPTION)
         self.arg_parser.add_argument(
-                'identifier')
+                'identifier',
+                help = """The name of the identifier 
+                (function name or source/sink name)""")
         self.arg_parser.add_argument(
                 '-i', '--identifier-type',
                 action = 'store',
                 default = 'function',
-                choices = ['function','symbol'],
+                choices = ['function','callee', 'parameter', 'variable'],
                 help = """The type of identifier the positional argument
-                `identifier` refers to (function, symbol).""")
+                `identifier` refers to.""")
         self.arg_parser.add_argument(
                 '-n', '--n-neighbors',
                 action = 'store',
@@ -57,6 +68,14 @@ class Chucky():
                 action = 'store_true',
                 default = False,
                 help = """Enable interactive mode.""")
+        
+        self.arg_parser.add_argument(
+                '-l', '--limit',
+                action = 'store',
+                default = None,
+                type = str,
+                help = """Limit analysis to functions with given name""")
+        
         group = self.arg_parser.add_mutually_exclusive_group()
         group.add_argument(
                 '-d', '--debug',
@@ -95,31 +114,35 @@ class Chucky():
         console_handler.setLevel(self.args.logging_level)
         file_handler = logging.FileHandler('chucky.log', 'w+')
         file_handler.setLevel('DEBUG')
-        console_formatter = logging.Formatter('%(message)s')
+        #console_formatter = logging.Formatter('%(message)s')
+        console_formatter = logging.Formatter('[%(levelname)s] %(message)s')
         file_formatter = logging.Formatter('[%(levelname)s] %(message)s')
         console_handler.setFormatter(console_formatter)
         file_handler.setFormatter(file_formatter)
         self.logger.addHandler(console_handler)
         self.logger.addHandler(file_handler)
 
-    def execute(self):
-        self.args = self.arg_parser.parse_args()
-        self._config_logger()
-        self._create_chucky_dir()
+    """
+    Generates Jobs (list of ChuckyJobs) and asks
+    the engine to perform an analysis for each job.
+    """
 
-        engine = ChuckyEngine(self.args.chucky_dir)
-        for config in ConfigRecord.generate(
-                self.args.identifier,
-                self.args.identifier_type,
-                self.args.n_neighbors):
-            print 'Configuration: {}'.format(config)
+    def execute(self):
+        jobs = self.job_generator.generate()
+        numberOfJobs = len(jobs)
+        
+        for i, job in enumerate(jobs, 1):
+            print 'Job ({}/{}): {}'.format(
+                    i,
+                    numberOfJobs,
+                    job)
             if self.args.interactive:
-                choice = raw_input('Run configuration [(yes)/no/quit]? ').lower()
+                choice = raw_input('Run job ([yes]/no/quit)? ').lower()
                 if choice in ['n', 'no']:
                     continue
                 elif choice in ['q', 'quit']:
                     return
-            engine.analyze(config)
+            self.engine.analyze(job)
 
 if __name__ == '__main__':
     Chucky().execute()
