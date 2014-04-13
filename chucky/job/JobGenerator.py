@@ -77,7 +77,7 @@ class JobGenerator(object):
                         parameter.code,
                         parameter.declaration_type(),
                         PARAMETER,
-                        self.n_neighbors)
+                        self.n_neighbors,True)
                 configurations.append(configuration)
         elif self.identifier_type == 'variable':
             variables = IdentifierLookup.lookup_variable(self.identifier)
@@ -87,7 +87,7 @@ class JobGenerator(object):
                         variable.code,
                         variable.declaration_type(),
                         VARIABLE,
-                        self.n_neighbors)
+                        self.n_neighbors,True)
                 configurations.append(configuration)
         elif self.identifier_type == 'callee':
             callees = CalleeLookup.calleesByName(self.identifier)
@@ -97,7 +97,7 @@ class JobGenerator(object):
                         callee.code,
                         callee.function().name ,
                         CALLEE,
-                        self.n_neighbors)
+                        self.n_neighbors,True)
                 configurations.append(configuration)
 
         

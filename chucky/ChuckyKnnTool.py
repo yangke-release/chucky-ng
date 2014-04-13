@@ -43,12 +43,13 @@ class ChuckyKnnTool():
     def getknn(self,node_id,dirname,k=DEFAULT_K):
         self.emb = self._loadEmbedding(dirname)
         self.calculateDistances()
+
+	result=[]
         try:
             dataPointIndex = self.emb.rTOC[str(node_id)]
+	    for i in self.emb.NNI[0:k, dataPointIndex]:
+                result.append(self.emb.TOC[i])
         except KeyError:
             sys.stderr.write('Warning: no data point found for %s\n' %
                              (node_id))
-        result=[]
-        for i in self.emb.NNI[0:k, dataPointIndex]:
-            result.append(self.emb.TOC[i])
         return result

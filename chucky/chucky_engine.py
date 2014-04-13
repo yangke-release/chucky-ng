@@ -13,7 +13,7 @@ class ChuckyEngine():
     def __init__(self, basedir):
         self.basedir = basedir
         self.logger = logging.getLogger('chucky')
-
+        
         jutils.connectToDatabase()
 
     def analyze(self, job):
@@ -28,7 +28,6 @@ class ChuckyEngine():
                 self.logger.warning('Job skipped, no neighbors found')
                 self.workingEnv.destroy()
                 return
-
             self._calculateCheckModels(nearestNeighbors)
             result = self._anomaly_rating()
             self._outputResult(result)
@@ -53,8 +52,10 @@ class ChuckyEngine():
         self.knn.setK(self.job.n_neighbors)
         return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
     def _calculateCheckModels(self, symbolUsers):
-        cachedir = os.path.join(self.workingEnv.basedir, "exprcache")
-        embedder = ConditionEmbedder(cachedir,self.workingEnv.exprdir)
+        cachedir=None
+        if self.job.needcache:
+            cachedir = os.path.join(self.workingEnv.basedir, "exprcache")
+        embedder = ConditionEmbedder(self.workingEnv.exprdir,cachedir)
         symbolName = self.job.getSymbolName()
         symbolType = self.job.getSymbolType()
         embedder.embed(symbolUsers, symbolName, symbolType)

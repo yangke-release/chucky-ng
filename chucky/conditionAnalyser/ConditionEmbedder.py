@@ -5,7 +5,7 @@ from conditionAnalyser.FunctionConditions import FunctionConditions
 
 class ConditionEmbedder:
     
-    def __init__(self, cachedir,outputdir):
+    def __init__(self, outputdir,cachedir=None):
         
         self.outputdir = outputdir 
 

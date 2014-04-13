@@ -1,0 +1,871 @@
+[DEBUG] Creating directory /home/user/Program/Fabian-Yamaguchi/yangke/joern-projects/chucky/.chucky.
+[INFO] Base directory is /home/user/Program/Fabian-Yamaguchi/yangke/joern-projects/chucky/.chucky.
+[DEBUG] Working directory is .chucky/tmpPiCitp.
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] node -> name
+[DEBUG] [ARGUMENT] node -> name
+[DEBUG] [PRIMARY_EXPRESSION] "MD"
+[DEBUG] [ARGUMENT] "MD"
+[DEBUG] [ARGUMENTLIST] node -> name, "MD"
+[DEBUG] [CALL_EXPRESSION] strcmp ( node -> name, "MD" )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( node -> name, "MD" ) $CMP $NUM )
+[DEBUG] [IDENTIFIER] fault
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] node
+[DEBUG] [ARGUMENT] node
+[DEBUG] [PRIMARY_EXPRESSION] "Body/Fault"
+[DEBUG] [ARGUMENT] "Body/Fault"
+[DEBUG] [ARGUMENTLIST] node, "Body/Fault"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( node, "Body/Fault" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] fault = xmlnode_get_child ( node, "Body/Fault" )
+[DEBUG] [IDENTIFIER] fault
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] node
+[DEBUG] [ARGUMENT] node
+[DEBUG] [PRIMARY_EXPRESSION] "Body/Fault"
+[DEBUG] [ARGUMENT] "Body/Fault"
+[DEBUG] [ARGUMENTLIST] node, "Body/Fault"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( node, "Body/Fault" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] fault = xmlnode_get_child ( node, "Body/Fault" )
+[DEBUG] [IDENTIFIER] node -> parent -> child
+[DEBUG] [IDENTIFIER] node
+[DEBUG] [BINARY_OPERATION] ( node -> parent -> child $CMP node )
+[DEBUG] [IDENTIFIER] node -> namespace_map
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [IDENTIFIER] node -> parent
+[DEBUG] [BINARY_OPERATION] ( NULL $CMP node -> parent )
+[DEBUG] [IDENTIFIER] node -> parent -> lastchild
+[DEBUG] [IDENTIFIER] node
+[DEBUG] [BINARY_OPERATION] ( node -> parent -> lastchild $CMP node )
+[DEBUG] [IDENTIFIER] prev
+[DEBUG] [IDENTIFIER] prev -> next
+[DEBUG] [IDENTIFIER] node
+[DEBUG] [BINARY_OPERATION] ( prev -> next $CMP node )
+[DEBUG] [BINARY_OPERATION] ( prev && ( prev -> next $CMP node ) )
+[DEBUG] [IDENTIFIER] node -> parent -> lastchild
+[DEBUG] [IDENTIFIER] node
+[DEBUG] [BINARY_OPERATION] ( node -> parent -> lastchild $CMP node )
+[DEBUG] [IDENTIFIER] node -> xmlns
+[DEBUG] [IDENTIFIER] node -> parent
+[DEBUG] [IDENTIFIER] node -> parent -> xmlns
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] node -> xmlns
+[DEBUG] [ARGUMENT] node -> xmlns
+[DEBUG] [IDENTIFIER] node -> parent -> xmlns
+[DEBUG] [ARGUMENT] node -> parent -> xmlns
+[DEBUG] [ARGUMENTLIST] node -> xmlns, node -> parent -> xmlns
+[DEBUG] [CALL_EXPRESSION] strcmp ( node -> xmlns, node -> parent -> xmlns )
+[DEBUG] [BINARY_OPERATION] ( node -> parent -> xmlns || strcmp ( node -> xmlns, node -> parent -> xmlns ) )
+[DEBUG] [BINARY_OPERATION] ( node -> parent || ( node -> parent -> xmlns || strcmp ( node -> xmlns, node -> parent -> xmlns ) ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] node -> xmlns
+[DEBUG] [ARGUMENT] node -> xmlns
+[DEBUG] [PRIMARY_EXPRESSION] "jabber:client"
+[DEBUG] [ARGUMENT] "jabber:client"
+[DEBUG] [ARGUMENTLIST] node -> xmlns, "jabber:client"
+[DEBUG] [CALL_EXPRESSION] strcmp ( node -> xmlns, "jabber:client" )
+[DEBUG] [BINARY_OPERATION] ( ( node -> parent || ( node -> parent -> xmlns || strcmp ( node -> xmlns, node -> parent -> xmlns ) ) ) && strcmp ( node -> xmlns, "jabber:client" ) )
+[DEBUG] -0.51829 ( strcmp ( node -> name, "MD" ) $CMP $NUM ).
+[DEBUG] -0.51829 strcmp ( node -> name, "MD" ).
+[DEBUG] -0.51829 $NUM.
+[DEBUG] +0.11111 xmlnode_get_child.
+[DEBUG] +0.03823 node -> xmlns.
+[DEBUG] +0.03823 ( node -> parent -> xmlns || strcmp ( node -> xmlns, node -> parent -> xmlns ) ).
+[DEBUG] +0.03823 strcmp ( node -> xmlns, node -> parent -> xmlns ).
+[DEBUG] +0.03115 node -> namespace_map.
+[DEBUG] +0.03115 ( node -> parent -> child $CMP node ).
+[DEBUG] +0.11111 xmlnode_get_child ( node, "Body/Fault" ).
+[DEBUG] +0.03823 node -> parent -> xmlns.
+[DEBUG] +0.03115 node.
+[DEBUG] -0.40809 strcmp.
+[DEBUG] +0.05898 node -> parent.
+[DEBUG] +0.03115 NULL.
+[DEBUG] +0.03823 strcmp ( node -> xmlns, "jabber:client" ).
+[DEBUG] +0.03115 ( NULL $CMP node -> parent ).
+[DEBUG] +0.11111 fault = xmlnode_get_child ( node, "Body/Fault" ).
+[DEBUG] +0.03115 prev -> next.
+[DEBUG] +0.03115 node -> parent -> child.
+[DEBUG] +0.03823 ( ( node -> parent || ( node -> parent -> xmlns || strcmp ( node -> xmlns, node -> parent -> xmlns ) ) ) && strcmp ( node -> xmlns, "jabber:client" ) ).
+[DEBUG] +0.03115 ( prev -> next $CMP node ).
+[DEBUG] +0.11111 fault.
+[DEBUG] +0.03115 node -> parent -> lastchild.
+[DEBUG] +0.03115 prev.
+[DEBUG] +0.03115 ( node -> parent -> lastchild $CMP node ).
+[DEBUG] +0.03115 ( prev && ( prev -> next $CMP node ) ).
+[DEBUG] +0.03823 ( node -> parent || ( node -> parent -> xmlns || strcmp ( node -> xmlns, node -> parent -> xmlns ) ) ).
+[DEBUG] Cleaning up.
+[DEBUG] Working directory is .chucky/tmpQznWKX.
+[WARNING] Job skipped, no neighbors found
+[DEBUG] Working directory is .chucky/tmpklWbyR.
+[WARNING] Job skipped, no neighbors found
+[DEBUG] Working directory is .chucky/tmpQz7vxL.
+[WARNING] Job skipped, no neighbors found
+[DEBUG] Working directory is .chucky/tmpJZs38M.
+[WARNING] Job skipped, no neighbors found
+[DEBUG] Working directory is .chucky/tmpM6JusZ.
+[WARNING] Job skipped, no neighbors found
+[DEBUG] Working directory is .chucky/tmpfWmc5t.
+[WARNING] Job skipped, no neighbors found
+[DEBUG] Working directory is .chucky/tmpVLmtkJ.
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [CALLEE] purple_account_get_check_mail
+[DEBUG] [IDENTIFIER] session -> account
+[DEBUG] [ARGUMENT] session -> account
+[DEBUG] [ARGUMENTLIST] session -> account
+[DEBUG] [CALL_EXPRESSION] purple_account_get_check_mail ( session -> account )
+[DEBUG] [BINARY_OPERATION] ( ( $RET $CMP NULL ) && purple_account_get_check_mail ( session -> account ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] node -> name
+[DEBUG] [ARGUMENT] node -> name
+[DEBUG] [PRIMARY_EXPRESSION] "MD"
+[DEBUG] [ARGUMENT] "MD"
+[DEBUG] [ARGUMENTLIST] node -> name, "MD"
+[DEBUG] [CALL_EXPRESSION] strcmp ( node -> name, "MD" )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( node -> name, "MD" ) $CMP $NUM )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.MPOP"
+[DEBUG] [ARGUMENT] "MSN.IM.MPOP"
+[DEBUG] [ARGUMENTLIST] $RET, "MSN.IM.MPOP"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "MSN.IM.MPOP" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "displayName"
+[DEBUG] [ARGUMENT] "displayName"
+[DEBUG] [ARGUMENTLIST] $RET, "displayName"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "displayName" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "displayName" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.HasSharedFolder"
+[DEBUG] [ARGUMENT] "MSN.IM.HasSharedFolder"
+[DEBUG] [ARGUMENTLIST] $RET, "MSN.IM.HasSharedFolder"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "MSN.IM.HasSharedFolder" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] atoi
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [ARGUMENTLIST] $RET
+[DEBUG] [CALL_EXPRESSION] atoi ( $RET )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( atoi ( $RET ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( $RET || ( atoi ( $RET ) $CMP $NUM ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "AB.Spouse"
+[DEBUG] [ARGUMENT] "AB.Spouse"
+[DEBUG] [ARGUMENTLIST] $RET, "AB.Spouse"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "AB.Spouse" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.Mobile.ContactId"
+[DEBUG] [ARGUMENT] "MSN.Mobile.ContactId"
+[DEBUG] [ARGUMENTLIST] $RET, "MSN.Mobile.ContactId"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "MSN.Mobile.ContactId" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "isMessengerEnabled"
+[DEBUG] [ARGUMENT] "isMessengerEnabled"
+[DEBUG] [ARGUMENTLIST] $RET, "isMessengerEnabled"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "isMessengerEnabled" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "isMessengerEnabled" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "email"
+[DEBUG] [ARGUMENT] "email"
+[DEBUG] [ARGUMENTLIST] $RET, "email"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "email" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "email" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "isMessengerUser"
+[DEBUG] [ARGUMENT] "isMessengerUser"
+[DEBUG] [ARGUMENTLIST] $RET, "isMessengerUser"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "isMessengerUser" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "isMessengerUser" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "AB.NickName"
+[DEBUG] [ARGUMENT] "AB.NickName"
+[DEBUG] [ARGUMENTLIST] $RET, "AB.NickName"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "AB.NickName" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "displayName"
+[DEBUG] [ARGUMENT] "displayName"
+[DEBUG] [ARGUMENTLIST] $RET, "displayName"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "displayName" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "displayName" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "contactId"
+[DEBUG] [ARGUMENT] "contactId"
+[DEBUG] [ARGUMENTLIST] $RET, "contactId"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "contactId" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "contactId" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "contactInfo"
+[DEBUG] [ARGUMENT] "contactInfo"
+[DEBUG] [ARGUMENTLIST] $RET, "contactInfo"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "contactInfo" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "contactInfo" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "contactType"
+[DEBUG] [ARGUMENT] "contactType"
+[DEBUG] [ARGUMENTLIST] $RET, "contactType"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "contactType" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "contactType" )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_child ( $RET, "contactInfo" ) || $RET = xmlnode_get_child ( $RET, "contactType" ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_child ( $RET, "contactId" ) || ( $RET = xmlnode_get_child ( $RET, "contactInfo" ) || $RET = xmlnode_get_child ( $RET, "contactType" ) ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "phones"
+[DEBUG] [ARGUMENT] "phones"
+[DEBUG] [ARGUMENTLIST] $ARG, "phones"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $ARG, "phones" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $ARG, "phones" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "contactPhoneType"
+[DEBUG] [ARGUMENT] "contactPhoneType"
+[DEBUG] [ARGUMENTLIST] $RET, "contactPhoneType"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "contactPhoneType" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "contactPhoneType" )
+[DEBUG] [IDENTIFIER] mobile_number
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "isMessengerEnabled"
+[DEBUG] [ARGUMENT] "isMessengerEnabled"
+[DEBUG] [ARGUMENTLIST] $RET, "isMessengerEnabled"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "isMessengerEnabled" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "isMessengerEnabled" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [ARGUMENTLIST] $RET
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( $RET )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_data ( $RET )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "true"
+[DEBUG] [ARGUMENT] "true"
+[DEBUG] [ARGUMENTLIST] $RET, "true"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "true" )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_child ( $RET, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) )
+[DEBUG] [BINARY_OPERATION] ( mobile_number && ( $RET = xmlnode_get_child ( $RET, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "number"
+[DEBUG] [ARGUMENT] "number"
+[DEBUG] [ARGUMENTLIST] $RET, "number"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "number" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "number" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] list
+[DEBUG] [IDENTIFIER] MSN_LIST_PL
+[DEBUG] [BINARY_OPERATION] ( list $CMP MSN_LIST_PL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [BINARY_OPERATION] ( ( list $CMP MSN_LIST_PL ) && $RET )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.InviteMessage"
+[DEBUG] [ARGUMENT] "MSN.IM.InviteMessage"
+[DEBUG] [ARGUMENTLIST] $RET, "MSN.IM.InviteMessage"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "MSN.IM.InviteMessage" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.BuddyType"
+[DEBUG] [ARGUMENT] "MSN.IM.BuddyType"
+[DEBUG] [ARGUMENTLIST] $RET, "MSN.IM.BuddyType"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "MSN.IM.BuddyType" )
+[DEBUG] [CALLEE] msn_email_is_valid
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [ARGUMENTLIST] $RET
+[DEBUG] [CALL_EXPRESSION] msn_email_is_valid ( $RET )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "PassportName"
+[DEBUG] [ARGUMENT] "PassportName"
+[DEBUG] [ARGUMENTLIST] $ARG, "PassportName"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "PassportName" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [BINARY_OPERATION] ( $RET && $RET )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] result
+[DEBUG] [BINARY_OPERATION] ( $RET && result )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "detail/errorcode"
+[DEBUG] [ARGUMENT] "detail/errorcode"
+[DEBUG] [ARGUMENTLIST] $RET, "detail/errorcode"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "detail/errorcode" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "detail/errorcode" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "faultstring"
+[DEBUG] [ARGUMENT] "faultstring"
+[DEBUG] [ARGUMENTLIST] $RET, "faultstring"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "faultstring" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "faultstring" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "Body/Fault"
+[DEBUG] [ARGUMENT] "Body/Fault"
+[DEBUG] [ARGUMENTLIST] $ARG, "Body/Fault"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $ARG, "Body/Fault" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $ARG, "Body/Fault" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "groupInfo"
+[DEBUG] [ARGUMENT] "groupInfo"
+[DEBUG] [ARGUMENTLIST] $RET, "groupInfo"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "groupInfo" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "groupInfo" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "name"
+[DEBUG] [ARGUMENT] "name"
+[DEBUG] [ARGUMENTLIST] $RET, "name"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "name" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "name" )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_child ( $RET, "groupInfo" ) && $RET = xmlnode_get_child ( $RET, "name" ) )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "groupId"
+[DEBUG] [ARGUMENT] "groupId"
+[DEBUG] [ARGUMENTLIST] $RET, "groupId"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( $RET, "groupId" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( $RET, "groupId" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $RET $CMP NULL )
+[DEBUG] -0.37792 ( strcmp ( node -> name, "MD" ) $CMP $NUM ).
+[DEBUG] -0.37792 purple_account_get_check_mail ( session -> account ).
+[DEBUG] -0.37792 strcmp ( node -> name, "MD" ).
+[DEBUG] -0.37792 ( ( $RET $CMP NULL ) && purple_account_get_check_mail ( session -> account ) ).
+[DEBUG] -0.37792 purple_account_get_check_mail.
+[DEBUG] +0.04037 xmlnode_get_child ( $RET, "groupId" ).
+[DEBUG] +0.06591 ( $ARG $CMP NULL ).
+[DEBUG] +0.08763 xmlnode_get_child.
+[DEBUG] +0.02739 xmlnode_get_data.
+[DEBUG] +0.02143 atoi.
+[DEBUG] +0.04037 ( $RET = xmlnode_get_child ( $RET, "groupInfo" ) && $RET = xmlnode_get_child ( $RET, "name" ) ).
+[DEBUG] +0.03417 ( ( list $CMP MSN_LIST_PL ) && $RET ).
+[DEBUG] +0.02143 xmlnode_get_child ( $RET, "contactId" ).
+[DEBUG] +0.03417 msn_email_is_valid ( $RET ).
+[DEBUG] +0.04037 xmlnode_get_child ( $RET, "groupInfo" ).
+[DEBUG] -0.02874 ( $RET $CMP NULL ).
+[DEBUG] +0.02739 $RET = xmlnode_get_child ( $ARG, "phones" ).
+[DEBUG] +0.02739 $RET = xmlnode_get_data ( $RET ).
+[DEBUG] +0.03417 ( list $CMP MSN_LIST_PL ).
+[DEBUG] +0.02739 ( $RET = xmlnode_get_child ( $RET, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) ).
+[DEBUG] +0.02143 ( $RET || ( atoi ( $RET ) $CMP $NUM ) ).
+[DEBUG] +0.02143 xmlnode_get_child ( $RET, "email" ).
+[DEBUG] +0.02739 xmlnode_get_child ( $RET, "contactPhoneType" ).
+[DEBUG] +0.02143 strcmp ( $RET, "MSN.IM.MPOP" ).
+[DEBUG] +0.04334 $RET = xmlnode_get_child ( $ARG, "Body/Fault" ).
+[DEBUG] +0.02739 xmlnode_get_child ( $ARG, "phones" ).
+[DEBUG] +0.04334 $RET = xmlnode_get_child ( $RET, "faultstring" ).
+[DEBUG] +0.04334 xmlnode_get_child ( $RET, "faultstring" ).
+[DEBUG] +0.02143 strcmp ( $RET, "MSN.Mobile.ContactId" ).
+[DEBUG] +0.02143 $RET = xmlnode_get_child ( $RET, "contactId" ).
+[DEBUG] +0.02143 xmlnode_get_child ( $RET, "isMessengerUser" ).
+[DEBUG] +0.04037 xmlnode_get_child ( $RET, "name" ).
+[DEBUG] -0.19501 strcmp.
+[DEBUG] +0.03417 msn_email_is_valid.
+[DEBUG] +0.02143 $RET = xmlnode_get_child ( $RET, "email" ).
+[DEBUG] +0.02143 $RET = xmlnode_get_child ( $RET, "contactType" ).
+[DEBUG] -0.02874 NULL.
+[DEBUG] +0.02739 $RET = xmlnode_get_child ( $RET, "contactPhoneType" ).
+[DEBUG] +0.02143 ( $RET = xmlnode_get_child ( $RET, "contactInfo" ) || $RET = xmlnode_get_child ( $RET, "contactType" ) ).
+[DEBUG] +0.02739 xmlnode_get_data ( $RET ).
+[DEBUG] +0.02739 strcmp ( $RET, "true" ).
+[DEBUG] +0.02143 $RET = xmlnode_get_child ( $RET, "displayName" ).
+[DEBUG] +0.02143 ( $RET = xmlnode_get_child ( $RET, "contactId" ) || ( $RET = xmlnode_get_child ( $RET, "contactInfo" ) || $RET = xmlnode_get_child ( $RET, "contactType" ) ) ).
+[DEBUG] +0.04150 $RET = xmlnode_get_child ( $RET, "isMessengerEnabled" ).
+[DEBUG] +0.02143 xmlnode_get_child ( $RET, "displayName" ).
+[DEBUG] +0.02143 strcmp ( $RET, "AB.NickName" ).
+[DEBUG] +0.02143 strcmp ( $RET, "AB.Spouse" ).
+[DEBUG] +0.06392 $RET.
+[DEBUG] +0.02739 ( mobile_number && ( $RET = xmlnode_get_child ( $RET, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) ) ).
+[DEBUG] -0.30305 $NUM.
+[DEBUG] +0.04037 $RET = xmlnode_get_child ( $RET, "groupId" ).
+[DEBUG] +0.04037 $RET = xmlnode_get_child ( $RET, "groupInfo" ).
+[DEBUG] +0.02143 $RET = xmlnode_get_child ( $RET, "isMessengerUser" ).
+[DEBUG] +0.02739 mobile_number.
+[DEBUG] +0.02143 xmlnode_get_child ( $RET, "contactType" ).
+[DEBUG] +0.03417 strcmp ( $RET, "MSN.IM.InviteMessage" ).
+[DEBUG] +0.03417 MSN_LIST_PL.
+[DEBUG] +0.04150 xmlnode_get_child ( $RET, "isMessengerEnabled" ).
+[DEBUG] +0.03417 ( $RET && $RET ).
+[DEBUG] +0.02739 xmlnode_get_child ( $RET, "number" ).
+[DEBUG] +0.02143 xmlnode_get_child ( $RET, "contactInfo" ).
+[DEBUG] +0.07601 ( $RET && result ).
+[DEBUG] +0.03417 strcmp ( $RET, "MSN.IM.BuddyType" ).
+[DEBUG] +0.03417 strcmp ( $ARG, "PassportName" ).
+[DEBUG] +0.02143 strcmp ( $RET, "MSN.IM.HasSharedFolder" ).
+[DEBUG] +0.02143 atoi ( $RET ).
+[DEBUG] +0.07601 result.
+[DEBUG] +0.04334 xmlnode_get_child ( $RET, "detail/errorcode" ).
+[DEBUG] +0.02739 ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ).
+[DEBUG] +0.03417 list.
+[DEBUG] +0.04334 $RET = xmlnode_get_child ( $RET, "detail/errorcode" ).
+[DEBUG] +0.04334 xmlnode_get_child ( $ARG, "Body/Fault" ).
+[DEBUG] +0.02143 $RET = xmlnode_get_child ( $RET, "contactInfo" ).
+[DEBUG] +0.06591 $ARG.
+[DEBUG] +0.04037 $RET = xmlnode_get_child ( $RET, "name" ).
+[DEBUG] +0.02143 ( atoi ( $RET ) $CMP $NUM ).
+[DEBUG] +0.02739 $RET = xmlnode_get_child ( $RET, "number" ).
+[DEBUG] Cleaning up.
+[DEBUG] Working directory is .chucky/tmp9O8idp.
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "MD"
+[DEBUG] [ARGUMENT] "MD"
+[DEBUG] [ARGUMENTLIST] $ARG, "MD"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "MD" )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( $ARG, "MD" ) $CMP $NUM )
+[DEBUG] [IDENTIFIER] mobile_number
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_child
+[DEBUG] [IDENTIFIER] contact_phone
+[DEBUG] [ARGUMENT] contact_phone
+[DEBUG] [PRIMARY_EXPRESSION] "isMessengerEnabled"
+[DEBUG] [ARGUMENT] "isMessengerEnabled"
+[DEBUG] [ARGUMENTLIST] contact_phone, "isMessengerEnabled"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_child ( contact_phone, "isMessengerEnabled" )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_child ( contact_phone, "isMessengerEnabled" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_data
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [ARGUMENTLIST] $RET
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data ( $RET )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_data ( $RET )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "true"
+[DEBUG] [ARGUMENT] "true"
+[DEBUG] [ARGUMENTLIST] $RET, "true"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "true" )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_child ( contact_phone, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) )
+[DEBUG] [BINARY_OPERATION] ( mobile_number && ( $RET = xmlnode_get_child ( contact_phone, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "ContactPhoneMobile"
+[DEBUG] [ARGUMENT] "ContactPhoneMobile"
+[DEBUG] [ARGUMENTLIST] $ARG, "ContactPhoneMobile"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "ContactPhoneMobile" )
+[DEBUG] [BINARY_OPERATION] ( $ARG && strcmp ( $ARG, "ContactPhoneMobile" ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.HasSharedFolder"
+[DEBUG] [ARGUMENT] "MSN.IM.HasSharedFolder"
+[DEBUG] [ARGUMENTLIST] $ARG, "MSN.IM.HasSharedFolder"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "MSN.IM.HasSharedFolder" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.MPOP"
+[DEBUG] [ARGUMENT] "MSN.IM.MPOP"
+[DEBUG] [ARGUMENTLIST] $ARG, "MSN.IM.MPOP"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "MSN.IM.MPOP" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.Mobile.ContactId"
+[DEBUG] [ARGUMENT] "MSN.Mobile.ContactId"
+[DEBUG] [ARGUMENTLIST] $ARG, "MSN.Mobile.ContactId"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "MSN.Mobile.ContactId" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "Me"
+[DEBUG] [ARGUMENT] "Me"
+[DEBUG] [ARGUMENTLIST] $ARG, "Me"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "Me" )
+[DEBUG] [BINARY_OPERATION] ( $ARG && strcmp ( $ARG, "Me" ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "AB.Spouse"
+[DEBUG] [ARGUMENT] "AB.Spouse"
+[DEBUG] [ARGUMENTLIST] $ARG, "AB.Spouse"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "AB.Spouse" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "true"
+[DEBUG] [ARGUMENT] "true"
+[DEBUG] [ARGUMENTLIST] $ARG, "true"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "true" )
+[DEBUG] [BINARY_OPERATION] ( $ARG && strcmp ( $ARG, "true" ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "false"
+[DEBUG] [ARGUMENT] "false"
+[DEBUG] [ARGUMENTLIST] $ARG, "false"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "false" )
+[DEBUG] [BINARY_OPERATION] ( $ARG && strcmp ( $ARG, "false" ) )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "AB.NickName"
+[DEBUG] [ARGUMENT] "AB.NickName"
+[DEBUG] [ARGUMENTLIST] $ARG, "AB.NickName"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "AB.NickName" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] value
+[DEBUG] [BINARY_OPERATION] ( $ARG && value )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.BuddyType"
+[DEBUG] [ARGUMENT] "MSN.IM.BuddyType"
+[DEBUG] [ARGUMENTLIST] $ARG, "MSN.IM.BuddyType"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "MSN.IM.BuddyType" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "MSN.IM.InviteMessage"
+[DEBUG] [ARGUMENT] "MSN.IM.InviteMessage"
+[DEBUG] [ARGUMENTLIST] $ARG, "MSN.IM.InviteMessage"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "MSN.IM.InviteMessage" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "PassportName"
+[DEBUG] [ARGUMENT] "PassportName"
+[DEBUG] [ARGUMENTLIST] $ARG, "PassportName"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "PassportName" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "uri"
+[DEBUG] [ARGUMENT] "uri"
+[DEBUG] [ARGUMENTLIST] $ARG, "uri"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "uri" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "track"
+[DEBUG] [ARGUMENT] "track"
+[DEBUG] [ARGUMENTLIST] $ARG, "track"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "track" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "title"
+[DEBUG] [ARGUMENT] "title"
+[DEBUG] [ARGUMENTLIST] $ARG, "title"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "title" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "source"
+[DEBUG] [ARGUMENT] "source"
+[DEBUG] [ARGUMENTLIST] $ARG, "source"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "source" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "length"
+[DEBUG] [ARGUMENT] "length"
+[DEBUG] [ARGUMENTLIST] $ARG, "length"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "length" )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "artist"
+[DEBUG] [ARGUMENT] "artist"
+[DEBUG] [ARGUMENTLIST] $ARG, "artist"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "artist" )
+[DEBUG] [IDENTIFIER] tuneinfo -> type
+[DEBUG] [IDENTIFIER] XMLNODE_TYPE_TAG
+[DEBUG] [BINARY_OPERATION] ( tuneinfo -> type $CMP XMLNODE_TYPE_TAG )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] jm -> xhtml
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [BINARY_OPERATION] ( jm -> xhtml && $ARG )
+[DEBUG] [IDENTIFIER] body -> len
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [ARGUMENTLIST] $ARG, $ARG
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, $ARG )
+[DEBUG] [BINARY_OPERATION] ( $ARG && strcmp ( $ARG, $ARG ) )
+[DEBUG] [BINARY_OPERATION] ( body -> len && ( $ARG && strcmp ( $ARG, $ARG ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [ARGUMENTLIST] $ARG, $ARG
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, $ARG )
+[DEBUG] [BINARY_OPERATION] ( $ARG && strcmp ( $ARG, $ARG ) )
+[DEBUG] [IDENTIFIER] jm -> xhtml
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [ARGUMENTLIST] $ARG, $ARG
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, $ARG )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] moodinfo -> type
+[DEBUG] [IDENTIFIER] XMLNODE_TYPE_TAG
+[DEBUG] [BINARY_OPERATION] ( moodinfo -> type $CMP XMLNODE_TYPE_TAG )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "text"
+[DEBUG] [ARGUMENT] "text"
+[DEBUG] [ARGUMENTLIST] $ARG, "text"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "text" )
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [CALLEE] xmlnode_get_data_unescaped
+[DEBUG] [IDENTIFIER] status_code_node
+[DEBUG] [ARGUMENT] status_code_node
+[DEBUG] [ARGUMENTLIST] status_code_node
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_data_unescaped ( status_code_node )
+[DEBUG] [ASSIGNMENT_EXPRESSION] $RET = xmlnode_get_data_unescaped ( status_code_node )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $RET
+[DEBUG] [ARGUMENT] $RET
+[DEBUG] [PRIMARY_EXPRESSION] "200"
+[DEBUG] [ARGUMENT] "200"
+[DEBUG] [ARGUMENTLIST] $RET, "200"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $RET, "200" )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( $RET, "200" ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( $RET = xmlnode_get_data_unescaped ( status_code_node ) && ( strcmp ( $RET, "200" ) $CMP $NUM ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [IDENTIFIER] NULL
+[DEBUG] [BINARY_OPERATION] ( $ARG $CMP NULL )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [ARGUMENTLIST] $ARG, $ARG
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, $ARG )
+[DEBUG] [PRIMARY_EXPRESSION] $NUM (0)
+[DEBUG] [BINARY_OPERATION] ( strcmp ( $ARG, $ARG ) $CMP $NUM )
+[DEBUG] [BINARY_OPERATION] ( ( $ARG $CMP NULL ) || ( strcmp ( $ARG, $ARG ) $CMP $NUM ) )
+[DEBUG] [BINARY_OPERATION] ( $ARG && ( ( $ARG $CMP NULL ) || ( strcmp ( $ARG, $ARG ) $CMP $NUM ) ) )
+[DEBUG] [IDENTIFIER] sender_node
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] sender_node
+[DEBUG] [ARGUMENT] sender_node
+[DEBUG] [PRIMARY_EXPRESSION] "unread"
+[DEBUG] [ARGUMENT] "unread"
+[DEBUG] [ARGUMENTLIST] sender_node, "unread"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( sender_node, "unread" )
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [CALLEE] xmlnode_get_attrib
+[DEBUG] [IDENTIFIER] sender_node
+[DEBUG] [ARGUMENT] sender_node
+[DEBUG] [PRIMARY_EXPRESSION] "unread"
+[DEBUG] [ARGUMENT] "unread"
+[DEBUG] [ARGUMENTLIST] sender_node, "unread"
+[DEBUG] [CALL_EXPRESSION] xmlnode_get_attrib ( sender_node, "unread" )
+[DEBUG] [ARGUMENT] xmlnode_get_attrib ( sender_node, "unread" )
+[DEBUG] [PRIMARY_EXPRESSION] "0"
+[DEBUG] [ARGUMENT] "0"
+[DEBUG] [ARGUMENTLIST] xmlnode_get_attrib ( sender_node, "unread" ), "0"
+[DEBUG] [CALL_EXPRESSION] strcmp ( xmlnode_get_attrib ( sender_node, "unread" ), "0" )
+[DEBUG] [BINARY_OPERATION] ( xmlnode_get_attrib ( sender_node, "unread" ) || strcmp ( xmlnode_get_attrib ( sender_node, "unread" ), "0" ) )
+[DEBUG] [BINARY_OPERATION] ( sender_node && ( xmlnode_get_attrib ( sender_node, "unread" ) || strcmp ( xmlnode_get_attrib ( sender_node, "unread" ), "0" ) ) )
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [CALLEE] strcmp
+[DEBUG] [IDENTIFIER] $ARG
+[DEBUG] [ARGUMENT] $ARG
+[DEBUG] [PRIMARY_EXPRESSION] "true"
+[DEBUG] [ARGUMENT] "true"
+[DEBUG] [ARGUMENTLIST] $ARG, "true"
+[DEBUG] [CALL_EXPRESSION] strcmp ( $ARG, "true" )
+[DEBUG] [BINARY_OPERATION] ( $ARG && strcmp ( $ARG, "true" ) )
+[DEBUG] -0.60973 strcmp ( $ARG, "MD" ).
+[DEBUG] -0.60973 ( strcmp ( $ARG, "MD" ) $CMP $NUM ).
+[DEBUG] +0.04081 xmlnode_get_data_unescaped ( status_code_node ).
+[DEBUG] +0.03150 ( $ARG $CMP NULL ).
+[DEBUG] +0.02964 xmlnode_get_child.
+[DEBUG] +0.03692 strcmp ( $ARG, "source" ).
+[DEBUG] +0.02964 xmlnode_get_data.
+[DEBUG] +0.04081 $RET = xmlnode_get_data_unescaped ( status_code_node ).
+[DEBUG] +0.03384 ( $ARG && strcmp ( $ARG, "false" ) ).
+[DEBUG] +0.03692 strcmp ( $ARG, "uri" ).
+[DEBUG] +0.05175 strcmp ( $ARG, "text" ).
+[DEBUG] +0.03692 ( tuneinfo -> type $CMP XMLNODE_TYPE_TAG ).
+[DEBUG] +0.07538 XMLNODE_TYPE_TAG.
+[DEBUG] +0.03150 xmlnode_get_attrib.
+[DEBUG] +0.04081 ( $RET = xmlnode_get_data_unescaped ( status_code_node ) && ( strcmp ( $RET, "200" ) $CMP $NUM ) ).
+[DEBUG] +0.02964 $RET = xmlnode_get_data ( $RET ).
+[DEBUG] +0.03692 strcmp ( $ARG, "artist" ).
+[DEBUG] +0.09598 strcmp ( $ARG, $ARG ).
+[DEBUG] +0.03384 strcmp ( $ARG, "AB.NickName" ).
+[DEBUG] +0.03384 strcmp ( $ARG, "MSN.Mobile.ContactId" ).
+[DEBUG] +0.03384 strcmp ( $ARG, "MSN.IM.MPOP" ).
+[DEBUG] +0.04811 value.
+[DEBUG] +0.02964 xmlnode_get_child ( contact_phone, "isMessengerEnabled" ).
+[DEBUG] +0.03384 strcmp ( $ARG, "AB.Spouse" ).
+[DEBUG] -0.07692 strcmp.
+[DEBUG] +0.04579 jm -> xhtml.
+[DEBUG] +0.03150 NULL.
+[DEBUG] +0.02964 xmlnode_get_data ( $RET ).
+[DEBUG] +0.03692 strcmp ( $ARG, "title" ).
+[DEBUG] +0.03150 xmlnode_get_attrib ( sender_node, "unread" ).
+[DEBUG] +0.02964 strcmp ( $RET, "true" ).
+[DEBUG] +0.04811 ( $ARG && value ).
+[DEBUG] +0.09958 strcmp ( $ARG, "true" ).
+[DEBUG] +0.05175 ( moodinfo -> type $CMP XMLNODE_TYPE_TAG ).
+[DEBUG] +0.04081 xmlnode_get_data_unescaped.
+[DEBUG] +0.03692 strcmp ( $ARG, "track" ).
+[DEBUG] +0.03150 ( $ARG && ( ( $ARG $CMP NULL ) || ( strcmp ( $ARG, $ARG ) $CMP $NUM ) ) ).
+[DEBUG] +0.03384 strcmp ( $ARG, "MSN.IM.HasSharedFolder" ).
+[DEBUG] +0.05989 $RET.
+[DEBUG] +0.03384 strcmp ( $ARG, "false" ).
+[DEBUG] -0.39969 $NUM.
+[DEBUG] +0.02964 ( mobile_number && ( $RET = xmlnode_get_child ( contact_phone, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) ) ).
+[DEBUG] +0.04081 strcmp ( $RET, "200" ).
+[DEBUG] +0.04811 strcmp ( $ARG, "MSN.IM.BuddyType" ).
+[DEBUG] +0.04579 ( jm -> xhtml && $ARG ).
+[DEBUG] +0.03150 ( sender_node && ( xmlnode_get_attrib ( sender_node, "unread" ) || strcmp ( xmlnode_get_attrib ( sender_node, "unread" ), "0" ) ) ).
+[DEBUG] +0.02964 mobile_number.
+[DEBUG] +0.03384 strcmp ( $ARG, "Me" ).
+[DEBUG] +0.02964 $RET = xmlnode_get_child ( contact_phone, "isMessengerEnabled" ).
+[DEBUG] +0.09958 ( $ARG && strcmp ( $ARG, "true" ) ).
+[DEBUG] +0.04579 ( $ARG && strcmp ( $ARG, $ARG ) ).
+[DEBUG] +0.03692 tuneinfo -> type.
+[DEBUG] +0.05175 moodinfo -> type.
+[DEBUG] +0.03150 sender_node.
+[DEBUG] +0.04579 ( body -> len && ( $ARG && strcmp ( $ARG, $ARG ) ) ).
+[DEBUG] +0.04811 strcmp ( $ARG, "MSN.IM.InviteMessage" ).
+[DEBUG] +0.03150 ( xmlnode_get_attrib ( sender_node, "unread" ) || strcmp ( xmlnode_get_attrib ( sender_node, "unread" ), "0" ) ).
+[DEBUG] +0.04081 ( strcmp ( $RET, "200" ) $CMP $NUM ).
+[DEBUG] +0.03692 strcmp ( $ARG, "length" ).
+[DEBUG] +0.03150 ( strcmp ( $ARG, $ARG ) $CMP $NUM ).
+[DEBUG] +0.04811 strcmp ( $ARG, "PassportName" ).
+[DEBUG] +0.03150 ( ( $ARG $CMP NULL ) || ( strcmp ( $ARG, $ARG ) $CMP $NUM ) ).
+[DEBUG] +0.02964 ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ).
+[DEBUG] +0.02964 ( $RET = xmlnode_get_child ( contact_phone, "isMessengerEnabled" ) && ( $RET = xmlnode_get_data ( $RET ) && strcmp ( $RET, "true" ) ) ).
+[DEBUG] +0.02964 ( $ARG && strcmp ( $ARG, "ContactPhoneMobile" ) ).
+[DEBUG] +0.04579 body -> len.
+[DEBUG] +0.16019 $ARG.
+[DEBUG] +0.03384 ( $ARG && strcmp ( $ARG, "Me" ) ).
+[DEBUG] +0.02964 strcmp ( $ARG, "ContactPhoneMobile" ).
+[DEBUG] +0.03150 strcmp ( xmlnode_get_attrib ( sender_node, "unread" ), "0" ).
+[DEBUG] Cleaning up.
+[DEBUG] Working directory is .chucky/tmpHVoIMl.
+[WARNING] Job skipped, no neighbors found
+[DEBUG] Working directory is .chucky/tmpIedIkQ.
+[WARNING] Job skipped, no neighbors found

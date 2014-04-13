@@ -11,12 +11,12 @@ class ChuckyJob(object):
     # Suggested improvement: provide setters for each of the
     # configurable fields and remove the constructor
     
-    def __init__(self, function, target_name, target_decl_type, target_type, n_neighbors):
+    def __init__(self, function, target_name, target_decl_type, target_type, n_neighbors,needcache=False):
         self.function = function
         self.n_neighbors = n_neighbors
         self.logger = logging.getLogger('chucky')
         self._initializeSymbol(target_name, target_type, target_decl_type)
-        
+        self.needcache=needcache
     def _initializeSymbol(self, name, aType, declType):
         self.symbol = Symbol()
         self.symbol.setName(name)
