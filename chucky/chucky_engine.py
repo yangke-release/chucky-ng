@@ -78,6 +78,7 @@ class ChuckyEngine():
     def _outputResult(self, result):
         
         score, feat = max(result)
-        print '{:< 6.5f}\t{:40}\t{:10}\t{}'.format(score, self.job.function, self.job.function.node_id, feat)
+        print '{:< 6.5f}\t{:40}\t{:10}\t{:10}\t{:10}\t{}'.format(score, self.job.function, self.job.function.node_id,self.job.symbol.target_type,
+            self.job.symbol.target_name, feat)
     
 

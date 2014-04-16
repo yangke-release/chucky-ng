@@ -71,24 +71,38 @@ class JobGenerator(object):
                     configurations.append(configuration)
         elif self.identifier_type == 'parameter':
             parameters = IdentifierLookup.lookup_parameter(self.identifier)
+            d=dict()
             for parameter in parameters:
+                decl_type=str(parameter.declaration_type())
+                if not d.has_key(decl_type):
+                    d[decl_type]=set()                
                 configuration = ChuckyJob(
-                        parameter.function(),
-                        parameter.code,
-                        parameter.declaration_type(),
-                        PARAMETER,
-                        self.n_neighbors,True)
-                configurations.append(configuration)
+                    parameter.function(),
+                    parameter.code,
+                    parameter.declaration_type(),
+                    PARAMETER,
+                    self.n_neighbors,True)
+                d[decl_type].add(configuration)
+            for configs in d.values():
+                configurations+=list(configs)
+                #return a list of fond variables(same symbol gather together)
         elif self.identifier_type == 'variable':
             variables = IdentifierLookup.lookup_variable(self.identifier)
+            d=dict()
             for variable in variables:
+                decl_type=str(parameter.declaration_type())
+                if not d.has_key(decl_type):
+                    d[decl_type]=set()                
                 configuration = ChuckyJob(
-                        variable.function(),
-                        variable.code,
-                        variable.declaration_type(),
-                        VARIABLE,
-                        self.n_neighbors,True)
-                configurations.append(configuration)
+                    variable.function(),
+                    variable.code,
+                    variable.declaration_type(),
+                    VARIABLE,
+                    self.n_neighbors,True)
+                d[decl_type].add(configuration)
+            for configs in d.values():
+                configurations+=list(configs)
+                #return a list of fond variables(same decl_type gather together)
         elif self.identifier_type == 'callee':
             callees = CalleeLookup.calleesByName(self.identifier)
             for callee in callees:
