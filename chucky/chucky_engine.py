@@ -7,6 +7,7 @@ from nearestNeighbor.NearestNeighborSelector import NearestNeighborSelector
 from ChuckyWorkingEnvironment import ChuckyWorkingEnvironment
 from nearestNeighbor.FunctionSelector import FunctionSelector
 from conditionAnalyser.ConditionEmbedder import ConditionEmbedder
+from AnomalyScoreTool import AnomalyScoreTool
 
 class ChuckyEngine():
 
@@ -65,13 +66,10 @@ class ChuckyEngine():
     Determine anomaly score.
     """
     def _anomaly_rating(self):
-        command = "echo %d |" % (self.job.function.node_id)
-        command += 'python ../python/anomaly_score.py -d {dir}'
-        command = command.format(dir = self.workingEnv.exprdir)
-        output = subprocess.check_output(command, shell=True)
-
+        tool=AnomalyScoreTool();
+        li=tool.analyze(str(self.job.function.node_id),self.workingEnv.exprdir)
         results = []
-        for line in output.strip().split('\n'):
+        for line in li:
             score, feat = line.split(' ', 1)
             results.append((float(score), feat))
             self.logger.debug('%+1.5f %s.', float(score), feat)
