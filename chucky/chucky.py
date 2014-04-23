@@ -6,7 +6,6 @@ from chucky_engine import ChuckyEngine
 import logging
 import argparse
 import os
-import shutil
 
 DESCRIPTION = """Chucky analyzes functions for anomalies. To this end, the
 usage of symbols used by a function is analyzed by comparing the checks
@@ -131,7 +130,6 @@ class Chucky():
     def execute(self):
         jobs = self.job_generator.generate()
         numberOfJobs = len(jobs)
-        pre_job=None
         for i, job in enumerate(jobs, 1):
             print 'Job ({}/{}): {}'.format(
                     i,
@@ -143,11 +141,6 @@ class Chucky():
                     continue
                 elif choice in ['q', 'quit']:
                     return
-            if (not pre_job) or not (job.symbol ==pre_job.symbol):
-                shutil.rmtree(os.path.abspath(self.args.chucky_dir)) 
-                #rm cache
-                self._create_chucky_dir()
-                #recreate it
             self.engine.analyze(job)
 
 if __name__ == '__main__':

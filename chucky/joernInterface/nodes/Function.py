@@ -62,4 +62,32 @@ class Function(Node):
     @property
     def signature(self):
         return self.get_property('signature')
-
+    def location(self):
+        id = self.node_id
+        query = """g.v(%s)
+        .ifThenElse{it.type == 'Function'}{
+         it.sideEffect{loc = it.location; }.functionToFile()
+         .sideEffect{filename = it.filepath; }
+         }{
+           it.ifThenElse{it.type == 'Symbol'}
+           {
+             it.transform{ g.v(it.functionId) }.sideEffect{loc = it.location; }
+             .functionToFile()
+             .sideEffect{filename = it.filepath; }
+            }{
+             it.ifThenElse{it.type == 'BasicBlock'}{
+               it.sideEffect{loc = it.location}.basicBlockToAST()
+               .astNodeToFunction().functionToFile()
+               .sideEffect{filename = it.filepath; }
+             }{
+              // AST node
+              it.astNodeToBasicBlock().sideEffect{loc = it.location; }
+              .basicBlockToAST().astNodeToFunction()
+              .functionToFile().sideEffect{filename = it.filepath; }
+              }
+           }
+        }.transform{ filename + ':' + loc }
+        """ % (id)
+        y=jutils.joern.runGremlinQuery(query)
+        for x in y:
+            return x    

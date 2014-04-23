@@ -15,6 +15,7 @@ class ConditionEmbedder:
     def embed(self, functions, symbolName, symbolType):
         
         funcConditions = []
+        flag=False
         for i, symbolUser in enumerate(functions, 1):
             # self.logger.info('Processing %s (%s/%s).', symbolUser, i, len(functions))            
             
@@ -22,7 +23,14 @@ class ConditionEmbedder:
             x.setSymbolName(symbolName)
             x.setSymbolType(symbolType)
             funcConditions.append(x)
-        
-        self.dataDirCreator.create(funcConditions)
-        self.embedder.embed(self.outputdir, 'bin')
+            if not flag:
+                for feature in x.getFeatures():
+                    flag=True
+                    break
+        if flag:
+            self.dataDirCreator.create(funcConditions)
+            self.embedder.embed(self.outputdir, 'bin')
+            return True
+        else:
+            return False
         
