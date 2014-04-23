@@ -50,7 +50,12 @@ class AnomalyScoreTool():
 	return result
 
     def calculateCenterOfMass(self, index):
-        
-        X = vstack([self.emb.x[:index, :], self.emb.x[index+1:, :]])
+        row,col=self.emb.x.shape
+	if index==row-1:
+	    X=csr_matrix(self.emb.x[:index, :])
+	elif index==0:
+	    X=csr_matrix(self.emb.x[index+1:, :])
+	else:
+	    X = vstack([self.emb.x[:index, :], self.emb.x[index+1:, :]])
         return csr_matrix(X.mean(axis=0))
 
