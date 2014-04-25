@@ -28,7 +28,6 @@ class AnomalyScoreTool():
             sys.exit()
 
     def analyze(self, line,dirname):
-	
 	self.emb = self._loadEmbedding(dirname)
     	try:
             dataPointIndex = self.emb.rTOC[line]

@@ -7,6 +7,7 @@ from joerntools.mlutils.EmbeddingSaver import EmbeddingSaver
 from sklearn.metrics.pairwise import pairwise_distances
 
 import sys
+import math
 
 DESCRIPTION = """ Calculate the k nearest neighbors to a data point
 based on an embedding. """
@@ -47,8 +48,15 @@ class ChuckyKnnTool():
 	result=[]
         try:
             dataPointIndex = self.emb.rTOC[str(node_id)]
+	    flag=False
 	    for i in self.emb.NNI[0:k, dataPointIndex]:
+		#print "#>",self.emb.D[i,dataPointIndex]
+	        if math.fabs(self.emb.D[i,dataPointIndex])>1.0e-10:flag=True
                 result.append(self.emb.TOC[i])
+	    if not flag:
+		if node_id not in result:
+		    result.pop()
+		    result.append(node_id)
         except KeyError:
             sys.stderr.write('Warning: no data point found for %s\n' %
                              (node_id))
