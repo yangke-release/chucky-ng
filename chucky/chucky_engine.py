@@ -40,6 +40,7 @@ class ChuckyEngine():
                 self.logger.warning('Job skipped, no neighbors found')
                 self.workingEnv.destroy()
                 return
+            self._checkAndClearExpCache()
             if self._calculateCheckModels(nearestNeighbors):
                 result = self._anomaly_rating()
             else:

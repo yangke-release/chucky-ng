@@ -54,9 +54,9 @@ class ChuckyKnnTool():
 	        if math.fabs(self.emb.D[i,dataPointIndex])>1.0e-10:flag=True
                 result.append(self.emb.TOC[i])
 	    if not flag:
-		if node_id not in result:
+		if str(node_id) not in result:
 		    result.pop()
-		    result.append(node_id)
+		    result.append(str(node_id))
         except KeyError:
             sys.stderr.write('Warning: no data point found for %s\n' %
                              (node_id))
