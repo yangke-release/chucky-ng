@@ -63,11 +63,11 @@ class ChuckyEngine():
     def _getKNearestNeighbors(self):
         symbol = self.job.getSymbol()
         entitySelector = FunctionSelector()
-        symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol) 
-        
+        if (not self.pre_job) or (not self.symbolUsers) or not (self.job.symbol ==self.pre_job.symbol):           
+            self.symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol) 
         self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir)
         self.knn.setK(self.job.n_neighbors)
-        return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
+        return self.knn.getNearestNeighbors(self.job.function, self.symbolUsers)
     def _calculateCheckModels(self, symbolUsers):
         cachedir=None
         if self.job.needcache:
