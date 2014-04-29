@@ -1,8 +1,8 @@
 #!/usr/bin/env python2
 
 from joerntools.shelltool.PipeTool import PipeTool
-from joerntools.mlutils.EmbeddingLoader import EmbeddingLoader
-
+#from joerntools.mlutils.EmbeddingLoader import EmbeddingLoader
+from ExpEmbeddingLoader import ExpEmbeddingLoader
 from sklearn.metrics.pairwise import pairwise_distances
 from scipy.sparse import *
 import numpy
@@ -17,7 +17,7 @@ DEFAULT_DIRNAME = 'embedding'
 class AnomalyScoreTool():
     
     def __init__(self):
-        self.loader = EmbeddingLoader()
+        self.loader = ExpEmbeddingLoader()
         self.mean=None
 
     def _loadEmbedding(self, dirname):
@@ -49,6 +49,7 @@ class AnomalyScoreTool():
 	return result
 
     def calculateCenterOfMass(self, index):
+	'''
         row,col=self.emb.x.shape
 	if index==row-1:
 	    X=csr_matrix(self.emb.x[:index, :])
@@ -57,4 +58,6 @@ class AnomalyScoreTool():
 	else:
 	    X = vstack([self.emb.x[:index, :], self.emb.x[index+1:, :]])
         return csr_matrix(X.mean(axis=0))
+	'''
+	return csr_matrix(self.emb.x.mean(axis=0))
 
