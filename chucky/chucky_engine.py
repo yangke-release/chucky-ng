@@ -39,6 +39,8 @@ class ChuckyEngine():
             if nearestNeighbors == []:
                 self.logger.warning('Job skipped, no neighbors found')
                 self.workingEnv.destroy()
+                self.pre_job=self.job
+                self.job=None                
                 return
             self._checkAndClearExpCache()
             if self._calculateCheckModels(nearestNeighbors):
@@ -46,13 +48,12 @@ class ChuckyEngine():
             else:
                 result=[]
             self._outputResult(result)
-
+            self.pre_job=self.job
+            self.job=None            
         except subprocess.CalledProcessError as e:
             self.logger.error(e)
             self.logger.error('Do not clean up.')
-        else:
-            self.pre_job=self.job
-            self.job=None            
+        else:          
             self.logger.debug('Cleaning up.')
             self.workingEnv.destroy()
 

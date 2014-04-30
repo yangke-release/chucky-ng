@@ -113,12 +113,10 @@ class JobGenerator(object):
                         CALLEE,
                         self.n_neighbors,True)
                 configurations.append(configuration)
-
-        
-        configurations = list(set(configurations))
-        
+                
         if self.limit:
-            configurations = set([c for c in configurations if re.search(self.limit, c.function.name)])
-            configurations = list(configurations)
+            configurations = list([c for c in configurations if re.search(self.limit, c.function.name)])        
+        if self.identifier_type == 'function':
+            configurations = list(set(configurations))
             
         return configurations
