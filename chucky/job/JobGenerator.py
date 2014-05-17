@@ -18,11 +18,11 @@ class JobGenerator(object):
 
     # Suggested improvement: see ChuckyJob
     
-    def __init__(self, identifier, identifier_type, n_neighbors, limit):
+    def __init__(self, identifier, identifier_type, n_neighbors):
         self.identifier = identifier
         self.identifier_type = identifier_type
         self.n_neighbors = n_neighbors
-        self.limit = limit
+        self.limit = None
 
     """
     Generates a suitable configuration based on the objects
@@ -32,7 +32,8 @@ class JobGenerator(object):
     """
     
     def generate(self):
-        configurations = set()
+        configurations = []
+        needcache=False
         if self.identifier_type == 'function':
             functions = FunctionLookup.lookup_functions_by_name(self.identifier)
             for function in functions:
@@ -46,7 +47,7 @@ class JobGenerator(object):
                             parameter_type,
                             PARAMETER,
                             self.n_neighbors)
-                    configurations.add(configuration)
+                    configurations.append(configuration)
                 variables = function.variables()
                 variables = map(lambda x : (x.code, x.declaration_type()), variables)
                 variables = set(variables)
@@ -57,7 +58,7 @@ class JobGenerator(object):
                             variable_type,
                             VARIABLE,
                             self.n_neighbors)
-                    configurations.add(configuration)
+                    configurations.append(configuration)
                 callees = function.callees()
                 callees = map(lambda x : x.code, callees)
                 callees = set(callees)
@@ -68,32 +69,31 @@ class JobGenerator(object):
                             None,
                             CALLEE,
                             self.n_neighbors)
-                    configurations.add(configuration)
+                    configurations.append(configuration)
         elif self.identifier_type == 'parameter':
+            needcache=True
             parameters = IdentifierLookup.lookup_parameter(self.identifier)
-            d=dict()
             for parameter in parameters:
                 configuration = ChuckyJob(
-                    parameter.function(),
-                    parameter.code,
-                    parameter.declaration_type(),
-                    PARAMETER,
-                    self.n_neighbors,True)
-                configurations.add(configuration)
-            
+                        parameter.function(),
+                        parameter.code,
+                        parameter.declaration_type(),
+                        PARAMETER,
+                        self.n_neighbors,True)
+                configurations.append(configuration)
         elif self.identifier_type == 'variable':
+            needcache=True
             variables = IdentifierLookup.lookup_variable(self.identifier)
-            d=dict()
-            for variable in variables:     
+            for variable in variables:
                 configuration = ChuckyJob(
-                    variable.function(),
-                    variable.code,
-                    variable.declaration_type(),
-                    VARIABLE,
-                    self.n_neighbors,True)
-                configurations.add(configuration)
-            
+                        variable.function(),
+                        variable.code,
+                        variable.declaration_type(),
+                        VARIABLE,
+                        self.n_neighbors,True)
+                configurations.append(configuration)
         elif self.identifier_type == 'callee':
+            needcache=True
             callees = CalleeLookup.calleesByName(self.identifier)
             for callee in callees:
                 configuration = ChuckyJob(
@@ -102,19 +102,24 @@ class JobGenerator(object):
                         callee.function().name ,
                         CALLEE,
                         self.n_neighbors,True)
-                configurations.add(configuration)
+                configurations.append(configuration)
+
+        
+        #configurations = list(set(configurations))
         
         if self.limit:
-            configurations = set([c for c in configurations if re.search(self.limit, c.function.name)])
-            
+            if self.limit.isdigit():
+                configurations = list(set([c for c in configurations if int(self.limit) == c.function.node_id]))
+            else:
+                configurations = [c for c in configurations if re.search(self.limit, c.function.name)]
+        #fix duplicate
         d=dict()
         for config in configurations:
             if not d.has_key(config.symbol):
                 d[config.symbol]=set()
             d[config.symbol].add(config)
             
-        configurations=[]  
-        for configs in d.values():
-            configurations+=list(configs)        
-            
-        return configurations
+        #configurations=[]  
+        #for configs in d.values():
+            #configurations+=list(configs)             
+        return (needcache,d)

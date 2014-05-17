@@ -5,7 +5,7 @@ from chucky_engine import ChuckyEngine
 
 import logging
 import argparse
-import os
+import os, sys
 
 DESCRIPTION = """Chucky analyzes functions for anomalies. To this end, the
 usage of symbols used by a function is analyzed by comparing the checks
@@ -32,8 +32,8 @@ class Chucky():
         self.job_generator = JobGenerator(
                 identifier = self.args.identifier,
                 identifier_type = self.args.identifier_type,
-                n_neighbors = self.args.n_neighbors,
-                limit = self.args.limit)
+                n_neighbors = self.args.n_neighbors)
+        self.job_generator.limit = self.args.limit
         self.engine = ChuckyEngine(self.args.chucky_dir)
 
     def _init_arg_parser(self):
@@ -46,7 +46,7 @@ class Chucky():
                 '-i', '--identifier-type',
                 action = 'store',
                 default = 'function',
-                choices = ['function','callee', 'parameter', 'variable'],
+                choices = ['function', 'callee', 'parameter', 'variable'],
                 help = """The type of identifier the positional argument
                 `identifier` refers to.""")
         self.arg_parser.add_argument(
@@ -68,7 +68,6 @@ class Chucky():
                 action = 'store_true',
                 default = False,
                 help = """Enable interactive mode.""")
-        
         self.arg_parser.add_argument(
                 '-l', '--limit',
                 action = 'store',
@@ -128,20 +127,48 @@ class Chucky():
     """
 
     def execute(self):
-        jobs = self.job_generator.generate()
+        needcache,jobsdict = self.job_generator.generate()
+        jobs=[]
+        for configs in jobsdict.values():
+            jobs+=list(configs)
+        jobs_total_num=len(jobs)
+        if needcache:
+            jobsetnum=len(jobsdict)
+            jobcount=0
+            for j,(key,jobset) in enumerate(jobsdict.items(),1):
+               if len(jobset)<self.args.n_neighbors+1:
+                   sys.stderr.write('JobSet(%d)[Symbol:%s %s(%d Job)] skiped\n' %(j,key.target_decl_type,key.target_name,len(jobset)))
+                   jobcount+=len(jobset)
+                   continue
+               description="/%d]:JobSet(%d/%d)" %(jobs_total_num,j,jobsetnum)
+               self.analyzeJobSet(jobset,description,jobcount)
+               jobcount+=len(jobset)
+        else:
+            self.analyzeJobSet(jobs,'')    
+            
+                    
+            
+    def analyzeJobSet(self,jobs,info,jobcount=None):
         numberOfJobs = len(jobs)
+        
         for i, job in enumerate(jobs, 1):
-            print 'Job ({}/{}): {}'.format(
-                    i,
-                    numberOfJobs,
-                    job)
+            inerinfo='Job ({}/{}): {}\n'.format(
+                                        i,
+                                        numberOfJobs,
+                                        job) 
+            if info=='':
+                information= inerinfo              
+            else:
+                information= '['+str(jobcount+i)+info+inerinfo
+            sys.stderr.write(information)
             if self.args.interactive:
                 choice = raw_input('Run job ([yes]/no/quit)? ').lower()
                 if choice in ['n', 'no']:
                     continue
                 elif choice in ['q', 'quit']:
                     return
-            self.engine.analyze(job)
+            self.engine.analyze(job)        
+    
 
 if __name__ == '__main__':
     Chucky().execute()

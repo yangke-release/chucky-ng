@@ -41,7 +41,7 @@ Gremlin.defineStep('symbolToUsingConditions', [Vertex, Pipe], {
 Gremlin.defineStep('functionToAPISymbolNodes', [Vertex, Pipe], {
 	_() // Function node
 	.functionToASTNodes()
-	.filter{it.type == 'IdentifierDeclType' || it.type == 'ParameterType' || it.type == 'Callee'}
+	.filter{it.type == 'IdentifierDeclType' || it.type == 'ParameterType' || it.type == 'Callee' || it.type == 'Sizeof'}
 });
 
 Gremlin.defineStep('calleeToArguments', [Vertex, Pipe], {
@@ -61,20 +61,26 @@ Gremlin.defineStep('calleeToReturnValue', [Vertex, Pipe], {
 
 Gremlin.defineStep('taintUpwards', [Vertex, Pipe], {
 	_() // Symbol node
-	.in('DEF')
-	.filter{it.isCFGNode == 'True'}
-	.out('USE')
-	.simplePath()
-	.loop(4){it.loops < 5}{true}
+        .copySplit(
+            _(),
+	    _().in('DEF')
+	    .filter{it.isCFGNode == 'True'}
+	    .out('USE')
+	    .simplePath()
+	    .loop(4){it.loops < 5}{true}
+        ).fairMerge()
 	.dedup()
 });
 
 Gremlin.defineStep('taintDownwards', [Vertex, Pipe], {
 	_() // Symbol node
-	.in('USE')
-	.filter{it.isCFGNode == 'True'}
-	.out('DEF')
-	.simplePath()
-	.loop(4){it.loops < 5}{true}
+        .copySplit(
+		_(),
+		_().in('USE')
+		.filter{it.isCFGNode == 'True'}
+		.out('DEF')
+		.simplePath()
+		.loop(4){it.loops < 5}{true}
+	).fairMerge()
 	.dedup()
 });

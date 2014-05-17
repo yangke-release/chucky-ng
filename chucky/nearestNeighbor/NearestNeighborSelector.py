@@ -1,11 +1,8 @@
 
-import subprocess
-import shlex
 import os.path
-
-from nearestNeighbor.APISymbolEmbedder import APISymbolEmbedder
+from joerntools.KNN import KNN
 from joernInterface.nodes.Function import Function
-from ChuckyKnnTool import ChuckyKnnTool
+
 """
 Employs an embedder to first embed a set of entities (e.g., functions)
 and then determine the k nearest neighbors to a given entity.
@@ -22,14 +19,7 @@ class NearestNeighborSelector:
     def __init__(self, basedir, embeddingDir):
         self.embeddingDir = embeddingDir
         self.k = 10
-        cachedir = os.path.join(basedir, "cache")
-        
-        self.embedder = APISymbolEmbedder(cachedir, embeddingDir)
-        
-    
-    def setEmbedder(self, embedder):
-        self.embedder = embedder
-    
+        self.cachedir = os.path.join(basedir, "cache")
     
     def setK(self, k):
         self.k = k
@@ -42,19 +32,35 @@ class NearestNeighborSelector:
         if len(allEntities) < self.k:
             return []
 
-        self.embedder.embed(allEntities)
-        return self._nearestNeighbors(entity, self.k)
+        return self._nearestNeighbors(entity, self.k, allEntities)
     
-    # FIXME: knn.py offers a python-class so we don't 
-    # have to make a call via the shell here
     
-    def _nearestNeighbors(self, entity, k):
+    def _nearestNeighbors(self, entity, k, allEntities):
+        
+        limitFilename = self._createLimitFile(allEntities)
         
         nodeId = entity.getId()
-        knn=ChuckyKnnTool()
-        neighbor_ids=knn.getknn(nodeId,self.embeddingDir,k)
-        neighbors=[]
-        for neighbor in neighbor_ids:
-            neighbors.append(Function(neighbor))
-        return neighbors      
-  
+        
+        f = file(limitFilename, 'r')
+        limit = [l.rstrip() for l in f.readlines()]
+        f.close()
+        
+        knn = KNN()
+        knn.setEmbeddingDir(self.cachedir)
+        knn.setK(k)
+        knn.setLimitArray(limit)
+        knn.setNoCache(False)
+        knn.initialize()
+        
+        ids = knn.getNeighborsFor(str(nodeId))
+        return [Function(i) for i in ids]
+    
+    
+    def _createLimitFile(self, entities):
+        filename = os.path.join(self.cachedir, 'limitfile')
+        f = file(filename, 'w')
+        f.writelines([str(e.getId()) + '\n' for e in entities] )
+        f.close()
+        return filename
+    
+            

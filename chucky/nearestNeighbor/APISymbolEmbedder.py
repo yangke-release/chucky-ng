@@ -9,10 +9,11 @@ class APISymbolEmbedder:
         self.outputdir = outputdir
                 
         self.dataDirCreator = SallyDataDirectoryCreator(self.outputdir, cachedir)
+        
         self.embedder = SallyBasedEmbedder()
     
     def embed(self, functions):
-         
+                 
         functions = [FunctionAPISymbols(x) for x in functions]
         self.dataDirCreator.create(functions)
         self.embedder.embed(self.outputdir)
