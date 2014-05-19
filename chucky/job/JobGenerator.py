@@ -93,7 +93,7 @@ class JobGenerator(object):
                         self.n_neighbors,True)
                 configurations.append(configuration)
         elif self.identifier_type == 'callee':
-            needcache=True
+            needcache=False
             callees = CalleeLookup.calleesByName(self.identifier)
             for callee in callees:
                 configuration = ChuckyJob(
@@ -101,7 +101,7 @@ class JobGenerator(object):
                         callee.code,
                         callee.function().name ,
                         CALLEE,
-                        self.n_neighbors,True)
+                        self.n_neighbors,False)
                 configurations.append(configuration)
 
         
