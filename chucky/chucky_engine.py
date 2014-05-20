@@ -97,7 +97,11 @@ class ChuckyEngine():
         return result
 
     def _outputResult(self, result):
-        
-        score, feat = max(result)
+        if len(result)==0:
+            self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s)",str(self.job.function.node_id))
+            score=0
+            feat="ALL"
+        else:
+            score, feat = max(result)
         print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,self.job.symbol.target_type,self.job.symbol.target_decl_type,self.job.symbol.target_name,feat,self.job.function.location())
     

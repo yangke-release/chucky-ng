@@ -22,7 +22,7 @@ class NearestNeighborSelector:
         self.cachedir = os.path.join(basedir, "cache")
     
     def setK(self, k):
-        self.k = k
+        self.k = k+1
     
     """
     Get nearest neighbors of entity in set of allEntities
@@ -53,6 +53,9 @@ class NearestNeighborSelector:
         knn.initialize()
         
         ids = knn.getNeighborsFor(str(nodeId))
+        if str(nodeId) not in ids:
+            ids.pop()
+            ids.append(str(nodeId))
         return [Function(i) for i in ids]
     
     
