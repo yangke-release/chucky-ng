@@ -93,7 +93,7 @@ class JobGenerator(object):
                         self.n_neighbors,True)
                 configurations.append(configuration)
         elif self.identifier_type == 'callee':
-            needcache=False
+            needcache=True
             callees = CalleeLookup.calleesByName(self.identifier)
             for callee in callees:
                 configuration = ChuckyJob(
@@ -101,7 +101,7 @@ class JobGenerator(object):
                         callee.code,
                         callee.function().name ,
                         CALLEE,
-                        self.n_neighbors,False)
+                        self.n_neighbors,True)
                 configurations.append(configuration)
 
         
@@ -114,10 +114,13 @@ class JobGenerator(object):
                 configurations = [c for c in configurations if re.search(self.limit, c.function.name)]
         #fix duplicate
         d=dict()
-        for config in configurations:
-            if not d.has_key(config.symbol):
-                d[config.symbol]=set()
-            d[config.symbol].add(config)
+        if self.identifier_type == 'callee':
+            d["callee"]=set(configurations)
+        else:
+            for config in configurations:
+                if config.symbol not in d:
+                    d[config.symbol]=set()
+                d[config.symbol].add(config)
             
         #configurations=[]  
         #for configs in d.values():

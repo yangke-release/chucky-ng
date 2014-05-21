@@ -132,7 +132,7 @@ class Chucky():
         for configs in jobsdict.values():
             jobs+=list(configs)
         jobs_total_num=len(jobs)
-        if needcache:
+        if needcache and ('callee' not in jobsdict):
             jobsetnum=len(jobsdict)
             jobcount=0
             for j,(key,jobset) in enumerate(jobsdict.items(),1):
