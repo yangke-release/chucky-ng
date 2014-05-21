@@ -23,10 +23,17 @@ class ChuckyEngine():
         self.pre_job = None
         jutils.connectToDatabase()
     def _checkAndClearExpCache(self):
-        if (not self.pre_job) or not (self.job.symbol ==self.pre_job.symbol):
-            expcachedir = os.path.join(self.workingEnv.basedir, EXPR_CACHE_DIR)
-            if os.path.isdir(expcachedir):
-                shutil.rmtree(expcachedir) #rm cache        
+	
+	if  not self.pre_job:
+	    self.clearConditionCache()
+	elif not (self.job.symbol ==self.pre_job.symbol):
+	    if not (self.job.symbol.target_name==self.pre_job.symbol.target_name and self.job.symbol.target_type=='Callee' and self.pre_job.symbol.target_type=='Callee'):
+		self.clearConditionCache()
+    
+    def clearConditionCache(self):
+	expcachedir = os.path.join(self.workingEnv.basedir, EXPR_CACHE_DIR)
+	if os.path.isdir(expcachedir):
+	    shutil.rmtree(expcachedir) #rm cache             
     def analyze(self, job):
 
         self.job = job
