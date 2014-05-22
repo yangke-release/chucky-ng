@@ -132,7 +132,17 @@ class Chucky():
         for configs in jobsdict.values():
             jobs+=list(configs)
         jobs_total_num=len(jobs)
-        if needcache and ('callee' not in jobsdict):
+        if 'callee' in jobsdict:
+            jobset=jobsdict['callee']
+            tjob=None
+            for job in jobset:
+                tjob=job
+                break
+            if len(jobset)<self.args.n_neighbors+1:
+                if tjob:
+                    sys.stderr.write('JobSet(1)[Symbol: %s(%d Job)] skiped\n' %(tjob.symbol.target_name,len(jobset)))
+            else: self.analyzeJobSet(jobset,'')  
+        elif needcache:
             jobsetnum=len(jobsdict)
             jobcount=0
             for j,(key,jobset) in enumerate(jobsdict.items(),1):
@@ -144,7 +154,7 @@ class Chucky():
                self.analyzeJobSet(jobset,description,jobcount)
                jobcount+=len(jobset)
         else:
-            self.analyzeJobSet(jobs,'')    
+            self.analyzeJobSet(jobs,'')   
             
                     
             

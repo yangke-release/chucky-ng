@@ -1,7 +1,7 @@
 from joernInterface.JoernInterface import jutils
 
 class FunctionConditions:
-    
+    taint_dict=dict()
     def __init__(self, obj):
         self.obj = obj
     
@@ -15,10 +15,13 @@ class FunctionConditions:
         return int(self.obj.node_id)
     
     def getFeatures(self):
-        normalizedConditions = self.normalize_conditions()
-        #for i, feat in enumerate(sorted(normalizedConditions)):
-        #    print i, '\t', feat
-        return normalizedConditions
+        triple=(self.symbolName,self.symbolType,str(self.obj.node_id))
+        if triple not in FunctionConditions.taint_dict:
+            normalizedConditions = self.normalize_conditions()
+            FunctionConditions.taint_dict[triple]=normalizedConditions
+            #for i, feat in enumerate(sorted(normalizedConditions)):
+            #    print i, '\t', feat
+        return FunctionConditions.taint_dict[triple]
 
     def normalize_conditions(self):
         declarations = 'argList = []; retList = []' 
