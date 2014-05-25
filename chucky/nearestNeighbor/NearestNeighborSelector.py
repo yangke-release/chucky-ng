@@ -1,6 +1,7 @@
 
 import os.path
-from joerntools.KNN import KNN
+#from joerntools.KNN import KNN
+from KNN import KNN
 from joernInterface.nodes.Function import Function
 
 """
@@ -37,13 +38,15 @@ class NearestNeighborSelector:
     
     def _nearestNeighbors(self, entity, k, allEntities):
         
-        limitFilename = self._createLimitFile(allEntities)
+        #limitFilename = self._createLimitFile(allEntities)
         
         nodeId = entity.getId()
         
-        f = file(limitFilename, 'r')
-        limit = [l.rstrip() for l in f.readlines()]
-        f.close()
+        #f = file(limitFilename, 'r')
+        #limit = [l.rstrip() for l in f.readlines()]
+        #f.close()
+        
+        limit=[str(e.getId()) for e in allEntities]
         
         knn = KNN()
         knn.setEmbeddingDir(self.cachedir)
@@ -58,12 +61,12 @@ class NearestNeighborSelector:
             ids.append(str(nodeId))
         return [Function(i) for i in ids]
     
-    
+    '''
     def _createLimitFile(self, entities):
         filename = os.path.join(self.cachedir, 'limitfile')
         f = file(filename, 'w')
         f.writelines([str(e.getId()) + '\n' for e in entities] )
         f.close()
         return filename
-    
+    '''
             

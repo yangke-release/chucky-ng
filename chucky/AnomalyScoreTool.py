@@ -25,7 +25,7 @@ class AnomalyScoreTool():
             sys.stderr.write('Error reading embedding.\n')
             sys.exit()
 
-    def analyze(self, line,dirname):
+    def analyze(self, line,dirname,rFeatTable):
 	
 	self.emb = self._loadEmbedding(dirname)
     	try:
@@ -33,15 +33,16 @@ class AnomalyScoreTool():
         except KeyError:
             sys.stderr.write('Warning: no data point found for %s\n' % (line))
     	
-    	return self.calculateDistance(dataPointIndex)
+    	return self.calculateDistance(dataPointIndex,rFeatTable)
     
-    def calculateDistance(self, index): 
+    def calculateDistance(self, index,rFeatTable): 
 	self.mean=self.calculateCenterOfMass(index)
 	
 	distance = (self.mean - self.emb.x[index])
 	result=[]
 	for feat, score in zip(distance.indices, distance.data):
-	    feat_string = self.emb.rFeatTable[feat].replace('%20', ' ')
+	    #feat_string = self.emb.rFeatTable[feat].replace('%20', ' ')
+	    feat_string = rFeatTable[feat]
 	    result.append((float(score), feat_string))
 	return result
     

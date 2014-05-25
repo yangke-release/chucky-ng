@@ -11,24 +11,29 @@ class FunctionSelector:
     # FIXME: introduce functions that only retrieve symbol
     # nodes and not entire nodes as that will greatly
     # improve performance
-
+    SymbolUsersDict=dict()
     """
     Determine functions using the same symbol as the
     function of interest
     """
     def selectFunctionsUsingSymbol(self, symbol):
         if symbol.target_type == 'Parameter':
-            functions = FunctionLookup.lookup_functions_by_parameter(
+            if symbol not in FunctionSelector.SymbolUsersDict:
+                FunctionSelector.SymbolUsersDict[symbol]= FunctionLookup.lookup_functions_by_parameter(
                     symbol.target_name,
                     symbol.target_decl_type)
+            functions=FunctionSelector.SymbolUsersDict[symbol]
         elif symbol.target_type == 'Variable':
-            functions = FunctionLookup.lookup_functions_by_variable(
+            if symbol not in FunctionSelector.SymbolUsersDict:
+                FunctionSelector.SymbolUsersDict[symbol]= FunctionLookup.lookup_functions_by_variable(
                     symbol.target_name,
                     symbol.target_decl_type)
+            functions=FunctionSelector.SymbolUsersDict[symbol]
         elif symbol.target_type == 'Callee':
-            functions = FunctionLookup.lookup_functions_by_callee(
+            if symbol.target_name not in FunctionSelector.SymbolUsersDict:
+                FunctionSelector.SymbolUsersDict[symbol.target_name]= FunctionLookup.lookup_functions_by_callee(
                     symbol.target_name)
-        
+            functions=FunctionSelector.SymbolUsersDict[symbol.target_name]
         return functions
 
     def selectAllFunctions(self):

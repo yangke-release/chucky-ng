@@ -151,7 +151,8 @@ class Chucky():
                    jobcount+=len(jobset)
                    continue
                description="/%d]:JobSet(%d/%d)" %(jobs_total_num,j,jobsetnum)
-               self.analyzeJobSet(jobset,description,jobcount)
+               flag=self.analyzeJobSet(jobset,description,jobcount)
+               if not flag:return
                jobcount+=len(jobset)
         else:
             self.analyzeJobSet(jobs,'')   
@@ -176,9 +177,9 @@ class Chucky():
                 if choice in ['n', 'no']:
                     continue
                 elif choice in ['q', 'quit']:
-                    return
+                    return False
             self.engine.analyze(job)        
-    
+        return True
 
 if __name__ == '__main__':
     Chucky().execute()

@@ -54,9 +54,9 @@ class ChuckyEngine():
                 return
             
             self._checkAndClearExpCache()
-            
-            if(self._calculateCheckModels(nearestNeighbors)):
-		result = self._anomaly_rating()
+	    rFeatTable=self._calculateCheckModels(nearestNeighbors)
+	    if rFeatTable:
+		result = self._anomaly_rating(rFeatTable)
 		self._outputResult(result)
 	    else:
 		print "Could not find any conditions in all neighbors! Job skiped!"
@@ -96,9 +96,9 @@ class ChuckyEngine():
     """
     Determine anomaly score.
     """
-    def _anomaly_rating(self):
+    def _anomaly_rating(self,rFeatTable):
         atool=AnomalyScoreTool()
-        result=atool.analyze(str(self.job.function.node_id),self.workingEnv.exprdir)
+        result=atool.analyze(str(self.job.function.node_id),self.workingEnv.exprdir,rFeatTable)
         for score,feat in result:
             self.logger.debug('%+1.5f %s.', float(score), feat)
         return result
