@@ -115,14 +115,10 @@ class JobGenerator(object):
         #fix duplicate
         d=dict()
         if self.identifier_type == 'callee':
-            d["callee"]=set(configurations)
+            d['callee']=set(configurations)
         else:
             for config in configurations:
                 if config.symbol not in d:
                     d[config.symbol]=set()
-                d[config.symbol].add(config)
-            
-        #configurations=[]  
-        #for configs in d.values():
-            #configurations+=list(configs)             
-        return (needcache,d)
+                d[config.symbol].add(config)             
+        return needcache,d
