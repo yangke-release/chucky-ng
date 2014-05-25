@@ -15,47 +15,40 @@ DEFAULT_DIRNAME = 'embedding'
 
 class AnomalyScoreTool():
     
-    def __init__(self):
-        self.loader = EmbeddingLoader()
-
-    def _loadEmbedding(self, dirname):
-        try:
-            return self.loader.load(dirname)
-        except IOError:
-            sys.stderr.write('Error reading embedding.\n')
-            sys.exit()
-
-    def analyze(self, line,dirname,rFeatTable):
+    def __init__(self,rFeatTable,matrix,TOC,rTOC):
+	self.rFeatTable=rFeatTable
+	self.x=matrix
+	self.TOC=TOC
+	self.rTOC=rTOC
 	
-	self.emb = self._loadEmbedding(dirname)
+    def analyze(self, funcIdStr):
     	try:
-            dataPointIndex = self.emb.rTOC[line]
+            dataPointIndex = self.rTOC[funcIdStr]
         except KeyError:
-            sys.stderr.write('Warning: no data point found for %s\n' % (line))
+            sys.stderr.write('Warning: no data point found for %s\n' % (funcIdStr))
     	
-    	return self.calculateDistance(dataPointIndex,rFeatTable)
+    	return self.calculateDistance(dataPointIndex)
     
-    def calculateDistance(self, index,rFeatTable): 
+    def calculateDistance(self, index): 
 	self.mean=self.calculateCenterOfMass(index)
-	
-	distance = (self.mean - self.emb.x[index])
+	distance = (self.mean - self.x[index])
 	result=[]
 	for feat, score in zip(distance.indices, distance.data):
-	    #feat_string = self.emb.rFeatTable[feat].replace('%20', ' ')
-	    feat_string = rFeatTable[feat]
+	    #feat_string = self.rFeatTable[feat].replace('%20', ' ')
+	    feat_string = self.rFeatTable[feat]
 	    result.append((float(score), feat_string))
 	return result
     
     def calculateCenterOfMass(self, index):
-	r,c=self.emb.x.shape
+	r,c=self.x.shape
 	if r<=1:
 	    return None
 	else:
 	    if index==0:
-		X = self.emb.x[1:, :]
+		X = self.x[1:, :]
 	    elif index==r-1:
-		X = self.emb.x[:r-1,:]
+		X = self.x[:r-1,:]
 	    else:
-		X = vstack([self.emb.x[:index, :], self.emb.x[index+1:, :]])
+		X = vstack([self.x[:index, :], self.x[index+1:, :]])
 	    return csr_matrix(X.mean(axis=0))
 

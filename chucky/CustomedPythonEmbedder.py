@@ -4,13 +4,13 @@ from joerntools.mlutils.pythonEmbedder.FeatureArray import FeatureArray
 from joerntools.mlutils.pythonEmbedder.FeatureArrayToMatrix import FeatureArrayToMatrix
 
 class Embedder:
-    def embedByList(self, li,directory):
+    def embedByList(self, li):
            
            featureArray = self.createFeatureArrayByList(li)
            self.termDocMatrix = self._createTermDocumentMatrix(featureArray)
            #self.termDocMatrix.tfidf()
-           self._outputInLIBSVMFormat(directory)
-           return self.termDocMatrix.index2Term
+           #self._outputInLIBSVMFormat(directory)
+           return self.termDocMatrix
     def embed(self, directory):
         
         featureArray = self._createFeatureArray(directory)

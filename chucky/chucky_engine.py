@@ -11,7 +11,7 @@ from nearestNeighbor.FunctionSelector import FunctionSelector
 from conditionAnalyser.ConditionEmbedder import ConditionEmbedder
 from GlobalAPIEmbedding import GlobalAPIEmbedding
 from AnomalyScoreTool import AnomalyScoreTool
-
+from scipy.sparse import *
 EXPR_CACHE_DIR="exprcache"
 
 class ChuckyEngine():
@@ -53,10 +53,10 @@ class ChuckyEngine():
                 self.job=None                
                 return
             
-            self._checkAndClearExpCache()
-	    rFeatTable=self._calculateCheckModels(nearestNeighbors)
-	    if rFeatTable:
-		result = self._anomaly_rating(rFeatTable)
+	    self._checkAndClearExpCache()
+	    triple=self._calculateCheckModels(nearestNeighbors)
+	    if triple:
+		result = self._anomaly_rating(triple)
 		self._outputResult(result)
 	    else:
 		print "Could not find any conditions in all neighbors! Job skiped!"
@@ -96,9 +96,13 @@ class ChuckyEngine():
     """
     Determine anomaly score.
     """
-    def _anomaly_rating(self,rFeatTable):
-        atool=AnomalyScoreTool()
-        result=atool.analyze(str(self.job.function.node_id),self.workingEnv.exprdir,rFeatTable)
+    def _anomaly_rating(self,triple):
+	rFeatTable=triple[0].index2Term
+	matrix=csr_matrix(csc_matrix(triple[0].matrix).T)
+	TOC=triple[1]
+	rTOC=triple[2]
+        atool=AnomalyScoreTool(rFeatTable,matrix,TOC,rTOC)
+        result=atool.analyze(str(self.job.function.node_id))
         for score,feat in result:
             self.logger.debug('%+1.5f %s.', float(score), feat)
         return result

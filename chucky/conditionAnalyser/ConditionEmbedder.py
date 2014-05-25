@@ -38,10 +38,19 @@ class ConditionEmbedder:
         if flag:
             #self.dataDirCreator.create(funcConditions)
             #self.embedder.embed(self.outputdir, 'bin')
-            self.writeToTOC(funcConditions)    
-            return self.embedder.embedByList(li,self.outputdir)
+            TOC,rTOC=self.TOCrTOC(funcConditions)
+            #self.writeToTOC(funcConditions)    
+            termDocumentMatrix = self.embedder.embedByList(li)
+            return (termDocumentMatrix,TOC,rTOC)
         else:
-            return None            
+            return None
+        
+    def TOCrTOC(self,funcConditions):
+        TOC=[str(func.getKey()) for func in funcConditions]
+        rTOC=dict()
+        for i in xrange(len(TOC)):
+            rTOC[TOC[i]]=i
+        return (TOC,rTOC)     
     def writeToTOC(self,funcConditions):
         TOCFilename = os.path.join(self.outputdir, 'TOC')
         if not os.path.isdir(self.outputdir):
