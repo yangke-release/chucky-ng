@@ -1,7 +1,8 @@
 
 import os.path
+import time
 #from joerntools.KNN import KNN
-from KNN import KNN
+from CallerKNN import KNN
 from joernInterface.nodes.Function import Function
 
 """
@@ -17,10 +18,11 @@ class NearestNeighborSelector:
     @param embeddingDir: the directory to store the embedding.    
     """
     
-    def __init__(self, basedir, embeddingDir):
+    def __init__(self, basedir, embeddingDir,considerCaller=False):
         self.embeddingDir = embeddingDir
         self.k = 10
         self.cachedir = os.path.join(basedir, "cache")
+        self.considerCaller=considerCaller
     
     def setK(self, k):
         self.k = k+1
@@ -38,14 +40,8 @@ class NearestNeighborSelector:
     
     def _nearestNeighbors(self, entity, k, allEntities):
         
-        #limitFilename = self._createLimitFile(allEntities)
         
         nodeId = entity.getId()
-        
-        #f = file(limitFilename, 'r')
-        #limit = [l.rstrip() for l in f.readlines()]
-        #f.close()
-        
         limit=[str(e.getId()) for e in allEntities]
         
         knn = KNN()
@@ -53,20 +49,11 @@ class NearestNeighborSelector:
         knn.setK(k)
         knn.setLimitArray(limit)
         knn.setNoCache(False)
+        knn.setCallerConsideration(self.considerCaller)
         knn.initialize()
-        
-        ids = knn.getNeighborsFor(str(nodeId))
-        if str(nodeId) not in ids:
-            ids.pop()
-            ids.append(str(nodeId))
-        return [Function(i) for i in ids]
+        #ids = knn.getNeighborsFor(str(nodeId))
+        m0,m1,m2,m3,ids = knn.getSimilarContextNeighborsFor(str(nodeId))
+        return (m0,m1,m2,m3,[Function(i) for i in ids])
+  
     
-    '''
-    def _createLimitFile(self, entities):
-        filename = os.path.join(self.cachedir, 'limitfile')
-        f = file(filename, 'w')
-        f.writelines([str(e.getId()) + '\n' for e in entities] )
-        f.close()
-        return filename
-    '''
             

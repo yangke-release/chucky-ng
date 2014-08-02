@@ -6,7 +6,7 @@ from chucky_engine import ChuckyEngine
 import logging
 import argparse
 import os, sys
-
+import time
 DESCRIPTION = """Chucky analyzes functions for anomalies. To this end, the
 usage of symbols used by a function is analyzed by comparing the checks
 used in conjunction with the symbol with those used in similar functions."""
@@ -18,7 +18,7 @@ def n_neighbors(value):
     n = int(value)
     if n < MIN_N:
         error_message = "N_NEIGHBORS must be greater than {}".format(MIN_N)
-        raise argparse.ArgumentError(error_message)
+        raise argparse.ArgumentErrorn(error_message)
     else:
         return n
 
@@ -127,7 +127,9 @@ class Chucky():
     """
 
     def execute(self):
+    	#t0=time.time()
         needcache,jobsdict = self.job_generator.generate()
+        #t1=time.time()
         jobs=[]
         for configs in jobsdict.values():
             jobs+=list(configs)
@@ -138,7 +140,7 @@ class Chucky():
             for job in jobset:
                 tjob=job
                 break
-            if len(jobset)<self.args.n_neighbors+1:
+            if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
                 if tjob:
                     sys.stderr.write('JobSet(1)[Symbol: %s(%d Job)] skiped\n' %(tjob.symbol.target_name,len(jobset)))
             else: self.analyzeJobSet(jobset,'')  
@@ -146,18 +148,18 @@ class Chucky():
             jobsetnum=len(jobsdict)
             jobcount=0
             for j,(key,jobset) in enumerate(jobsdict.items(),1):
-               if len(jobset)<self.args.n_neighbors+1:
-                   sys.stderr.write('JobSet(%d)[Symbol:%s %s(%d Job)] skiped\n' %(j,key.target_decl_type,key.target_name,len(jobset)))
-                   jobcount+=len(jobset)
-                   continue
-               description="/%d]:JobSet(%d/%d)" %(jobs_total_num,j,jobsetnum)
-               flag=self.analyzeJobSet(jobset,description,jobcount)
-               if not flag:return
-               jobcount+=len(jobset)
+                if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
+                    sys.stderr.write('JobSet(%d)[Symbol:%s %s(%d Job)] skiped\n' %(j,key.target_decl_type,key.target_name,len(jobset)))
+                    jobcount+=len(jobset)
+                    continue
+                description="/%d]:JobSet(%d/%d)" %(jobs_total_num,j,jobsetnum)
+                flag=self.analyzeJobSet(jobset,description,jobcount)
+                if not flag:return
+                jobcount+=len(jobset)
         else:
-            self.analyzeJobSet(jobs,'')   
-            
-                    
+            self.analyzeJobSet(jobs,'')    
+        #t2=time.time()
+        #print 'Job Generate time:',t1-t0,'Analyze time:',t2-t1            
             
     def analyzeJobSet(self,jobs,info,jobcount=None):
         numberOfJobs = len(jobs)
@@ -178,8 +180,9 @@ class Chucky():
                     continue
                 elif choice in ['q', 'quit']:
                     return False
-            self.engine.analyze(job)        
+            self.engine.analyze(job)
         return True
+    
 
 if __name__ == '__main__':
     Chucky().execute()
