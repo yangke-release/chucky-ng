@@ -36,10 +36,10 @@ class ChuckyEngine():
         try:            
             m0,m1,m2,m3,nearestNeighbors = self._getKNearestNeighbors()
 	    
-            for n in nearestNeighbors:
-                print str(n)+"\t"+n.location()
+            #for n in nearestNeighbors:
+            #    print str(n)+"\t"+n.location()
 	    #print  nearestNeighbors
-	    '''
+	    
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)
@@ -48,7 +48,7 @@ class ChuckyEngine():
 		    self._outputResult(m0,m1,m2,m3,mcc,ccm,result)
 		else:
 		    print "Could not find any conditions in all neighbors! Job skiped!"
-	    '''
+	    
         except subprocess.CalledProcessError as e:
             self.logger.error(e)
             self.logger.error('Do not clean up.')

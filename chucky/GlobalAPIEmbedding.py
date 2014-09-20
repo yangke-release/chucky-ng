@@ -10,8 +10,6 @@ class GlobalAPIEmbedding():
         self.embeddingFilename = 'embedding.libsvm'
         
         if not self._embeddingExists():
-            #self._loadEmbedding()
-            #else:
             self._createEmbedding()
     
     def _embeddingExists(self):

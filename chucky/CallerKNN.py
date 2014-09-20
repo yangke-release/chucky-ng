@@ -1,4 +1,8 @@
-
+'''
+This KNN Class select top k similar function by using additional function name and file name information and compare caller sets of two functions.
+That is, filter name irrelative functions, keep common caller functions.
+This review strategy may be more suitable for a code reviewer.
+'''
 from joerntools.mlutils.EmbeddingLoader import EmbeddingLoader
 from sklearn.metrics.pairwise import pairwise_distances
 from joernInterface.nodes.Function import Function
@@ -9,16 +13,13 @@ import sys
 import re
 from scipy.sparse import *
 
-#SCALE_FACTOR=8
-w0=0.8#syntax_weight
-w1=0.1#func_name_weight
-w2=0.1#file_name_weight
-w3=0.2#caller_weight
 
-GOOD_SYNTAX_DISTANCE=0.1
-GOOD_CALLER_NAME_DISTANCE=0.0
-GOOD_FUNC_NAME_DISTANCE=0.857143
-GOOD_FILE_NAME_DISTANCE=0.857143
+GOOD_SEMANTIC_DISTANCE = 0.618 #0.4:#0.7827:#0.69:0.618
+GOOD_CALLER_NAME_DISTANCE = 0.0 #zero means they have just the same  caller set.
+GOOD_FUNC_NAME_DISTANCE = 6.0/7.0
+GOOD_FILE_NAME_DISTANCE = 0.857143
+BAD_FUNC_NAME_DISTANCE = 7.0/8.0
+BAD_FILE_NAME_DISTANCE = 3.0/4.0
 class KNN():
     caller_map=dict()
     func_name_map=dict()
@@ -49,7 +50,7 @@ class KNN():
         self.emb = KNN.emb
 
     def _loadEmbedding(self, dirname):
-        return self.loader.load(dirname, tfidf=False, svd_k=0)
+        return self.loader.load(dirname, svd_k=0)
     def lowhigh(self,csize):
         if csize<self.k:
             sys.stderr.write("Error: candidates num csize:%d<k:%d. please check before call this function.\n" %(csize,self.k))
@@ -81,6 +82,7 @@ class KNN():
             func_name=str(Function(fid))
             KNN.func_name_map[str(fid)]=func_name
         return KNN.func_name_map[str(fid)]
+    
     def getFuncFileName(self,fid): 
         if str(fid) not in KNN.file_name_map:
             func=Function(fid)
@@ -88,6 +90,7 @@ class KNN():
             filename=location.split(':')[0].split('/')[-1]
             KNN.file_name_map[str(fid)]=filename
         return KNN.file_name_map[str(fid)]
+    
     def funcNameNGramDistances(self,nids,fid):
         fid=str(fid)
         name=self.getFuncName(fid)
@@ -153,50 +156,21 @@ class KNN():
         return result
             
     def calculateDistance(self,X,validNeighborIds,dataPointIndex,high,funcId):
-        #t0=time.time()
+	
         D0 = pairwise_distances(X, metric='cosine')
         NNI = list(D0[dataPointIndex,:].argsort(axis=0))[:int(high)]
         raw_nids=[validNeighborIds[x] for x in NNI]
-	#for y,testid in enumerate(raw_nids[0:200]):
-	#	print str(Function(testid)),D0[dataPointIndex,NNI[y]]
-	#return None
-		
-        #t1=time.time()
-        
-        if w1==0.0:
-            d1=[2 for x in raw_nids]
-        else:        
-            d1=self.funcNameNGramDistances(raw_nids,funcId)
-        #t2=time.time()
-        if w2==0.0:
-            d2=[2 for x in raw_nids]
-        else:
-            d2=self.fileNameNGramDistances(raw_nids,funcId)
-        #t3=time.time()
+	
+	d1=self.funcNameNGramDistances(raw_nids,funcId)
+	d2=self.fileNameNGramDistances(raw_nids,funcId)
 	d3=[2 for x in raw_nids]
-	'''
-        if w3==0.0 or not self.considerCaller:
-            d3=[2 for x in raw_nids]
-        else:
-	    d3=self.calculateContextDistances(raw_nids,funcId)
-	'''
-        #t4=time.time()
-        #need to be improved
+	
+        #merge4D is costly: execution time >1 sec 
         mD=self.merge4D(D0,d1,d2,d3,NNI,dataPointIndex,raw_nids,funcId)
-        #t5=time.time()
+	
         mNNI=mD.argsort(axis=0)
-        #result =[validNeighborIds[NNI[x]] for x in mNNI[:self.k]]
-        result =[validNeighborIds[NNI[x]] for x in mNNI] 
-        result=self.modifyResult(result,D0,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId)
-        '''
-        t6=time.time()
-        print "syntax:",t1-t0
-        print "funcname:",t2-t1
-        print "filname:",t3-t2
-        print "caller:",t4-t3
-        print "mergetime:",t5-t4
-        print "modify:",t6-t5
-        '''
+        result =[validNeighborIds[NNI[x]] for x in mNNI[:self.k]]
+        result = self.modifyResult(result,D0,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId)
         
         return result
     def modifyResult(self,result,D,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId):
@@ -224,42 +198,18 @@ class KNN():
         for i in range(0,len(NNI)):
 	    D[i]=D0[index,NNI[i]]
 	    if d2[i]==0 and self.considerCaller:
-		if d1[i]<=6.0/7.0 or D0[index,NNI[i]]<=0.2:#0.4:#0.7827:#0.69:0.618
+		#They are in a same file.
+		if D0[index,NNI[i]]<=GOOD_SEMANTIC_DISTANCE or d1[i]<=GOOD_FUNC_NAME_DISTANCE:
+		    #They are semantically similar or similar function name.
 		    d=self.caller_name_set_distance_by_id(funcId,raw_nids[i])
 		    if d<=GOOD_CALLER_NAME_DISTANCE:
+			#They have similar caller set
 			D[i]=D0[index,NNI[i]]-1 
-	    elif d2[i]>0.75 and d1[i]>7.0/8.0:
+	    elif d2[i]>BAD_FILE_NAME_DISTANCE and d1[i]>BAD_FUNC_NAME_DISTANCE:
+		#Both function name  and file name are irrelative
 		D[i]=D0[index,NNI[i]]+1
-	    '''
-	    if d3[i]==2:
-		D[i]=D0[index,NNI[i]]
-	    else:
-	    	D[i]=(1-w3)*D0[index,NNI[i]]+w3*d3[i]
-	    
-	    elif w3>0 and self.considerCaller:
-		d=self.caller_name_set_distance_by_id(funcId,raw_nids[i])
-		if d<GOOD_CALLER_NAME_DISTANCE:
-		    D[i]=d
-		    d3[i]=d
-		else:D[i]=2
-	    '''
         return D 
-  
-    #CallerContext Added by Yangke
-    def calculateContextDistances(self,ids,funcId):
-        #st=time.time()
-        distances=[]
-        funcId=str(funcId)
-        callers=self.getCallers(funcId)
-        for id in ids:
-            id=str(id)
-	    distance=self.caller_name_set_distance_by_id(id,funcId)
-            distances.append(distance)
-        #et=time.time()
-        #print "total time elapsed:",et-st  
-        #about 1.4 sec almost all time spend in query database     
-        return distances
-   
+    
     def getCallers(self,funcId):
         fid=str(funcId)
         if fid not in KNN.caller_map:
