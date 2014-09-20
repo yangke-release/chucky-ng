@@ -15,6 +15,8 @@ from scipy.sparse import *
 from conditionAnalyser.FunctionConditions import FunctionConditions
 from conditionAnalyser.ConditionPythonEmbedder import Embedder
 
+from scipy.spatial.distance import cosine
+from sklearn.metrics.pairwise import pairwise_distances
 EXPR_CACHE_DIR="exprcache"
 
 class ChuckyEngine():
@@ -32,24 +34,28 @@ class ChuckyEngine():
         self.globalAPIEmbedding = GlobalAPIEmbedding(self.workingEnv.cachedir)
         
         try:            
-            nearestNeighbors = self._getKNearestNeighbors()
-
-            #for n in nearestNeighbors:
-            #    print n
+            m0,m1,m2,m3,nearestNeighbors = self._getKNearestNeighbors()
+	    
+            for n in nearestNeighbors:
+                print str(n)+"\t"+n.location()
+	    #print  nearestNeighbors
+	    '''
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)
 		if termDocumentMatrix:
-		    result = self._anomaly_rating(termDocumentMatrix,dataPointIndex)
-		    self._outputResult(result)
+		    mcc,ccm,result = self._anomaly_rating(termDocumentMatrix,dataPointIndex)
+		    self._outputResult(m0,m1,m2,m3,mcc,ccm,result)
 		else:
 		    print "Could not find any conditions in all neighbors! Job skiped!"
+	    '''
         except subprocess.CalledProcessError as e:
             self.logger.error(e)
             self.logger.error('Do not clean up.')
         else:
             self.logger.debug('Cleaning up.')
             self.workingEnv.destroy()
+	    
 
     """
     Determine the k nearest neighbors for the
@@ -58,12 +64,15 @@ class ChuckyEngine():
     def _getKNearestNeighbors(self):
         
         symbol = self.job.getSymbol()
-        self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir)
+	considerCaller=False
+	if symbol.target_type=="Parameter":
+	    considerCaller=True	
+        self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir,considerCaller)
         self.knn.setK(self.job.n_neighbors)
     
         entitySelector = FunctionSelector()
         symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol)
-        return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
+	return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
     
     def _calculateCheckModels(self, symbolUsers):
         symbolName = self.job.getSymbolName()
@@ -101,22 +110,41 @@ class ChuckyEngine():
 	self.x=csr_matrix(csc_matrix(termDocumentMatrix.matrix).T)
 	
 	mean=self.calculateCenterOfMass(dataPointIndex)
+	
+	mean_cos_distance=self.meancos(dataPointIndex)
+	tm=vstack([mean,self.x[dataPointIndex,:]])
+	d=pairwise_distances(tm,metric="cosine")
+	cos_distance_with_mean=d[1,0]
+		
 	distance = (mean - self.x[dataPointIndex])
 	result=[]
+	#print "*******result***********"
 	for feat, score in zip(distance.indices, distance.data):
 	    feat_string = self.rFeatTable[feat]
 	    self.logger.debug('%+1.5f %s.', float(score), feat_string)
+	    #print str(score),feat_string
 	    result.append((float(score), feat_string))
-	return result
+	return mean_cos_distance,cos_distance_with_mean,result
 
-    def _outputResult(self, result):
-        if len(result)==0:
-            self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s)",str(self.job.function.node_id))
-            score=0
-            feat="ALL"
-        else:
-            score, feat = max(result)
-        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,self.job.symbol.target_type,self.job.symbol.target_decl_type,self.job.symbol.target_name,feat,self.job.function.location())
+    def _outputResult(self,m0,m1,m2,m3,mcc,ccm, result):
+        
+        #score, feat = max(result)
+	length=len(result)
+	if length==0:
+	    self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s)",str(self.job.function.node_id))
+	    score=0
+	    feat="ALL"
+	    spec=0
+	else:
+	    s1=0.0
+	    for t in result:
+		s1+=t[0]
+	    score, feat= max(result)
+	    if length==1:
+		spec=0
+	    else:
+		spec=score-(s1-score)/(length-1)        
+        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,self.job.symbol.target_type,self.job.symbol.target_decl_type,self.job.symbol.target_name,feat,m0,m1,m2,m3,mcc,ccm,spec,self.job.function.location())
     def calculateCenterOfMass(self, index):
 	r,c=self.x.shape
 	if r<=1:
@@ -139,4 +167,10 @@ class ChuckyEngine():
 		return i
 	sys.stderr.write('Warning: no data point found for %s\n' % (str(self.job.function.node_id)))
 	return None
-	    
+    
+    def meancos(self,index):
+	r,c=self.x.shape
+	D=pairwise_distances(self.x,metric="cosine")
+	aa=D[:,index]
+	s=D[:,index].sum(axis=0)-D[index,index]
+	return s/(r-1)    
