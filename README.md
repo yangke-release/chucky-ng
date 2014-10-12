@@ -4,7 +4,7 @@ chucky-ng
 Introduction
 --
 This program implements the missing checked detection method named "Chucky".
-It statically taints source code and identifies anomalous or missing conditions linked to security-critical objects.
+Chucky statically taints source code and identifies anomalous or missing conditions linked to security-critical objects.
 
 Dependencies
 --
@@ -29,11 +29,38 @@ Suppose you have already parse the code configured and started the neo4j databas
 
     $ cd chucky-ng/chucky
     $ python chucky.py [OPTIONS] symbol_to_analyse
-####OPTIONS
+    
 
-    -l: following with the function name list you restricted to be analysis. Defalut: analyse every candidate functions that use the user privided symbol.
-    -i: specify the type of the user privided symbol. Avalable choices are parameter,callee and variable. 
-    -n: specify the the number of nearest neighborhoods N when running KNN algorithm.
+Chucky analyzes functions for anomalies. To this end, the usage of symbols
+used by a function is analyzed by comparing the checks used in conjunction
+with the symbol with those used in similar functions.
+
+positional arguments:
+
+    identifier            The name of the identifier (function name or
+                        source/sink name)
+
+optional arguments:
+
+    -h, --help            show this help message and exit
+    -i {function,callee,parameter,variable}, --identifier-type {function,callee,parameter,variable}
+                        The type of identifier the positional argument
+                        `identifier` refers to.
+    -n N_NEIGHBORS, --n-neighbors N_NEIGHBORS
+                        Number of neighbours to consider for neighborhood
+                        discovery.
+    -c CHUCKY_DIR, --chucky-dir CHUCKY_DIR
+                        The directory holding chucky's data such as cached
+                        symbol embeddings and possible annotations of sources
+                        and sinks.
+    --interactive         Enable interactive mode. Under this mode you can talk to chucky and run the analysis step by step.
+    -l LIMIT, --limit LIMIT
+                        Limit analysis to functions with given name
+    -d, --debug           Enable debug output.
+    -v, --verbose         Increase verbosity.
+    -q, --quiet           Be quiet during processing.
+    
+    
 A Quick Start Example.
 --
 Assume we are planning to analyse the code of image processing library LibPNG(version 1.2.44).
@@ -59,12 +86,12 @@ to
 
     #org.neo4j.server.database.location=$TEST/.joernIndex
 and save it.
-Start Neo4J 
+Start Neo4j 
 
     $ $NEO4J_HOME/bin/neo4j start
 Go to your chucky directory(chucky-ng/chucky) and run a chucky analysis.
 
-    $python chucky.py -i parameter -n 25 length|sort -r w1
+    $python chucky.py -i parameter -n 25 length|sort -r -k 1
 
 Then Chucky will generate the report to the screen.
 
@@ -100,3 +127,6 @@ This modified version of Chucky is based on the [original version](https://githu
 For the orgiginal idea, you can refer to [Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery](http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf)
  Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck
 *ACM Conference on Computer and Communications Security (CCS)*
+
+For more information or bug report please do not hesitate to contact me. Ke Yang(123yangke321@sina.com) 
+Still trying to update the modification document.
