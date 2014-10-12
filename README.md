@@ -5,6 +5,9 @@ Introduction
 --
 This program implements the missing checked detection method named "Chucky".
 Chucky statically taints source code and identifies anomalous or missing conditions linked to security-critical objects.
+Chucky analyzes functions for anomalies. To this end, the usage of symbols
+used by a function is analyzed by comparing the checks used in conjunction
+with the symbol with those used in similar functions.
 
 Dependencies
 --
@@ -25,16 +28,18 @@ From GIT repository first run
     
 Usage
 --
-Suppose you have already parse the code configured and started the neo4j database service.
+Suppose we have already parse the code and we have configured and started the neo4j database service.
+(For parsing the code and database configuration please refer to the [document](http://joern.readthedocs.org/en/latest/) of [joern](https://github.com/fabsx00/joern). Don't worry, the Following quick start example will also mention a little about this.)
 
     $ cd chucky-ng/chucky
-    $ python chucky.py [OPTIONS] symbol_to_analyse
+    $ python chucky.py [-h] [-i {function,callee,parameter,variable}]
+                 [-n N_NEIGHBORS] [-c CHUCKY_DIR] [--interactive] [-l LIMIT]
+                 [-d | -v | -q]
+                 identifier
+Example: 
+
+    $ python chucky.py -i parameter -n 25 --interactive length
     
-
-Chucky analyzes functions for anomalies. To this end, the usage of symbols
-used by a function is analyzed by comparing the checks used in conjunction
-with the symbol with those used in similar functions.
-
 positional arguments:
 
     identifier            The name of the identifier (function name or
@@ -63,12 +68,12 @@ optional arguments:
     
 A Quick Start Example.
 --
-Assume we are planning to analyse the code of image processing library LibPNG(version 1.2.44).
-Download and extract the the source code of libPNG
+Suppose we are the planning to analyse the code of image processing library LibPNG(version 1.2.44).
+Download and extract the the source code of libPNG.
 
     $ wget http://sourceforge.net/projects/libpng/files/libpng12/older-releases/1.2.44/libpng-1.2.44.tar.gz/download
     $ tar xvzf libpng-1.2.44.tar.gz
-Generate the graph database
+Generate the graph database.
 
     $ joern libpng-1.2.44
     
@@ -86,7 +91,7 @@ to
 
     #org.neo4j.server.database.location=$TEST/.joernIndex
 and save it.
-Start Neo4j 
+Start Neo4j database. 
 
     $ $NEO4J_HOME/bin/neo4j start
 Go to your chucky directory(chucky-ng/chucky) and run a chucky analysis.
