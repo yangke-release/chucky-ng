@@ -126,7 +126,7 @@ Chucky is a efficient tool for checking such statistically significant missing c
 
 This modified version of Chucky is based on the [original version](https://github.com/a0x77n/chucky-ng) written by Alwin Maier and [Fabian Yamaguchi](http://codeexploration.blogspot.de/).
 
-For the orgiginal idea, you can refer to [Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery](http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf)
+For the orginal idea, you can refer to [Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery](http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf)
  Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck
 *ACM Conference on Computer and Communications Security (CCS)*
 
