@@ -118,9 +118,6 @@ Following table explains some of the key column.
 | anomaly score | function name         | node id  |query symbol | sinificant missing symbol | function location                          |
 | 0.88000       | png\_handle\_sCAL     | 7855     |length       | length                    | libpng-1.2.44/pngrutil.c:1784:0:52039:56355|
 
-
-
-The column is the anomaly score of each function and the second and the third column is the function name and it's nodeid in neo4j. 
 For the vulnerable function **png\_handle\_sCAL** as reported in CVE-2011-2692, we can see from the result that it is ranked in top 5(all the top 5 functions have the highest anomaly score 0.88).
 This is because most of the similar functions(the first column shows the percentage and we call these functions neighborhood of  **png\_handle\_sCAL**) performed the  check for the parameter **length**.
 Chucky is a efficient tool for checking such statistically significant missing case. 
