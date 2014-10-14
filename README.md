@@ -13,7 +13,7 @@ Dependencies
 --
 + joern >= 2.0 <https://github.com/fabsx00/joern>
 + joern-tools >=0.1 <https://github.com/fabsx00/joern-tools>
-+ Neo4j 1.9
++ [Neo4j](http://www.neo4j.org/) 1.9
 + Python 2.7
 
 This version is for Debian & Ubuntu Linux only.
@@ -79,9 +79,9 @@ Generate the graph database.
     
 A hidden directory .joernIndex will be generated under the current directory(suppose it is $TEST).
 
-Configure the graph database server neo4j.
+Configure the graph database server [Neo4j](http://www.neo4j.org/).
 
-Assume $NEO4J_HOME is the install directory of your neo4j.
+Assume $NEO4J_HOME is the install directory of your Neo4j(Note that current joern only support 1.9.* version serials).
 Edit the file $NEO4J_HOME/conf/server.properties.
 Take neo4j-1.9.7 as an example, you should open the file neo4j-1.9.7/conf/neo4j-server.properties.
 Then change 
