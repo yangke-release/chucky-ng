@@ -119,7 +119,7 @@ Following table explains some of the key column.
 | 0.88000       | png\_handle\_sCAL     | 7855     |length       | length                    | libpng-1.2.44/pngrutil.c:1784:0:52039:56355|
 
 For the vulnerable function **png\_handle\_sCAL** as reported in CVE-2011-2692, we can see from the result that it is ranked in top 5(all the top 5 functions have the highest anomaly score 0.88).
-This is because most of the similar functions(the first column shows the percentage and we call these functions neighborhood of  **png\_handle\_sCAL**) performed the  check for the parameter **length**.
+This is because most of the similar functions(the first column shows the percentage) perform the check for the parameter **length**, howerver, **png\_handle\_sCAL** doesn't check it. We call these functions neighborhoods of  **png\_handle\_sCAL**.
 Chucky is a efficient tool for checking such statistically significant missing case. 
 
 
