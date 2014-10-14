@@ -9,26 +9,26 @@ Here is a simple usage example:
  
         knn.setEmbeddingDir(cachedir)	#Set the directory to cache the API embedding.
 
-        knn.setK(k) 			#Set the number nearest neighbors.
+        knn.setK(k) 			#Set the number k of nearest neighbors.
 
         knn.setLimitArray(limit)	#Specify the function name list for which chucky will only calculate for.
 
-        knn.setCallerConsideration(True)#Consider caller information or not. This is the new added feature according to Ke Yang's paper.
+        knn.setCallerConsideration(True)#Consider caller information or not. This is the new added feature imported from Ke Yang's paper.
         knn.initialize()		#Initialize the embedding. Check the embedding exists or not. If not then load it. 
 
 	#configuration done
 
         ids = knn.getNeighborsFor(str(query_function_nodeId)) 
-					#run the KNN algoritm and get the ids of top-k similar functions.
+					#Run the KNN algoritm and get the ids of top-k similar functions.
 					#The query_function_nodeId will also be return as the the top-1 in the nearest neighborhood list.
 ***************************************************************
 The threshold constants in this file serve for the two new added strategy: 
 
 (1) If the "sematic distance", "function name distance", "file name distance" and "caller set distance" to the query function are all less than the respective "GOOD" threshold.  This function will be rewarded by decreasing the semantic distance by 1. 
 
-(2) If the "function name distance" and the "file name distance" to the query function are both larger than the respective "BAD" distance threshold, this function will be punished by adding 1 to its semantic distance. 
+(2) If the "function name distance" and the "file name distance" to the query function are both larger than the respective "BAD" distance thresholds, this function will be punished by adding 1 to its semantic distance. 
 
-As the final ranking is based on semantic distance, this function will be elevated or pull down respectively in the top k list according to these two strategy. More information can be  found in Ke Yang's experimental study: Improving Neighborhood Quality for Chucky: An Experimental Study.
+As the final ranking is based on semantic distance, this function will be elevated or pull down respectively in the top-n(n>=k) list according to these two strategy. More information can be  found in Ke Yang's experimental study: Improving Neighborhood Quality for Chucky: An Experimental Study.
 ***************************************************************
 '''
 from joerntools.mlutils.EmbeddingLoader import EmbeddingLoader
