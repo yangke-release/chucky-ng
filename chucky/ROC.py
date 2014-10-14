@@ -1,4 +1,7 @@
 #!/usr/bin/env python2
+
+#This script generates the points for ROC curves averaged in each program by taking output of the script "neighbor" as input .
+#You can export the output of this script to the drawing program for ROC diagram painting.
 import os
 import time
 from chucky import Chucky

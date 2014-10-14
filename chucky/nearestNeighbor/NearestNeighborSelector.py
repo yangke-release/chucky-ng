@@ -48,7 +48,6 @@ class NearestNeighborSelector:
         knn.setEmbeddingDir(self.cachedir)
         knn.setK(k)
         knn.setLimitArray(limit)
-        knn.setNoCache(False)
         knn.setCallerConsideration(self.considerCaller)
         knn.initialize()
         #ids = knn.getNeighborsFor(str(nodeId))
