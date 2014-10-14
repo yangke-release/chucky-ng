@@ -122,13 +122,22 @@ For the vulnerable function **png\_handle\_sCAL** as reported in CVE-2011-2692, 
 This is because most of the similar functions(the first column shows the percentage) perform the check for the parameter **length**, howerver, **png\_handle\_sCAL** doesn't check it. We call these functions neighborhoods of  **png\_handle\_sCAL**.
 Chucky is a efficient tool for checking such statistically significant missing case. 
 
-
-
-This modified version of Chucky is based on the [original version](https://github.com/a0x77n/chucky-ng) written by Alwin Maier and [Fabian Yamaguchi](http://codeexploration.blogspot.de/).
-
 For the orginal idea, you can refer to [Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery](http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf)
  Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck
 *ACM Conference on Computer and Communications Security (CCS)*
 
+This modified version of Chucky is based on the [original version](https://github.com/a0x77n/chucky-ng) written by Alwin Maier and [Fabian Yamaguchi](http://codeexploration.blogspot.de/).
+
+About the Modification.
+--
+1. Refactor to clean the middle code.
+    * Replace sally embedding module by pure python(transplant the code witten by Fabian) to remove the data exchange cost on disk.
+    * Fix some bug and make it more robust.
+2. Rewirte the KNN class to support the neighborhood selection strategy:
+    * Leverage name(file name or function name) information and caller set information when it's usefull.
+    * Kick some name irrelevant functions out, and set a robust multiselective threshold for the recomandation of good candidate.  
+
+Consult this [paper](http://pan.baidu.com/s/1kTwt9mJ), if you are interested in it. 
 For more information or bug report please do not hesitate to contact me. Ke Yang(123yangke321@sina.com) 
-Still trying to update the modification document.
+ 
+Still trying to update the wiki document.
