@@ -5,10 +5,7 @@
 import os
 import time
 from chucky import Chucky
-dbvar='org.neo4j.server.database.location'
-dir='/home/yangke/Program/Fabian-Yamaguchi/evdata'
-db='.joernIndex'
-line='12'
+
 projnames=['pidgin','libpng','tiff','firefox','linux' ]
 symbolnames=['purple_base64_decode','length','dir','argc','dentry']
 symboltypes=['Callee','Parameter','Parameter','Parameter','Parameter']
