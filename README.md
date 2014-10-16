@@ -7,7 +7,7 @@ This program implements the missing check detection method named "Chucky".
 Chucky statically taints source code and identifies anomalous or missing conditions linked to security-critical objects.
 Chucky analyzes functions for anomalies. To this end, the usage of symbols
 used by a function is analyzed by comparing the checks used in conjunction
-with the symbol with those used in similar functions.
+with the symbol with those used in similar functions. Consult [here](http://http://chucky.readthedocs.org/) for more detail document.
 
 Dependencies
 --
