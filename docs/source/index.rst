@@ -37,8 +37,7 @@ There are five step for Chucky to complete the analyze.
 5. **Anomaly detection.**
    Find the most significant missing word in the condition vector of the query function set off by the neighborhoods. The anomaly score of the query function can then be expressed by the existing percentage in the neighborhoods.
 
-All the analysis are based on the extensible query language defined in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ by `Gremlin <https://github.com/tinkerpop/gremlin/>`_ and a wrapped inteface defined by `python-joern <http://github.com/fabsx00/python-joern/>`_ 
-
+All the analysis are based on the extensible query language defined in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ by `Gremlin <https://github.com/tinkerpop/gremlin/>`_ and a wrapped inteface defined by `python-joern <http://github.com/fabsx00/python-joern/>`_.
 
 For more about orginal idea, you can refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf/>`_
  Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
