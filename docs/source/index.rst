@@ -10,7 +10,7 @@ This document is for `this version <http://github.com/yangke/chucky-ng/>`_ of Ch
  
 Introduction of Chucky
 ----------------------
-Chucky is a the missing check vulnerability detection method designed by `Fabian Yamaguchi <http://codeexploration.blogspot.de/>`_.
+Chucky is a missing check vulnerability detection method designed by `Fabian Yamaguchi <http://codeexploration.blogspot.de/>`_.
 It statically taints source code and identifies anomalous or missing conditions linked to security-critical objects.
 Chucky analyzes functions for anomalies. To this end, the usage of symbols
 used by a function is analyzed by comparing the checks used in conjunction
