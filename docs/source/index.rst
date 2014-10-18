@@ -66,10 +66,10 @@ Contents:
    quick_start
    experiment_tutorial
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-.. * :ref:`modindex`
-* :ref:`search`
+..
+   Indices and tables
+   ==================
+   * :ref:`genindex`
+   * :ref:`search`
+   * :ref:`modindex`
 
