@@ -52,6 +52,7 @@ class NearestNeighborSelector:
         knn.initialize()
         #ids = knn.getNeighborsFor(str(nodeId))
         m0,m1,m2,m3,ids = knn.getSimilarContextNeighborsFor(str(nodeId))
+        #mean_syntax,mean_fun_name,mean_file_name,mean_caller
         return (m0,m1,m2,m3,[Function(i) for i in ids])
   
     

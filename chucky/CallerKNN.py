@@ -78,30 +78,33 @@ class KNN():
 
     def _loadEmbedding(self, dirname):
         return self.loader.load(dirname, svd_k=0)
-    def lowhigh(self,csize):
+    def passNumberCheck(self,csize):
         if csize<self.k:
             sys.stderr.write("Error: candidates num csize:%d<k:%d. please check before call this function.\n" %(csize,self.k))
-            return -1,-1
-	else:return csize,csize
+            return False
+	elif self.k<2:
+	    sys.stderr.write("Error: Specified k(=%d) is too small, please given a larger one(k should larger than 1).\n" %(self.k))
+	    return False
+	else:return True
             
     def getSimilarContextNeighborsFor(self,funcId):
         
         if self.limit:
             validNeighborIds = [funcId] + [x for x in self.limit if x != funcId]
             validNeighbors = [self.emb.rTOC[str(x)] for x in validNeighborIds]
-            low,high=self.lowhigh(len(validNeighborIds))
-	    if low==-1 or high==-1:
+	    csize=len(validNeighborIds)
+            if not self.passNumberCheck(csize):
 		return (-1,-1,-1,-1,[])
             dataPointIndex=0
             X = self.emb.x[validNeighbors, :]
-            return self.calculateDistance(X,validNeighborIds,dataPointIndex,high,funcId)
+            return self.calculateDistance(X,validNeighborIds,dataPointIndex,csize,funcId)
         else:
-            low,high=self.lowhigh(self.emb.x.shape[0])
-	    if low==-1 or high==-1:
+	    csize=self.emb.x.shape[0]
+            if not self.passNumberCheck(csize):
 		return (-1,-1,-1,-1,[])	    
             dataPointIndex = self.emb.rTOC[funcId]    
             X = self.emb.x
-            return self.calculateDistance(X,self.emb.TOC,dataPointIndex,high,funcId)          
+            return self.calculateDistance(X,self.emb.TOC,dataPointIndex,csize,funcId)          
            
     
     def getFuncName(self,fid):
@@ -133,7 +136,8 @@ class KNN():
                 d=self.ngram_jacard_distance(n_name,name)
                 KNN.func_name_distance_map[(fid,nid)]=d
             distances.append(d)
-        return distances     
+        return distances
+    
     def fileNameNGramDistances(self,nids,fid):
 	fid=str(fid)
         filename=self.getFuncFileName(fid)
@@ -154,6 +158,7 @@ class KNN():
 	       KNN.file_name_distance_map[(fid,nid)]=d
             distances.append(d)
         return distances
+    
     def is_suffix_same(self,filename1,filename2):
 	if '.c' in filename1 and '.c' in filename2:
 		return True
@@ -162,6 +167,7 @@ class KNN():
 	elif '.cpp' in filename1 and '.cpp' in filename2:
 		return True
 	else: return False
+	
     def ngram_jacard_distance(self,s1,s2,ngram=2):
     	s1=s1.lower()
     	s2=s2.lower()
@@ -200,15 +206,16 @@ class KNN():
         result = self.modifyResult(result,D0,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId)
         
         return result
+    
     def modifyResult(self,result,D,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId):
         #check and record something
         if str(funcId) not in result:
             result.pop()
-            result.append(str(funcId))
+            result=[str(funcId)]+result
             nums=[NNI[x] for x in mNNI[:self.k-1]]
-            data_d1=[d1[x] for x in mNNI[:self.k-1]]
-            data_d2=[d2[x] for x in mNNI[:self.k-1]]
-            data_d3=[d3[x] for x in mNNI[:self.k-1]]
+-           data_d1=[d1[x] for x in mNNI[:self.k-1]]
+-           data_d2=[d2[x] for x in mNNI[:self.k-1]]
+-           data_d3=[d3[x] for x in mNNI[:self.k-1]]
         else:
             nums=[NNI[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
             data1=[d1[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
@@ -242,6 +249,7 @@ class KNN():
         if fid not in KNN.caller_map:
             KNN.caller_map[fid]=Function(funcId).callers()
         return KNN.caller_map[fid]
+    
     def caller_name_set_distance_by_id(self,id,funcId):
 	if (id,funcId) in KNN.caller_name_set_distance_map:
 	    distance=KNN.caller_name_set_distance_map[(id,funcId)]
@@ -258,6 +266,7 @@ class KNN():
 	    	distance=self.caller_name_set_distance(callers,othercallers)
 	    KNN.caller_name_set_distance_map[(funcId,id)]=distance
 	return distance
+    
     def caller_name_set_distance(self,callers,othercallers):
 	names=set([str(x) for x in callers])
 	othernames=set([str(x) for x in othercallers])

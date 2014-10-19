@@ -35,10 +35,10 @@ class ChuckyEngine():
         
         try:            
             m0,m1,m2,m3,nearestNeighbors = self._getKNearestNeighbors()
+	    #mean_syntax,mean_fun_name,mean_file_name,mean_caller
 	    
             #for n in nearestNeighbors:
             #    print str(n)+"\t"+n.location()
-	    #print  nearestNeighbors
 	    
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
@@ -118,12 +118,11 @@ class ChuckyEngine():
 		
 	distance = (mean - self.x[dataPointIndex])
 	result=[]
-	#print "*******result***********"
 	for feat, score in zip(distance.indices, distance.data):
 	    feat_string = self.rFeatTable[feat]
 	    self.logger.debug('%+1.5f %s.', float(score), feat_string)
-	    #print str(score),feat_string
 	    result.append((float(score), feat_string))
+	    
 	return mean_cos_distance,cos_distance_with_mean,result
 
     def _outputResult(self,m0,m1,m2,m3,mcc,ccm, result):
