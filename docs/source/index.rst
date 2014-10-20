@@ -23,32 +23,33 @@ After a Robust Parsing by joern, conditions, assignments and API symbols are ext
 
 There are five step for Chucky to complete the analyze.
 
-1. **Identification of sources and sinks.** The query symbol is given by user as an analyse target. So the first job of Chucky is to locate them in the database and find all the candidates(functions that use the query symbol). According to differrent symbol type, this can be achived by a group of a well defined gremlin query.
+1. **Identification of sources and sinks. ** The query symbol is given by user as an analyse target. So the first job of Chucky is to locate them in the database and find all the candidates(functions that use the query symbol). According to different symbol types, this can be achived by a group of a well defined gremlin query.
 2. **Neighborhood discovery.** 
 
    * Viewing the function as a document and defining the key words as the element concerned in the AST, Chucky describe each function as a symbol vector. 
    * Chucky find the similarest top k functions to the query function by applying the information retrieval technique in this vector space.
 
-   The first procedure is implemented by gremlin query in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ and the secord one is implemented by pure python. 
+   The first procedure is implemented by gremlin query in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ and the second one is implemented by pure python. 
 3. **Lightweight tainting.**
-   Idendify the the condition code of **if**, **while** and **for** in which there exists symbol in the path from souce to sinks. These symbols may influence or be influence by the the query symbol in each top k similarest functions. This step is also implemented by gremlin query as such relations can be descripbed as a path in the code property graph.
+
+   Idendify the the condition code of **if**, **while** and **for** in which there exists a symbol in the path from the source to the sink. These symbols may influence or be influenced by the the query symbol in each top k similarest functions. This step is also implemented by gremlin queries as such relations can be described as a path in the code property graph.
 4. **Embedding of functions.**
-   Describe each function as a sparse 0-1 vector according to the existence of the condition key word discovered by the pervious step. 
+   Describe each function as a sparse 0-1 vector according to the existence of the condition key words discovered by the pervious step. 
 5. **Anomaly detection.**
-   Find the most significant missing word in the condition vector of the query function set off by the neighborhoods. The anomaly score of the query function can then be expressed by the existing percentage in the neighborhoods.
+   Find the most significant missing word in the condition vector of the query function set off by the neighborhoods. The anomaly score of the query function is expressed by the percentage of time the significant missing key word exists in the neighborhoods.
 
 All the analysis are based on the extensible query language defined in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ by `Gremlin <https://github.com/tinkerpop/gremlin/>`_ and a wrapped inteface defined by `python-joern <http://github.com/fabsx00/python-joern/>`_.
 
-For more about orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf/>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
+For more about the orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf/>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
 
 About the Modification.
 -----------------------
 1. Refactor to clean the middle code.
-    * Replace sally embedding module by pure python(transplant the code witten by Fabian) to remove the data exchange cost on disk.
-    * Fix some bug and make it more robust.
+    * Replace sally embedding module by pure python code(transplant the code witten by Fabian) to remove the data exchange cost on disk.
+    * Fix some bugs and make it more robust.
 2. Rewirte the KNN class to support the neighborhood selection strategy:
-    * Leverage name(file name or function name) information and caller set information when it's usefull.
-    * Kick some name irrelevant functions out, and set a robust multiselective threshold for the recomandation of good candidate.  
+    * Leverage the name(file name or function name) information and the caller set information of a function when it's usefull.
+    * Kick some name irrelevant functions out, and set a robust threshold for the recomandation of good candidate.  
 
 Consult this `paper <http://pan.baidu.com/s/1kTwt9mJ/>`_, if you are interested in it. 
 For more information or bug report please do not hesitate to contact me. Ke Yang(123yangke321@sina.com)
