@@ -1,4 +1,4 @@
-Experiment Tutorial for the Paper
+Experiment Tutorial
 =================================
 This experiment tutorial help you to finish the evaluation described by this `paper <http://pan.baidu.com/s/1kTwt9mJ/>`_. 
 

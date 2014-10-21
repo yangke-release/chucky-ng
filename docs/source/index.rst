@@ -6,7 +6,7 @@
 Welcome to Chucky's documentation!
 ==================================
 
-This document is for `this version <http://github.com/yangke/chucky-ng/>`_ of Chucky implementation. It's modified by Ke Yang based on this `paper <http://pan.baidu.com/s/1kTwt9mJ/>`_ and `original version <https://github.com/a0x77n/chucky-ng/>`_ (developed by Alwin Maier and `Fabian Yamaguchi <http://codeexploration.blogspot.de/>`_) .
+This document is for `this version <http://github.com/yangke/chucky-ng/>`_ of Chucky implementation. It's modified by Ke Yang based on this `paper <http://pan.baidu.com/s/1kTwt9mJ/>`_ and the `original version <https://github.com/a0x77n/chucky-ng/>`_ (developed by Alwin Maier and `Fabian Yamaguchi <http://codeexploration.blogspot.de/>`_) .
  
 Introduction of Chucky
 ----------------------
@@ -23,7 +23,7 @@ After a Robust Parsing by joern, conditions, assignments and API symbols are ext
 
 There are five step for Chucky to complete the analyze.
 
-1. **Identification of sources and sinks. ** The query symbol is given by user as an analyse target. So the first job of Chucky is to locate them in the database and find all the candidates(functions that use the query symbol). According to different symbol types, this can be achived by a group of a well defined gremlin query.
+1. **Identification of sources and sinks.** The query symbol is given by user as an analyse target. So the first job of Chucky is to locate them in the database and find all the candidates(functions that use the query symbol). According to different symbol types, this can be achived by a group of a well defined gremlin query.
 2. **Neighborhood discovery.** 
 
    * Viewing the function as a document and defining the key words as the element concerned in the AST, Chucky describe each function as a symbol vector. 
@@ -40,7 +40,7 @@ There are five step for Chucky to complete the analyze.
 
 All the analysis are based on the extensible query language defined in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ by `Gremlin <https://github.com/tinkerpop/gremlin/>`_ and a wrapped inteface defined by `python-joern <http://github.com/fabsx00/python-joern/>`_.
 
-For more about the orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf/>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
+For the orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf/>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
 
 About the Modification.
 -----------------------
