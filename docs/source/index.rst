@@ -6,7 +6,7 @@
 Welcome to Chucky's documentation!
 ==================================
 
-This document is for `this version <http://github.com/yangke/chucky-ng/>`_ of Chucky implementation. It's modified by Ke Yang based on this `paper <http://pan.baidu.com/s/1kTwt9mJ/>`_ and the `original version <https://github.com/a0x77n/chucky-ng/>`_ (developed by Alwin Maier and `Fabian Yamaguchi <http://codeexploration.blogspot.de/>`_) .
+This document is for `this modified version <http://github.com/yangke/chucky-ng/>`_ of Chucky implementation and is also suitable for the `original version <https://github.com/a0x77n/chucky-ng/>`_ (developed by Alwin Maier and `Fabian Yamaguchi <http://codeexploration.blogspot.de/>`_).
  
 Introduction of Chucky
 ----------------------
@@ -49,13 +49,11 @@ About the Modification.
     * Fix some bugs and make it more robust.
 2. Rewirte the KNN class to support the neighborhood selection strategy:
     * Leverage the name(file name or function name) information and the caller set information of a function when it's usefull.
-    * Kick some name irrelevant functions out, and set a robust threshold for the recomandation of good candidate.  
+    * Kick some name irrelevant functions out, and set a robust threshold for the recomandation of good candidate.
+  
+Note: the advancement of the modification still needs to be judged and more evaluation is required. Connect Ke Yang(123yangke321@sina.com) for more information.
 
-Consult this `paper <http://pan.baidu.com/s/1kTwt9mJ/>`_, if you are interested in it. 
-For more information or bug report please do not hesitate to contact me. Ke Yang(123yangke321@sina.com)
- 
-Although this is a non-official document for Chucky, hope it will be helpful for people who are intersted in Chucky and working and studying this area.  
-Still trying to update the document.
+Although this is a non-official document for Chucky, hope it will be helpful for people who are intersted in Chucky and working and studying in this area.
 
 Contents:
 
@@ -65,8 +63,6 @@ Contents:
    installation
    usage
    quick_start
-   experiment_tutorial
-
 ..
    Indices and tables
    ==================

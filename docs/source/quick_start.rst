@@ -18,15 +18,16 @@ Run the following command::
 
     $ joern libpng-1.2.44
     
-A hidden directory ``.joernIndex`` will be generated under the current directory(suppose it is ``$TEST``).
+A hidden directory ``.joernIndex`` will be generated under the current directory(suppose the current directory is ``$TEST``).
 
 Configure Database Server
 -------------------------
 Configure the graph database server `Neo4j <http://www.neo4j.org/>`_
 
-Assume $NEO4J_HOME is the install directory of your Neo4j(Note that current joern only support 1.9.* version serials).
+Assume ``$NEO4J_HOME`` is the install directory of your Neo4j(Note that current joern only support 1.9.* version serials).
 Edit the file ``$NEO4J_HOME/conf/server.properties``.
-Take neo4j-1.9.7 as an example, you should open the file ``neo4j-1.9.7/conf/neo4j-server.properties``.
+As an example, for neo4j-1.9.7, you should open the file ``neo4j-1.9.7/conf/neo4j-server.properties``.
+
 Then change::
 
     #org.neo4j.server.database.location=data/graph.db
@@ -76,5 +77,5 @@ Following table explains some of the key column.
 Analysis
 --------
 For the vulnerable function **png\_handle\_sCAL** as reported in CVE-2011-2692, we can see from the result that it is ranked in top 5(all the top 5 functions have the highest anomaly score 0.88).
-This is because most of the similar functions(the first column shows the percentage) perform the check for the parameter **length**, howerver, **png\_handle\_sCAL** doesn't check it. We call these functions neighborhoods of  **png\_handle\_sCAL**.
+This is because most of the similar functions(the first column shows the percentage) perform the check for the parameter **length**, howerver, **png\_handle\_sCAL** doesn't check it. We call these similar functions the neighborhoods of  **png\_handle\_sCAL**.
 Chucky is a efficient tool for checking such statistically significant missing case. 

@@ -14,8 +14,8 @@ Example 2
 
 Usage Pattern
 -------------
-Suppose we have already parse the code and we have configured and started the neo4j database service.
-(For parsing the code and database configuration please refer to the `document <http://joern.readthedocs.org/en/latest/>`_ of `joern <https://github.com/fabsx00/joern/>`_. Don't worry, the quick start example part will also mention a little about this.)::
+Suppose we have already parsed the code and we have configured and started the neo4j database service.
+(For parsing the code and database configuration please refer to the `document <http://joern.readthedocs.org/en/latest/>`_ of `joern <https://github.com/fabsx00/joern/>`_. Don't worry, the section :ref:`quickstart` will also mention a little about this.)::
 
     $ cd chucky-ng/chucky
     $ python chucky.py [-h] [-i {function,callee,parameter,variable}]

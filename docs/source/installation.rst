@@ -12,8 +12,7 @@ This version is for Debian & Ubuntu Linux only.
 
 Clone from git Repository
 -------------------------
-Run the following command in the terminal:
-From GIT repository first run::
+To clone it from Git repository, run the following commands in the terminal::
 
     $ sudo apt-get install git #skip this command if you have git already installed
     $ git clone https://github.com/yangke/chucky-ng.git
