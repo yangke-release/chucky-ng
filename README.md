@@ -137,7 +137,6 @@ About the Modification.
     * Leverage name(file name or function name) information and caller set information when it's usefull.
     * Kick some name irrelevant functions out, and set a robust multiselective threshold for the recomandation of good candidate.  
 
-Consult this [paper](http://pan.baidu.com/s/1kTwt9mJ), if you are interested in it. 
 For more information or bug report please do not hesitate to contact me. Ke Yang(123yangke321@sina.com) 
  
 Still trying to update the wiki document.
