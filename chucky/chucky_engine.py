@@ -35,7 +35,7 @@ class ChuckyEngine():
             nearestNeighbors = self._getKNearestNeighbors()
 
             #for n in nearestNeighbors:
-            #    print n
+            #    print str(n)+"\t"+n.location()
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)

@@ -138,7 +138,7 @@ class Chucky():
             for job in jobset:
                 tjob=job
                 break
-            if len(jobset)<self.args.n_neighbors+1:
+            if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
                 if tjob:
                     sys.stderr.write('JobSet(1)[Symbol: %s(%d Job)] skiped\n' %(tjob.symbol.target_name,len(jobset)))
             else: self.analyzeJobSet(jobset,'')  
@@ -146,7 +146,7 @@ class Chucky():
             jobsetnum=len(jobsdict)
             jobcount=0
             for j,(key,jobset) in enumerate(jobsdict.items(),1):
-               if len(jobset)<self.args.n_neighbors+1:
+               if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
                    sys.stderr.write('JobSet(%d)[Symbol:%s %s(%d Job)] skiped\n' %(j,key.target_decl_type,key.target_name,len(jobset)))
                    jobcount+=len(jobset)
                    continue

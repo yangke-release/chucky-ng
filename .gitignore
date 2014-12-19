@@ -2,3 +2,5 @@
 *.pyc
 codebases/
 .joernIndex/
+docs/build
+*.log
