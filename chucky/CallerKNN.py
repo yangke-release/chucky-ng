@@ -213,9 +213,9 @@ class KNN():
             result.pop()
             result=[str(funcId)]+result
             nums=[NNI[x] for x in mNNI[:self.k-1]]
--           data_d1=[d1[x] for x in mNNI[:self.k-1]]
--           data_d2=[d2[x] for x in mNNI[:self.k-1]]
--           data_d3=[d3[x] for x in mNNI[:self.k-1]]
+            data_d1=[d1[x] for x in mNNI[:self.k-1]]
+            data_d2=[d2[x] for x in mNNI[:self.k-1]]
+            data_d3=[d3[x] for x in mNNI[:self.k-1]]
         else:
             nums=[NNI[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
             data1=[d1[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
