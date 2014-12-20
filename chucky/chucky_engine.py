@@ -72,6 +72,9 @@ class ChuckyEngine():
     
         entitySelector = FunctionSelector()
         symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol)
+	if len(symbolUsers) < self.job.n_neighbors+1:
+	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required')
+	    return 2,2,2,2,[]	
 	return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
     
     def _calculateCheckModels(self, symbolUsers):
@@ -158,7 +161,7 @@ class ChuckyEngine():
 	    return csr_matrix(X.mean(axis=0))
     def checkNeighborsAndGetIndex(self,nearestNeighbors):
 	if nearestNeighbors == []:
-	    self.logger.warning('Job skipped, no neighbors found')
+	    #self.logger.warning('Job skipped, no neighbors found')
 	    return None
 	#ids=[n.node_id for n in nearestNeighbors]
 	for i,n in enumerate(nearestNeighbors):
