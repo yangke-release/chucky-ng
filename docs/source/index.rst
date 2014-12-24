@@ -53,7 +53,7 @@ About the Modification.
   
 Note: the advancement of the modification still needs to be judged and more evaluation is required. Connect Ke Yang(123yangke321@sina.com) for more information.
 
-Although this is a non-official document for Chucky, hope it will be helpful for people who are intersted in Chucky and working and studying in this area.
+Although this is a NON-OFFICIAL document for Chucky, hope it will be helpful for people who are intersted in Chucky and working and studying in this area.
 
 Contents:
 
