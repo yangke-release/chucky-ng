@@ -40,7 +40,7 @@ There are five step for Chucky to complete the analyze.
 
 All the analysis are based on the extensible query language defined in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ by `Gremlin <https://github.com/tinkerpop/gremlin/>`_ and a wrapped inteface defined by `python-joern <http://github.com/fabsx00/python-joern/>`_.
 
-For the orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2014-oakland.pdf/>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
+For the orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2013-ccs.pdf>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
 
 About the Modification.
 -----------------------
