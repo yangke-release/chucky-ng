@@ -33,10 +33,6 @@ class Chucky():
         self.args = self.arg_parser.parse_args()
         self._config_logger()
         self._create_chucky_dir()
-        #self.job_generator = JobGenerator(
-                #identifier = self.args.identifier,
-                #identifier_type = self.args.identifier_type,
-                #n_neighbors = self.args.n_neighbors)
         self.job_generator = JobGenerator(
                     function = self.args.function,
                     callees = self.args.callees,
@@ -164,40 +160,7 @@ class Chucky():
     """
     Generates Jobs (list of ChuckyJobs) and asks
     the engine to perform an analysis for each job.
-    """
-
-    #def execute(self):
-        #needcache,jobsdict = self.job_generator.generate()
-        #jobs=[]
-        #for configs in jobsdict.values():
-            #jobs+=list(configs)
-        #jobs_total_num=len(jobs)
-        #if 'callee' in jobsdict:
-            #jobset=jobsdict['callee']
-            #tjob=None
-            #for job in jobset:
-                #tjob=job
-                #break
-            #if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
-                #if tjob:
-                    #sys.stderr.write('JobSet(1)[Symbol: %s(%d Job)] skiped\n' %(tjob.symbol.target_name,len(jobset)))
-            #else: self.analyzeJobSet(jobset,'')  
-        #elif needcache:
-            #jobsetnum=len(jobsdict)
-            #jobcount=0
-            #for j,(key,jobset) in enumerate(jobsdict.items(),1):
-               #if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
-                   #sys.stderr.write('JobSet(%d)[Symbol:%s %s(%d Job)] skiped\n' %(j,key.target_decl_type,key.target_name,len(jobset)))
-                   #jobcount+=len(jobset)
-                   #continue
-               #description="/%d]:JobSet(%d/%d)" %(jobs_total_num,j,jobsetnum)
-               #flag=self.analyzeJobSet(jobset,description,jobcount)
-               #if not flag:return
-               #jobcount+=len(jobset)
-        #else:
-            #self.analyzeJobSet(jobs,'')
-   
-            
+    """     
     def execute(self):
         needcache,jobsdict = self.job_generator.generate()
         jobs=[]

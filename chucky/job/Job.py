@@ -4,9 +4,6 @@ import logging
 from job.Symbol import Symbol
 from job.SourceSinkSet import SourceSinkSet
 
-PARAMETER = 'Parameter'
-VARIABLE = 'Variable'
-CALLEE = 'Callee'
 
 class ChuckyJob(object):
     
@@ -16,31 +13,6 @@ class ChuckyJob(object):
     # Suggested improvement: provide setters for each of the
     # configurable fields and remove the constructor
     
-    #def __init__(self, function, symbol_name, symbol_decl_type, symbol_type, n_neighbors,needcache=False):
-        #self.function = function
-        #self.n_neighbors = n_neighbors
-        #self.logger = logging.getLogger('chucky')
-        #self._initializeSymbol(symbol_name, symbol_type, symbol_decl_type)
-        #self.needcache=needcache
-        
-    #def _initializeSymbol(self, name, aType, declType):
-        #self.symbol = Symbol()
-        #self.symbol.setName(name)
-        #self.symbol.setType(aType)
-        #self.symbol.setDeclType(declType)
-    
-    #def getSymbol(self):
-        #return self.symbol
-    
-    #def getSymbolName(self):
-        #return self.symbol.target_name
-    
-    #def getSymbolType(self):
-        #return self.symbol.target_type
-    
-    #def __eq__(self, other):
-           #return self.symbol == other.symbol
-       
     def __init__(self,function,n_neighbors,needcache=False,callee_set=set(),parameter_set=set(),variable_set=set()):
         self.function=function
         self.n_neighbors = n_neighbors

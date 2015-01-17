@@ -57,43 +57,38 @@ class ChuckyEngine():
     """
     def _getKNearestNeighbors(self):
         
-        #symbol = self.job.getSymbol()
         self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir)
         self.knn.setK(self.job.n_neighbors)
-    
-        #entitySelector = FunctionSelector()
-        #symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol)
 	
-	#FIXME:Make additional check for the correctness of job and jobset.For example what if the jobset is None or empty Set.
-	jobset=self.job.getJobSet()
-	
-	if len(jobset) < self.job.n_neighbors+1:
-	    self.logger.warning('Job skipped, '+str(len(jobset)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required')
+	'''
+	FIXME:Make additional check for the correctness of job and jobset.For example what if the jobset is None or empty Set.
+	'''
+	if self.job.job_set:
+	    #batch operation using specified sources/sinks
+	    jobset=self.job.getJobSet()
+	    symbolUsers=[]
+	    for job in jobset:
+		symbolUsers.append(job.function)
+	else:
+	    #just analyse one function and use single sources/sinks in it iteratively
+	    entitySelector = FunctionSelector()
+	    symbolUsers = entitySelector.selectFunctionsUsingSymbol(self.job.getSourceSinks().getSingleSource())
+	    
+	if len(symbolUsers) < self.job.n_neighbors+1:
+	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required')
 	    return []
 	
-	symbolUsers=[]
-	for job in jobset:
-	    symbolUsers.append(job.function)
+	
 	    
         return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
     
     def _calculateCheckModels(self, symbolUsers):
-        #symbolName = self.job.getSymbolName()
-        #symbolType = self.job.getSymbolType()
-	#funcConditions = []
+       
 	li=[]
 	flag=False
 	for i, symbolUser in enumerate(symbolUsers):
-	    # self.logger.info('Processing %s (%s/%s).', symbolUser, i, len(functions))            
-	    
-	    #x = FunctionConditions(symbolUser)     
-	    #x.setSymbolName(symbolName)
-	    #x.setSymbolType(symbolType)
-	    #feats=x.getFeatures()
 	    feats=self._getAllSourceFeats(symbolUser,self.job.sourcesinks)
-	    #print "------------\n",feats
 	    pair=(i,feats)
-	    #funcConditions.append(x)
 	    li.append(pair)
 	    if not flag:
 		for feature in feats:

@@ -17,12 +17,6 @@ on user queries.
 
 class JobGenerator(object):
 
-    # Suggested improvement: see ChuckyJob
-    
-    '''def __init__(self, identifier,identifier_type,n_neighbors):
-        self.identifier=identifier
-        self.identifier_type=identifier_type
-        self.n_neighbors = n_neighbors'''
     def __init__(self,function,callees,parameters,variables, n_neighbors):
         self.function = function
         self.callee_names = callees
@@ -32,10 +26,8 @@ class JobGenerator(object):
         self.limit = None
 
     """
-    Generates a suitable configuration based on the objects
-    internal state.
-
-    @returns a list of ConfigRecords.
+    Generates a joblist for the appointed function.
+    @returns a list of jobs with single source/sinks).
     """
     def genJobsForFunc(self,identifier,n_neighbors):
         configurations = []
@@ -81,28 +73,43 @@ class JobGenerator(object):
                 return True;
             else:del func_job_map[func]
         return False
+    '''
+    If the there is no identifier instances added, then add the instances of first encounterd meta-identifier all into the func_job_map.
+    A meta-identifier is the abstract type with three key property:
+    DECLAEATION_TYPE,    SOURCE_SINK_TYPE,    SOURCE_SINK_TYPE.
+    
+    Later,we will pick the intersection using the following instances of other meta-identifier
+    '''
     def addFirstSourceSinkToEmptyDict(self,db_identifiers,identifier_type,func_job_map):
+        #process same type identifier
         at_least_one=False
-        for db_identifier in db_identifiers:#same name callee
+        for db_identifier in db_identifiers:#same name identifier
             job=ChuckyJob(db_identifier.function(),self.n_neighbors,True)
             job.addSourceSinkByDBIdentifier(db_identifier,identifier_type)
             func_job_map[db_identifier.function()]=job
             at_least_one=True
         return at_least_one
     
+    '''
+    Given the source/sink name generate a map from function to job
+    in which the function is the Symbol User and the job is the unsplited mixjob(That means identifiers with the same name and the same SOURCE/SINK_TYPE and different declaration type may be be add in the set together).
+    '''
     def getFuncJobMapBySourceSinkNames(self,identifierNames,identifier_type,func_job_map):
-        
+        #process same type identifier
         have_source_sinks=self.test_and_sanitize_map_have_values(func_job_map)
             
-        for identifier_name in identifierNames:#different name callee
+        for identifier_name in identifierNames:
+            #different name identifier
             db_identifiers = self.getIdentiferInstances(identifier_name,identifier_type)
             if not have_source_sinks:
                 have_source_sinks=self.addFirstSourceSinkToEmptyDict(db_identifiers,identifier_type,func_job_map)
                 
             else:
                 tmp_map=dict()
-                for db_identifier in db_identifiers:#same name callee 
+                for db_identifier in db_identifiers:
+                    #same name identifier 
                     if db_identifier.function() in func_job_map.keys():
+                        #just keep the function that include all of the specified identifier.
                         job=func_job_map[db_identifier.function()]
                         job.addSourceSinkByDBIdentifier(db_identifier,identifier_type)
                         tmp_map[db_identifier.function()]=job
@@ -110,14 +117,18 @@ class JobGenerator(object):
                 else:func_job_map=tmp_map
                 
         return func_job_map 
-    
+    """
+    Generates a suitable configuration based on the objects
+    internal state.
+
+    @returns a source/sinks to job set map: SourceSinkSet->set(ChuckyJobs).
+    """   
     def generate(self):
         if self.function:
             needcache=False
             configurations=self.genJobsForFunc(self.function,self.n_neighbors)  
         else:
             needcache=True
-            #have_source_sink=False
             func_job_map=dict()
             if self.callee_names:
                 func_job_map=self.getFuncJobMapBySourceSinkNames(self.callee_names,CALLEE,func_job_map)
@@ -151,21 +162,8 @@ class JobGenerator(object):
             if sourcesinks not in d:
                 d[sourcesinks]=set()
             d[sourcesinks].add(config)   
-        
-        for configs in d.values():
-            for config in configs:
-                config.setJobSet(configs)
+        if not self.function:
+            for configs in d.values():
+                for config in configs:
+                    config.setJobSet(configs)
         return needcache,d
-            
-        #fix duplicate
-        #d=dict()
-        #if parameter_names:
-            #return
-        #if self.identifier_type == 'callee':
-            #d['callee']=set(configurations)
-        #else:
-            #for config in configurations:
-                #if config.symbol not in d:
-                    #d[config.symbol]=set()
-                #d[config.symbol].add(config)             
-        #return needcache,d
