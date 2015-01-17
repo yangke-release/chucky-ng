@@ -14,6 +14,10 @@ DEFAULT_N = 30
 MIN_N = 5
 DEFAULT_DIR = ".chucky"
 
+PARAMETER = 'Parameter'
+VARIABLE = 'Variable'
+CALLEE = 'Callee'
+
 def n_neighbors(value):
     n = int(value)
     if n < MIN_N:
@@ -29,26 +33,62 @@ class Chucky():
         self.args = self.arg_parser.parse_args()
         self._config_logger()
         self._create_chucky_dir()
+        #self.job_generator = JobGenerator(
+                #identifier = self.args.identifier,
+                #identifier_type = self.args.identifier_type,
+                #n_neighbors = self.args.n_neighbors)
         self.job_generator = JobGenerator(
-                identifier = self.args.identifier,
-                identifier_type = self.args.identifier_type,
-                n_neighbors = self.args.n_neighbors)
+                    function = self.args.function,
+                    callees = self.args.callees,
+                    parameters = self.args.parameters,
+                    variables = self.args.variables,                        
+                    n_neighbors = self.args.n_neighbors)
+        
         self.job_generator.limit = self.args.limit
         self.engine = ChuckyEngine(self.args.chucky_dir)
 
     def _init_arg_parser(self):
         self.arg_parser = argparse.ArgumentParser(description=DESCRIPTION)
+        #self.arg_parser.add_argument(
+         #       'identifier',
+          #      help = """The name of the identifier 
+           #     (function name or source/sink name)""")
+        
+        
+        #self.arg_parser.add_argument(
+         #       '-i', '--identifier-type',
+          #      action = 'store',
+           #     default = 'function',
+            #    choices = ['function', 'callee', 'parameter', 'variable'],
+             #   help = """The type of identifier the positional argument
+              #  `identifier` refers to.""")
+        
         self.arg_parser.add_argument(
-                'identifier',
-                help = """The name of the identifier 
-                (function name or source/sink name)""")
-        self.arg_parser.add_argument(
-                '-i', '--identifier-type',
+                '-f', '--function',
                 action = 'store',
-                default = 'function',
-                choices = ['function', 'callee', 'parameter', 'variable'],
-                help = """The type of identifier the positional argument
-                `identifier` refers to.""")
+                default = None,
+                help = 'Specify the function to analysis. If this option is configured, the analysis will only perform on this function.')        
+        self.arg_parser.add_argument(
+                '--callee',
+                action='append',
+                dest='callees',
+                default=[],
+                help='Specify the identifier name of callee type source/sink')
+        
+        self.arg_parser.add_argument(
+                '-p','--parameter',
+                action='append',
+                dest='parameters',
+                default=[],
+                help='Specify the identifier name of parameter type source/sink')
+        
+        self.arg_parser.add_argument(
+                '-var','--variable',
+                action='append',
+                dest='variables',
+                default=[],
+                help='Specify the identifier name of variable type source/sink')
+        
         self.arg_parser.add_argument(
                 '-n', '--n-neighbors',
                 action = 'store',
@@ -126,28 +166,50 @@ class Chucky():
     the engine to perform an analysis for each job.
     """
 
+    #def execute(self):
+        #needcache,jobsdict = self.job_generator.generate()
+        #jobs=[]
+        #for configs in jobsdict.values():
+            #jobs+=list(configs)
+        #jobs_total_num=len(jobs)
+        #if 'callee' in jobsdict:
+            #jobset=jobsdict['callee']
+            #tjob=None
+            #for job in jobset:
+                #tjob=job
+                #break
+            #if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
+                #if tjob:
+                    #sys.stderr.write('JobSet(1)[Symbol: %s(%d Job)] skiped\n' %(tjob.symbol.target_name,len(jobset)))
+            #else: self.analyzeJobSet(jobset,'')  
+        #elif needcache:
+            #jobsetnum=len(jobsdict)
+            #jobcount=0
+            #for j,(key,jobset) in enumerate(jobsdict.items(),1):
+               #if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
+                   #sys.stderr.write('JobSet(%d)[Symbol:%s %s(%d Job)] skiped\n' %(j,key.target_decl_type,key.target_name,len(jobset)))
+                   #jobcount+=len(jobset)
+                   #continue
+               #description="/%d]:JobSet(%d/%d)" %(jobs_total_num,j,jobsetnum)
+               #flag=self.analyzeJobSet(jobset,description,jobcount)
+               #if not flag:return
+               #jobcount+=len(jobset)
+        #else:
+            #self.analyzeJobSet(jobs,'')
+   
+            
     def execute(self):
         needcache,jobsdict = self.job_generator.generate()
         jobs=[]
         for configs in jobsdict.values():
             jobs+=list(configs)
-        jobs_total_num=len(jobs)
-        if 'callee' in jobsdict:
-            jobset=jobsdict['callee']
-            tjob=None
-            for job in jobset:
-                tjob=job
-                break
-            if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
-                if tjob:
-                    sys.stderr.write('JobSet(1)[Symbol: %s(%d Job)] skiped\n' %(tjob.symbol.target_name,len(jobset)))
-            else: self.analyzeJobSet(jobset,'')  
-        elif needcache:
+        jobs_total_num=len(jobs)        
+        if needcache:
             jobsetnum=len(jobsdict)
             jobcount=0
             for j,(key,jobset) in enumerate(jobsdict.items(),1):
                if len(jobset)<self.args.n_neighbors+1 and self.args.limit==None:
-                   sys.stderr.write('JobSet(%d)[Symbol:%s %s(%d Job)] skiped\n' %(j,key.target_decl_type,key.target_name,len(jobset)))
+                   sys.stderr.write('JobSet(%d)[source/sink:%s(%d Job)] skiped\n' %(j,str(key),len(jobset)))
                    jobcount+=len(jobset)
                    continue
                description="/%d]:JobSet(%d/%d)" %(jobs_total_num,j,jobsetnum)
@@ -155,8 +217,8 @@ class Chucky():
                if not flag:return
                jobcount+=len(jobset)
         else:
-            self.analyzeJobSet(jobs,'')   
-            
+            self.analyzeJobSet(jobs,'')         
+        
                     
             
     def analyzeJobSet(self,jobs,info,jobcount=None):

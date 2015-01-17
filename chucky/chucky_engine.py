@@ -35,7 +35,7 @@ class ChuckyEngine():
             nearestNeighbors = self._getKNearestNeighbors()
 
             #for n in nearestNeighbors:
-            #    print str(n)+"\t"+n.location()
+                #print str(n)+"\t"+n.location()
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)
@@ -57,33 +57,43 @@ class ChuckyEngine():
     """
     def _getKNearestNeighbors(self):
         
-        symbol = self.job.getSymbol()
+        #symbol = self.job.getSymbol()
         self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir)
         self.knn.setK(self.job.n_neighbors)
     
-        entitySelector = FunctionSelector()
-        symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol)
-	if len(symbolUsers) < self.job.n_neighbors+1:
-	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required')
+        #entitySelector = FunctionSelector()
+        #symbolUsers = entitySelector.selectFunctionsUsingSymbol(symbol)
+	
+	#FIXME:Make additional check for the correctness of job and jobset.For example what if the jobset is None or empty Set.
+	jobset=self.job.getJobSet()
+	
+	if len(jobset) < self.job.n_neighbors+1:
+	    self.logger.warning('Job skipped, '+str(len(jobset)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required')
 	    return []
+	
+	symbolUsers=[]
+	for job in jobset:
+	    symbolUsers.append(job.function)
+	    
         return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
     
     def _calculateCheckModels(self, symbolUsers):
-        symbolName = self.job.getSymbolName()
-        symbolType = self.job.getSymbolType()
-	funcConditions = []
+        #symbolName = self.job.getSymbolName()
+        #symbolType = self.job.getSymbolType()
+	#funcConditions = []
 	li=[]
 	flag=False
-	
 	for i, symbolUser in enumerate(symbolUsers):
 	    # self.logger.info('Processing %s (%s/%s).', symbolUser, i, len(functions))            
 	    
-	    x = FunctionConditions(symbolUser)     
-	    x.setSymbolName(symbolName)
-	    x.setSymbolType(symbolType)
-	    feats=x.getFeatures()
+	    #x = FunctionConditions(symbolUser)     
+	    #x.setSymbolName(symbolName)
+	    #x.setSymbolType(symbolType)
+	    #feats=x.getFeatures()
+	    feats=self._getAllSourceFeats(symbolUser,self.job.sourcesinks)
+	    #print "------------\n",feats
 	    pair=(i,feats)
-	    funcConditions.append(x)
+	    #funcConditions.append(x)
 	    li.append(pair)
 	    if not flag:
 		for feature in feats:
@@ -95,7 +105,29 @@ class ChuckyEngine():
 	    return termDocumentMatrix
 	else:
 	    return None	
-        
+    def _getAllSourceFeats(self,symbolUser,sourcesinks):
+	cs=sourcesinks.callee_set
+	ps=sourcesinks.parameter_set
+	vs=sourcesinks.variable_set
+	feats=set()
+	if len(cs)>0:
+	    for c in cs:
+		feats=feats.union(self._getFeats(symbolUser,c.target_name,c.target_type))
+	if len(ps)>0:
+	    for p in ps:
+		feats=feats.union(self._getFeats(symbolUser,p.target_name,p.target_type))	 
+	if len(vs)>0:
+	    for v in vs:
+		feats=feats.union(self._getFeats(symbolUser,v.target_name,v.target_type))
+	return feats
+	
+    def _getFeats(self,symbolUser,symbolName,symbolType):
+	x = FunctionConditions(symbolUser)     
+	x.setSymbolName(symbolName)
+	x.setSymbolType(symbolType)
+	feats=x.getFeatures()
+	return feats
+	
     """
     Determine anomaly score.
     """
@@ -119,7 +151,7 @@ class ChuckyEngine():
             feat="ALL"
         else:
             score, feat = max(result)
-        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,self.job.symbol.target_type,self.job.symbol.target_decl_type,self.job.symbol.target_name,feat,self.job.function.location())
+        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,self.job.function.location())
 	
     def calculateCenterOfMass(self, index):
 	r,c=self.x.shape

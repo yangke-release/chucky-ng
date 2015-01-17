@@ -13,7 +13,10 @@ class Function(Node):
 
     def __str__(self):
         return '{}'.format(self.name)
-
+    
+    def __eq__(self, other):
+           return self.node_id == other.node_id
+       
     def symbols(self):
         lucene_query = 'functionId:"{}" AND type:Symbol'.format(self.node_id)
         symbols = jutils.lookup(lucene_query)
