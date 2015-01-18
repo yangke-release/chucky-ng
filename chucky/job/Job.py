@@ -13,9 +13,8 @@ class ChuckyJob(object):
     # Suggested improvement: provide setters for each of the
     # configurable fields and remove the constructor
     
-    def __init__(self,function,n_neighbors,needcache=False,callee_set=set(),parameter_set=set(),variable_set=set()):
+    def __init__(self,function,needcache=False,callee_set=set(),parameter_set=set(),variable_set=set()):
         self.function=function
-        self.n_neighbors = n_neighbors
         self.sourcesinks = SourceSinkSet(callee_set.copy(),parameter_set.copy(),variable_set.copy())
         self.needcache=needcache
         self.job_set=None
@@ -60,7 +59,7 @@ class ChuckyJob(object):
                         vs=set()
                     elif vs=='variable_combination':
                         continue                    
-                    job=ChuckyJob(self.function,self.n_neighbors,True,cs,ps,vs)
+                    job=ChuckyJob(self.function,True,cs,ps,vs)
                     jobset.add(job)
         return jobset       
     
@@ -73,7 +72,8 @@ class ChuckyJob(object):
         
     def __hash__(self):
         ss=self.getSourceSinks()
-        return hash(ss) ^ hash(self.function) ^ hash (self.n_neighbors) ^ hash(self.needcache)
+        return hash(ss) ^ hash(self.function) ^ hash(self.needcache)
+        #return hash(ss) ^ hash(self.function) ^ hash (self.n_neighbors) ^ hash(self.needcache)
     
     def __str__(self):
         s = '{} ({}) - {}'

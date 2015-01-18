@@ -10,8 +10,8 @@ import os, sys
 DESCRIPTION = """Chucky analyzes functions for anomalies. To this end, the
 usage of symbols used by a function is analyzed by comparing the checks
 used in conjunction with the symbol with those used in similar functions."""
-DEFAULT_N = 30
-MIN_N = 5
+DEFAULT_N = 10 #Only useful when neigther the sim_th nor k is set.
+MIN_N = 1
 DEFAULT_DIR = ".chucky"
 
 PARAMETER = 'Parameter'
@@ -25,7 +25,15 @@ def n_neighbors(value):
         raise argparse.ArgumentError(error_message)
     else:
         return n
-
+    
+def similarity_threshold(value):
+    th = float(value)
+    if th < 0.0 or th >1.0:
+        error_message = "SIMILARITY_THRESHOLD should be in the range [0,1]."
+        raise argparse.ArgumentError(error_message)
+    else:
+        return th
+    
 class Chucky():
 
     def __init__(self):
@@ -37,11 +45,15 @@ class Chucky():
                     function = self.args.function,
                     callees = self.args.callees,
                     parameters = self.args.parameters,
-                    variables = self.args.variables,                        
-                    n_neighbors = self.args.n_neighbors)
-        
+                    variables = self.args.variables)
         self.job_generator.limit = self.args.limit
-        self.engine = ChuckyEngine(self.args.chucky_dir)
+        if self.args.n_neighbors == -1 and self.args.similarity_threshold == -1.0:
+                    self.logger.warning('Use neighborhood number '+DEFAULT_N+' as the default k! Similarity Threshold disabled.\n')
+                    self.args.n_neighbors = DEFAULT_N
+        self.engine = ChuckyEngine(
+            self.args.chucky_dir,
+            self.args.n_neighbors,
+            self.args.similarity_threshold)
 
     def _init_arg_parser(self):
         self.arg_parser = argparse.ArgumentParser(description=DESCRIPTION)
@@ -88,7 +100,7 @@ class Chucky():
         self.arg_parser.add_argument(
                 '-n', '--n-neighbors',
                 action = 'store',
-                default = DEFAULT_N,
+                default = -1,
                 type = n_neighbors,
                 help = """Number of neighbours to consider for neighborhood
                 discovery.""")
@@ -110,7 +122,12 @@ class Chucky():
                 default = None,
                 type = str,
                 help = """Limit analysis to functions with given name""")
-        
+        self.arg_parser.add_argument(
+                '-s', '--similarity-threshold',
+                action = 'store',
+                default = -1.0,
+                type = similarity_threshold,
+                help = """Specify the minmum similarity threshold of the last neighborhood. If the top-k nearest neighborhood does not satisfy this condition then the program will stop analysis and give a WARNING:'No good enough top-k neighborhoods found!'.""")         
         group = self.arg_parser.add_mutually_exclusive_group()
         group.add_argument(
                 '-d', '--debug',

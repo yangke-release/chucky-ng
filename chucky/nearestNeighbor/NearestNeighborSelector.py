@@ -3,7 +3,7 @@ import os.path
 #from joerntools.KNN import KNN
 from KNN import KNN
 from joernInterface.nodes.Function import Function
-
+DEFAULT_K=10
 """
 Employs an embedder to first embed a set of entities (e.g., functions)
 and then determine the k nearest neighbors to a given entity.
@@ -19,12 +19,13 @@ class NearestNeighborSelector:
     
     def __init__(self, basedir, embeddingDir):
         self.embeddingDir = embeddingDir
-        self.k = 10
+        self.k = DEFAULT_K
         self.cachedir = os.path.join(basedir, "cache")
     
     def setK(self, k):
         self.k = k+1
-    
+    def setSimThreshold(self, sim_th):
+            self.sim_th=sim_th    
     """
     Get nearest neighbors of entity in set of allEntities
     """
@@ -32,33 +33,25 @@ class NearestNeighborSelector:
         
         if len(allEntities) < self.k:
             return []
-
-        return self._nearestNeighbors(entity, self.k, allEntities)
-    
-    
-    def _nearestNeighbors(self, entity, k, allEntities):
         
-        #limitFilename = self._createLimitFile(allEntities)
         
         nodeId = entity.getId()
-        
-        #f = file(limitFilename, 'r')
-        #limit = [l.rstrip() for l in f.readlines()]
-        #f.close()
         
         limit=[str(e.getId()) for e in allEntities]
         
         knn = KNN()
         knn.setEmbeddingDir(self.cachedir)
-        knn.setK(k)
+        knn.setK(self.k)
+        knn.setSimThreshold(self.sim_th)
         knn.setLimitArray(limit)
         knn.setNoCache(False)
         knn.initialize()
         
         ids = knn.getNeighborsFor(str(nodeId))
-        if str(nodeId) not in ids:
+        if not ids or ids==[]:return []
+        elif str(nodeId) not in ids:
             ids.pop()
-            ids.append(str(nodeId))
+            ids=[str(nodeId)]+ids
         return [Function(i) for i in ids]
     
     '''

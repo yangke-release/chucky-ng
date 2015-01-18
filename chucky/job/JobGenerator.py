@@ -17,19 +17,18 @@ on user queries.
 
 class JobGenerator(object):
 
-    def __init__(self,function,callees,parameters,variables, n_neighbors):
+    def __init__(self,function,callees,parameters,variables):
         self.function = function
         self.callee_names = callees
         self.parameter_names = parameters        
         self.variable_names = variables
-        self.n_neighbors = n_neighbors
         self.limit = None
 
     """
     Generates a joblist for the appointed function.
     @returns a list of jobs with single source/sinks).
     """
-    def genJobsForFunc(self,identifier,n_neighbors):
+    def genJobsForFunc(self,identifier):
         configurations = []
         functions = FunctionLookup.lookup_functions_by_name(identifier)
         for function in functions:
@@ -37,21 +36,21 @@ class JobGenerator(object):
             parameters = map(lambda x : (x.code, x.declaration_type()), parameters)
             parameters = set(parameters)
             for parameter, parameter_type in parameters:
-                job=ChuckyJob(function,n_neighbors)
+                job=ChuckyJob(function)
                 job.addSourceSinkByString(parameter,parameter_type,PARAMETER)
                 configurations.append(job)
             variables = function.variables()
             variables = map(lambda x : (x.code, x.declaration_type()), variables)
             variables = set(variables)
             for variable, variable_type in variables:
-                job=ChuckyJob(function,n_neighbors)            
+                job=ChuckyJob(function)            
                 job.addSourceSinkByString(variable,variable_type,VARIABLE)
                 configurations.append(job)
             callees = function.callees()
             callees = map(lambda x : x.code, callees)
             callees = set(callees)
             for callee in callees:
-                job=ChuckyJob(function,n_neighbors)
+                job=ChuckyJob(function)
                 job.addSourceSinkByString(callee,function.name,CALLEE)
                 configurations.append(job)
                 
@@ -84,7 +83,7 @@ class JobGenerator(object):
         #process same type identifier
         at_least_one=False
         for db_identifier in db_identifiers:#same name identifier
-            job=ChuckyJob(db_identifier.function(),self.n_neighbors,True)
+            job=ChuckyJob(db_identifier.function(),True)
             job.addSourceSinkByDBIdentifier(db_identifier,identifier_type)
             func_job_map[db_identifier.function()]=job
             at_least_one=True
@@ -126,7 +125,7 @@ class JobGenerator(object):
     def generate(self):
         if self.function:
             needcache=False
-            configurations=self.genJobsForFunc(self.function,self.n_neighbors)  
+            configurations=self.genJobsForFunc(self.function)  
         else:
             needcache=True
             func_job_map=dict()

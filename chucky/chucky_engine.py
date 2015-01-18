@@ -19,8 +19,10 @@ EXPR_CACHE_DIR="exprcache"
 
 class ChuckyEngine():
 
-    def __init__(self, basedir):
-        self.basedir = basedir
+    def __init__(self, basedir,n_neighbors,sim_th):
+	self.basedir = basedir
+	self.k=n_neighbors
+	self.sim_th=sim_th	
         self.logger = logging.getLogger('chucky')
         jutils.connectToDatabase()
 	self.embedder=Embedder()	
@@ -38,12 +40,13 @@ class ChuckyEngine():
                 #print str(n)+"\t"+n.location()
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
+		self.th_cut_neighbor_num=len(nearestNeighbors)-1
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)
 		if termDocumentMatrix:
 		    result = self._anomaly_rating(termDocumentMatrix,dataPointIndex)
 		    self._outputResult(result)
 		else:
-		    print "Could not find any conditions in all neighbors! Job skiped!"
+		    self.logger.warning("Could not find any conditions in all neighbors! Job skiped!\n")
         except subprocess.CalledProcessError as e:
             self.logger.error(e)
             self.logger.error('Do not clean up.')
@@ -58,7 +61,8 @@ class ChuckyEngine():
     def _getKNearestNeighbors(self):
         
         self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir)
-        self.knn.setK(self.job.n_neighbors)
+        self.knn.setK(self.k)
+        self.knn.setSimThreshold(self.sim_th)
 	
 	'''
 	FIXME:Make additional check for the correctness of job and jobset.For example what if the jobset is None or empty Set.
@@ -74,14 +78,12 @@ class ChuckyEngine():
 	    entitySelector = FunctionSelector()
 	    symbolUsers = entitySelector.selectFunctionsUsingSymbol(self.job.getSourceSinks().getSingleSource())
 	    
-	if len(symbolUsers) < self.job.n_neighbors+1:
-	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required')
+	if len(symbolUsers) <  self.k+1:
+	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str( self.k)+' required.\n')
 	    return []
 	
-	
-	    
         return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
-    
+	
     def _calculateCheckModels(self, symbolUsers):
        
 	li=[]
@@ -141,12 +143,12 @@ class ChuckyEngine():
 
     def _outputResult(self, result):
         if len(result)==0:
-            self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s)",str(self.job.function.node_id))
+            self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s).\n",str(self.job.function.node_id))
             score=0
             feat="ALL"
         else:
             score, feat = max(result)
-        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,self.job.function.location())
+        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,self.job.function.location(),self.th_cut_neighbor_num)
 	
     def calculateCenterOfMass(self, index):
 	r,c=self.x.shape
@@ -162,12 +164,12 @@ class ChuckyEngine():
 	    return csr_matrix(X.mean(axis=0))
     def checkNeighborsAndGetIndex(self,nearestNeighbors):
 	if nearestNeighbors == []:
-	    #self.logger.warning('Job skipped, no neighbors found')
+	    self.logger.warning('Job skipped, no enough qualified neighbors found.\n')
 	    return None
 	#ids=[n.node_id for n in nearestNeighbors]
 	for i,n in enumerate(nearestNeighbors):
 	    if str(self.job.function.node_id)==str(n.node_id):
 		return i
-	sys.stderr.write('Warning: no data point found for %s\n' % (str(self.job.function.node_id)))
+	self.logger.warning('Warning: no data point found for %s.\n' % (str(self.job.function.node_id)))
 	return None
 	    
