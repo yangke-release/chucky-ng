@@ -148,22 +148,29 @@ class JobGenerator(object):
                 configurations=configurations.union(js)
             
         configurations = list(set(configurations))
-        
+        d=dict()        
+        for config in configurations:
+            sourcesinks=config.sourcesinks
+            if sourcesinks not in d:
+                d[sourcesinks]=set()
+            d[sourcesinks].add(config)
+            
+        if not self.function:
+            for configs in d.values():
+                for config in configs:
+                    config.setJobSet(configs)
+                    
         if self.limit:
             if self.limit.isdigit():
                 configurations = list(set([c for c in configurations if int(self.limit) == c.function.node_id]))
             else:
                 configurations = [c for c in configurations if re.search(self.limit, c.function.name)]
-                
-        d=dict()        
-        for config in configurations:
-            sourcesinks=config.sourcesinks
-            
-            if sourcesinks not in d:
-                d[sourcesinks]=set()
-            d[sourcesinks].add(config)   
-        if not self.function and not self.limit:
-            for configs in d.values():
-                for config in configs:
-                    config.setJobSet(configs)
-        return needcache,d
+            limitd=dict() 
+            for config in configurations:
+                sourcesinks=config.sourcesinks
+                if sourcesinks not in limitd:
+                    limitd[sourcesinks]=set()
+                limitd[sourcesinks].add(config)
+            return needcache,limitd
+        else:
+            return needcache,d
