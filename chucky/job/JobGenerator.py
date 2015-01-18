@@ -169,7 +169,7 @@ class JobGenerator(object):
                 sourcesinks=config.sourcesinks
                 if sourcesinks not in limitd:
                     limitd[sourcesinks]=set()
-                    limitd[sourcesinks].add(config)
+                limitd[sourcesinks].add(config)
             return needcache,limitd
         else:
             return needcache,d
