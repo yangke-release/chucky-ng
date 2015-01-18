@@ -39,6 +39,7 @@ class Chucky():
     def __init__(self):
         self._init_arg_parser()
         self.args = self.arg_parser.parse_args()
+        self.checkArguments()         
         self._config_logger()
         self._create_chucky_dir()
         self.job_generator = JobGenerator(
@@ -54,7 +55,18 @@ class Chucky():
             self.args.chucky_dir,
             self.args.n_neighbors,
             self.args.similarity_threshold)
-
+    def checkArguments(self):
+        err=''
+        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0:
+            err='At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n'
+            
+        if not self.args.n_neighbors and not self.args.similarity_threshold:
+            err=err+'Neither neighborhood number n nor similarity threshold th is specified.\nPlease Use -n [number] or -s [digit] to specifiy it(0.0<th<1.0)!\n'
+        elif self.args.similarity_threshold:
+            if self.args.similarity_threshold<=0.0 or self.args.similarity_threshold >=1.0:
+                err=err+'The similarity threshold must be in the range (0.0,1.0).\n'
+        if err!='':
+            self.arg_parser.error(err)
     def _init_arg_parser(self):
         self.arg_parser = argparse.ArgumentParser(description=DESCRIPTION)
         #self.arg_parser.add_argument(
@@ -76,31 +88,33 @@ class Chucky():
                 action = 'store',
                 default = None,
                 help = 'Specify the function to analysis. If this option is configured, the analysis will only perform on this function.')        
-        self.arg_parser.add_argument(
+        group=self.arg_parser.add_argument_group('source_sinks')
+        group.add_argument(
                 '--callee',
-                action='append',
+                action='store',
                 dest='callees',
+                nargs='+',
                 default=[],
                 help='Specify the identifier name of callee type source/sink')
-        
-        self.arg_parser.add_argument(
+        group.add_argument(
                 '-p','--parameter',
-                action='append',
+                action='store',
                 dest='parameters',
+                nargs='+',
                 default=[],
                 help='Specify the identifier name of parameter type source/sink')
-        
-        self.arg_parser.add_argument(
+        group.add_argument(
                 '-var','--variable',
-                action='append',
+                action='store',
                 dest='variables',
+                nargs='+',
                 default=[],
                 help='Specify the identifier name of variable type source/sink')
         
         self.arg_parser.add_argument(
                 '-n', '--n-neighbors',
                 action = 'store',
-                default = -1,
+                default = None,
                 type = n_neighbors,
                 help = """Number of neighbours to consider for neighborhood
                 discovery.""")
@@ -125,8 +139,9 @@ class Chucky():
         self.arg_parser.add_argument(
                 '-s', '--similarity-threshold',
                 action = 'store',
-                default = -1.0,
-                type = similarity_threshold,
+                dest='similarity_threshold',
+                default = None,
+                type = float,
                 help = """Specify the minmum similarity threshold of the last neighborhood. If the top-k nearest neighborhood does not satisfy this condition then the program will stop analysis and give a WARNING:'No good enough top-k neighborhoods found!'.""")         
         group = self.arg_parser.add_mutually_exclusive_group()
         group.add_argument(
