@@ -31,6 +31,8 @@ class Chucky():
     def __init__(self):
         self._init_arg_parser()
         self.args = self.arg_parser.parse_args()
+        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0:
+            self.arg_parser.error('At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n')        
         self._config_logger()
         self._create_chucky_dir()
         self.job_generator = JobGenerator(
@@ -63,31 +65,36 @@ class Chucky():
                 '-f', '--function',
                 action = 'store',
                 default = None,
-                help = 'Specify the function to analysis. If this option is configured, the analysis will only perform on this function.')        
-        self.arg_parser.add_argument(
+                help = 'Specify the function to analysis. If this option is configured, the analysis will only perform on this function.')
+        group=self.arg_parser.add_argument_group('source_sinks')
+        group.add_argument(
                 '--callee',
-                action='append',
+                action='store',
                 dest='callees',
+                nargs='+',
                 default=[],
                 help='Specify the identifier name of callee type source/sink')
         
-        self.arg_parser.add_argument(
+        group.add_argument(
                 '-p','--parameter',
-                action='append',
+                action='store',
                 dest='parameters',
+                nargs='+',
                 default=[],
                 help='Specify the identifier name of parameter type source/sink')
         
-        self.arg_parser.add_argument(
+        group.add_argument(
                 '-var','--variable',
-                action='append',
+                action='store',
                 dest='variables',
+                nargs='+',
                 default=[],
                 help='Specify the identifier name of variable type source/sink')
         
         self.arg_parser.add_argument(
                 '-n', '--n-neighbors',
                 action = 'store',
+                required = True,
                 default = DEFAULT_N,
                 type = n_neighbors,
                 help = """Number of neighbours to consider for neighborhood

@@ -18,6 +18,7 @@ class ChuckyJob(object):
         self.n_neighbors = n_neighbors
         self.sourcesinks = SourceSinkSet(callee_set.copy(),parameter_set.copy(),variable_set.copy())
         self.needcache=needcache
+        #when analyse limited functions or the specified one function,this should be None.To notify the SymbolUser Selector to select the symbol users rather than directly use the jobset.
         self.job_set=None
         self.logger = logging.getLogger('chucky')
         

@@ -38,13 +38,7 @@ class NearestNeighborSelector:
     
     def _nearestNeighbors(self, entity, k, allEntities):
         
-        #limitFilename = self._createLimitFile(allEntities)
-        
         nodeId = entity.getId()
-        
-        #f = file(limitFilename, 'r')
-        #limit = [l.rstrip() for l in f.readlines()]
-        #f.close()
         
         limit=[str(e.getId()) for e in allEntities]
         
@@ -52,7 +46,6 @@ class NearestNeighborSelector:
         knn.setEmbeddingDir(self.cachedir)
         knn.setK(k)
         knn.setLimitArray(limit)
-        knn.setNoCache(False)
         knn.initialize()
         
         ids = knn.getNeighborsFor(str(nodeId))

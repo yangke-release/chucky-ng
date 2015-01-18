@@ -43,7 +43,7 @@ class ChuckyEngine():
 		    result = self._anomaly_rating(termDocumentMatrix,dataPointIndex)
 		    self._outputResult(result)
 		else:
-		    print "Could not find any conditions in all neighbors! Job skiped!"
+		    self.logger.warning("Could not find any conditions in all neighbors! Job skiped!")
         except subprocess.CalledProcessError as e:
             self.logger.error(e)
             self.logger.error('Do not clean up.')
@@ -162,7 +162,7 @@ class ChuckyEngine():
 	    return csr_matrix(X.mean(axis=0))
     def checkNeighborsAndGetIndex(self,nearestNeighbors):
 	if nearestNeighbors == []:
-	    #self.logger.warning('Job skipped, no neighbors found')
+	    self.logger.warning('Job skipped, no neighbors found')
 	    return None
 	#ids=[n.node_id for n in nearestNeighbors]
 	for i,n in enumerate(nearestNeighbors):

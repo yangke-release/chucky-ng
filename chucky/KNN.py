@@ -17,9 +17,6 @@ class KNN():
     def setK(self, k):
         self.k = k
     
-    def setNoCache(self, no_cache):
-        self.no_cache = no_cache
-    
     def initialize(self):
         if not KNN.emb:
             KNN.emb=self._loadEmbedding(self.dirname)
