@@ -13,12 +13,26 @@ class Function(Node):
 
     def __str__(self):
         return '{}'.format(self.name)
-
+    
+    def __eq__(self, other):
+           return self.node_id == other.node_id
+       
     def symbols(self):
         lucene_query = 'functionId:"{}" AND type:Symbol'.format(self.node_id)
         symbols = jutils.lookup(lucene_query)
         return map(lambda x : Symbol(x[0], x[1].get_properties()), symbols)
-
+    
+    def callers(self):
+        """ All Caller of this function """
+        lucene_query = 'type:Callee AND code:"{}"'.format(self.get_property('name'))
+        traversal = 'transform{ g.v(it.functionId) }'
+        callers = set()
+        results = jutils.lookup(lucene_query, traversal = traversal)
+        if results:
+            for node_id, node in results:
+                callers.add(Function(node_id, node))
+        return list(callers) 
+    
     def callees(self):
         lucene_query = 'functionId:"{}" AND type:Callee'.format(self.node_id)
         result = jutils.lookup(lucene_query)
@@ -48,16 +62,7 @@ class Function(Node):
         result = jutils.lookup(lucene_query)
         return Symbol(result[0][0], result[0][1].get_properties())
 
-    def callers(self):
-            """ All Caller of this function """
-            lucene_query = 'type:Callee AND code:"{}"'.format(self.get_property('name'))
-            traversal = 'transform{ g.v(it.functionId) }'
-            callers = set()
-            results = jutils.lookup(lucene_query, traversal = traversal)
-            if results:
-                for node_id, node in results:
-                    callers.add(Function(node_id, node))
-            return list(callers) 
+    
     def calleesByName(self, code):
         lucene_query = 'type:Callee AND functionId:"{}" AND code:"{}"'
         lucene_query = lucene_query.format(self.node_id, code)
@@ -71,7 +76,6 @@ class Function(Node):
     @property
     def signature(self):
         return self.get_property('signature')
-    
     def location(self):
         id = self.node_id
         query = """g.v(%s)
