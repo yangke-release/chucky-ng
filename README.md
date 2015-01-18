@@ -32,25 +32,30 @@ Suppose we have already parse the code and we have configured and started the ne
 (For parsing the code and database configuration please refer to the [document](http://joern.readthedocs.org/en/latest/) of [joern](https://github.com/fabsx00/joern). Don't worry, the Following quick start example will also mention a little about this.)
 
     $ cd chucky-ng/chucky
-    $ python chucky.py [-h] [-i {function,callee,parameter,variable}]
-                 [-n N_NEIGHBORS] [-c CHUCKY_DIR] [--interactive] [-l LIMIT]
-                 [-d | -v | -q]
-                 identifier
-Example: 
+    $ python chucky.py [-h] [-f FUNCTION] [--callee CALLEES [CALLEES ...]]
+                 [-p PARAMETERS [PARAMETERS ...]]
+                 [-var VARIABLES [VARIABLES ...]] -n N_NEIGHBORS
+                 [-c CHUCKY_DIR] [--interactive] [-l LIMIT] [-d | -v | -q]
+Example 1: 
 
-    $ python chucky.py -i parameter -n 25 --interactive length
+    $ python chucky.py --parameter length -n 25 --interactive 
+    
+Example 2: 
+
+    $ python chucky.py --p length --callee png_free --var slength -n 3 -l png_handle_sCAL
     
 positional arguments:
 
-    identifier            The name of the identifier (function name or
+    identifier          The name of the identifier (function name or
                         source/sink name)
 
 optional arguments:
 
-    -h, --help            show this help message and exit
-    -i {function,callee,parameter,variable}, --identifier-type {function,callee,parameter,variable}
-                        The type of identifier the positional argument
-                        `identifier` refers to.
+    -h, --help          show this help message and exit
+    -f FUNCTION, --function FUNCTION
+                        Specify the function to analysis. If this option is
+                        configured, the analysis will only perform on this
+                        function.
     -n N_NEIGHBORS, --n-neighbors N_NEIGHBORS
                         Number of neighbours to consider for neighborhood
                         discovery.
@@ -58,12 +63,23 @@ optional arguments:
                         The directory holding chucky's data such as cached
                         symbol embeddings and possible annotations of sources
                         and sinks.
-    --interactive         Enable interactive mode. Under this mode you can talk to chucky and run the analysis step by step.
+    --interactive         Enable interactive mode.
     -l LIMIT, --limit LIMIT
                         Limit analysis to functions with given name
-    -d, --debug           Enable debug output.
-    -v, --verbose         Increase verbosity.
-    -q, --quiet           Be quiet during processing.
+    -d, --debug         Enable debug output.
+    -v, --verbose       Increase verbosity.
+    -q, --quiet         Be quiet during processing.
+    
+source_sinks:
+
+    --callee CALLEES [CALLEES ...]
+                        Specify the identifier name of callee type source/sink
+    -p PARAMETERS [PARAMETERS ...], --parameter PARAMETERS [PARAMETERS ...]
+                        Specify the identifier name of parameter type
+                        source/sink
+    -var VARIABLES [VARIABLES ...], --variable VARIABLES [VARIABLES ...]
+                        Specify the identifier name of variable type
+                        source/sink
     
     
 A Quick Start Example.
@@ -96,7 +112,7 @@ Start Neo4j database.
     $ $NEO4J_HOME/bin/neo4j start
 Go to your chucky directory(chucky-ng/chucky) and run a chucky analysis.
 
-    $python chucky.py -i parameter -n 25 length|sort -r -k 1
+    $python chucky.py --parameter length -n 25 |sort -r -k1
 
 Then Chucky will generate the report to the screen.
 
@@ -135,7 +151,12 @@ About the Modification.
     * Fix some bug and make it more robust.
 2. Rewirte the KNN class to support the neighborhood selection strategy:
     * Leverage name(file name or function name) information and caller set information when it's usefull.
-    * Kick some name irrelevant functions out, and set a robust multiselective threshold for the recomandation of good candidate.  
+    * Kick some name irrelevant functions out, and set a robust multiselective threshold for the recomandation of good candidate.
+3. Add multi-source/sink support.
+    * Design a new option set for user to specify the multi-source/sink.
+    * Use the combination of source/sink as the key feature to find candidate neighborhood.
+    * Use the union of the tainted condition features as the condition embedding feature.
+    * Refactor the job generation.
 
 For more information or bug report please do not hesitate to contact me. Ke Yang(123yangke321@sina.com) 
  
