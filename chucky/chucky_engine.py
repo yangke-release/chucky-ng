@@ -75,7 +75,7 @@ class ChuckyEngine():
 	    symbolUsers = entitySelector.selectFunctionsUsingSymbol(self.job.getSourceSinks().getSingleSource())
 	    
 	if len(symbolUsers) < self.job.n_neighbors+1:
-	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required')
+	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required.\n')
 	    return []
 	
 	
@@ -143,7 +143,7 @@ class ChuckyEngine():
         if len(result)==0:
             self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s)",str(self.job.function.node_id))
             score=0
-            feat="ALL"
+            feat="NULL"
         else:
             score, feat = max(result)
         print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,self.job.function.location())
@@ -162,7 +162,7 @@ class ChuckyEngine():
 	    return csr_matrix(X.mean(axis=0))
     def checkNeighborsAndGetIndex(self,nearestNeighbors):
 	if nearestNeighbors == []:
-	    self.logger.warning('Job skipped, no neighbors found')
+	    self.logger.warning('Job skipped, no neighbors found.\n')
 	    return None
 	#ids=[n.node_id for n in nearestNeighbors]
 	for i,n in enumerate(nearestNeighbors):
