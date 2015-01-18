@@ -65,6 +65,9 @@ class Chucky():
         elif self.args.similarity_threshold:
             if self.args.similarity_threshold<=0.0 or self.args.similarity_threshold >=1.0:
                 err=err+'The similarity threshold must be in the range (0.0,1.0).\n'
+        elif self.args.n_neighbors:
+            if self.args.n_neighbors<MIN_N:
+                err=err+'The neighborhood number n must be lager than '+str(MIN_N)+'.\n'
         if err!='':
             self.arg_parser.error(err)
     def _init_arg_parser(self):
