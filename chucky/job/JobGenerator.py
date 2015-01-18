@@ -161,7 +161,7 @@ class JobGenerator(object):
             if sourcesinks not in d:
                 d[sourcesinks]=set()
             d[sourcesinks].add(config)   
-        if not self.function:
+        if not self.function and not self.limit:
             for configs in d.values():
                 for config in configs:
                     config.setJobSet(configs)
