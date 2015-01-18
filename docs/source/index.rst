@@ -33,9 +33,13 @@ There are five step for Chucky to complete the analyze.
 3. **Lightweight tainting.**
 
    Idendify the the condition code of **if**, **while** and **for** in which there exists a symbol in the path from the source to the sink. These symbols may influence or be influenced by the the query symbol in each top k similarest functions. This step is also implemented by gremlin queries as such relations can be described as a path in the code property graph.
+
 4. **Embedding of functions.**
+
    Describe each function as a sparse 0-1 vector according to the existence of the condition key words discovered by the pervious step. 
+
 5. **Anomaly detection.**
+
    Find the most significant missing word in the condition vector of the query function set off by the neighborhoods. The anomaly score of the query function is expressed by the percentage of time the significant missing key word exists in the neighborhoods.
 
 All the analysis are based on the extensible query language defined in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ by `Gremlin <https://github.com/tinkerpop/gremlin/>`_ and a wrapped inteface defined by `python-joern <http://github.com/fabsx00/python-joern/>`_.
@@ -50,7 +54,12 @@ About the Modification.
 2. Rewirte the KNN class to support the neighborhood selection strategy:
     * Leverage the name(file name or function name) information and the caller set information of a function when it's usefull.
     * Kick some name irrelevant functions out, and set a robust threshold for the recomandation of good candidate.
-  
+3. Add multi-source/sink support.
+    * Design a new option set for user to specify the multi-source/sink.
+    * Use the combination of source/sink as the key feature to find candidate neighborhood.
+    * Use the union of the tainted condition features as the condition embedding feature.
+    * Refactor the job generation and remove the redundant function selection to improve the performance.
+
 Note: the advancement of the modification still needs to be judged and more evaluation is required. Connect Ke Yang(123yangke321@sina.com) for more information.
 
 Although this is a NON-OFFICIAL document for Chucky, hope it will be helpful for people who are intersted in Chucky and working and studying in this area.

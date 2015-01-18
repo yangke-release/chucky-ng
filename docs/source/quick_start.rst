@@ -48,7 +48,7 @@ Start Neo4j database.
 Go to your chucky directory ``chucky-ng/chucky`` and run a chucky analysis.
 ::
 
-    $python chucky.py -i parameter -n 25 length|sort -r -k 1
+    $python chucky.py --parameter length -n 25 |sort -r -k 1
 
 Then Chucky will generate the report to the screen::
 
