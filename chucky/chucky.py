@@ -11,29 +11,14 @@ DESCRIPTION = """Chucky analyzes functions for anomalies. To this end, the
 usage of symbols used by a function is analyzed by comparing the checks
 used in conjunction with the symbol with those used in similar functions."""
 DEFAULT_N = 10 #Only useful when neigther the sim_th nor k is set.
-MIN_N = 1
+MIN_N = 2
 DEFAULT_DIR = ".chucky"
 
 PARAMETER = 'Parameter'
 VARIABLE = 'Variable'
 CALLEE = 'Callee'
 
-def n_neighbors(value):
-    n = int(value)
-    if n < MIN_N:
-        error_message = "N_NEIGHBORS must be greater than {}".format(MIN_N)
-        raise argparse.ArgumentError(error_message)
-    else:
-        return n
-    
-def similarity_threshold(value):
-    th = float(value)
-    if th < 0.0 or th >1.0:
-        error_message = "SIMILARITY_THRESHOLD should be in the range [0,1]."
-        raise argparse.ArgumentError(error_message)
-    else:
-        return th
-    
+
 class Chucky():
 
     def __init__(self):
@@ -60,14 +45,14 @@ class Chucky():
         if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0:
             err='At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n'
             
-        if not self.args.n_neighbors and not self.args.similarity_threshold:
+        if self.args.n_neighbors==None and self.args.similarity_threshold==None:
             err=err+'Neither neighborhood number n nor similarity threshold th is specified.\nPlease Use -n [number] or -s [digit] to specifiy it(0.0<th<1.0)!\n'
-        elif self.args.similarity_threshold:
+        elif self.args.similarity_threshold!=None:
             if self.args.similarity_threshold<=0.0 or self.args.similarity_threshold >=1.0:
                 err=err+'The similarity threshold must be in the range (0.0,1.0).\n'
-        elif self.args.n_neighbors:
+        elif self.args.n_neighbors!=None:
             if self.args.n_neighbors<MIN_N:
-                err=err+'The neighborhood number n must be lager than '+str(MIN_N)+'.\n'
+                err=err+'The neighborhoods number n must be larger than '+str(MIN_N)+'.\n'
         if err!='':
             self.arg_parser.error(err)
     def _init_arg_parser(self):
@@ -118,7 +103,7 @@ class Chucky():
                 '-n', '--n-neighbors',
                 action = 'store',
                 default = None,
-                type = n_neighbors,
+                type = int,
                 help = """Number of neighbours to consider for neighborhood
                 discovery.""")
         self.arg_parser.add_argument(

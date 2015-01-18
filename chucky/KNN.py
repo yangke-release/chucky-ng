@@ -2,7 +2,7 @@
 from joerntools.mlutils.EmbeddingLoader import EmbeddingLoader
 from sklearn.metrics.pairwise import pairwise_distances
 import sys
-MIN_NEIGHBORHOODS_NUM = 3 #including itself
+MIN_NEIGHBORHOODS_NUM = 2 #including itself
 class KNN():
     emb=None
     def __init__(self):
