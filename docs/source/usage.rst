@@ -4,13 +4,13 @@ Example 1
 ---------
 :: 
 
-    $ python chucky.py -i parameter -n 25  length
+    $ python chucky.py --parameter length -n 25 --interactive
 
 Example 2
 ---------
 ::
 
-    $ python chucky.py -i function -n 25  --interactive png_handle_sCAL
+    $ python chucky.py --p length --callee png_free --var slength -n 3 -l png_handle_sCAL
 
 Usage Pattern
 -------------
