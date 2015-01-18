@@ -23,7 +23,7 @@ Suppose we have already parsed the code and we have configured and started the n
                  [-var VARIABLES [VARIABLES ...]] -n N_NEIGHBORS
                  [-c CHUCKY_DIR] [--interactive] [-l LIMIT] [-d | -v | -q]
 
-optional arguments:
+optional arguments::
 
     -h, --help          show this help message and exit
     -f FUNCTION, --function FUNCTION
@@ -44,7 +44,7 @@ optional arguments:
     -v, --verbose       Increase verbosity.
     -q, --quiet         Be quiet during processing.
     
-source_sinks:
+source_sinks::
 
     --callee CALLEES [CALLEES ...]
                         Specify the identifier name of callee type source/sink
