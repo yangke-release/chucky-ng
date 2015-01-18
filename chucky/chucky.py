@@ -11,28 +11,19 @@ DESCRIPTION = """Chucky analyzes functions for anomalies. To this end, the
 usage of symbols used by a function is analyzed by comparing the checks
 used in conjunction with the symbol with those used in similar functions."""
 DEFAULT_N = 10 #Only useful when neigther the sim_th nor k is set.
-MIN_N = 1
+MIN_N = 2
 DEFAULT_DIR = ".chucky"
 
 PARAMETER = 'Parameter'
 VARIABLE = 'Variable'
 CALLEE = 'Callee'
-
-def n_neighbors(value):
-    n = int(value)
-    if n < MIN_N:
-        error_message = "N_NEIGHBORS must be greater than {}".format(MIN_N)
-        raise argparse.ArgumentError(error_message)
-    else:
-        return n
     
 class Chucky():
 
     def __init__(self):
         self._init_arg_parser()
         self.args = self.arg_parser.parse_args()
-        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0:
-            self.arg_parser.error('At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n')
+        self.checkArguments()
         self._config_logger()
         self._create_chucky_dir()
         self.job_generator = JobGenerator(
@@ -47,7 +38,17 @@ class Chucky():
         self.engine = ChuckyEngine(
             self.args.chucky_dir,
             self.args.n_neighbors)
-
+        
+    def checkArguments(self):
+        err=''
+        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0:
+            err='At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n'
+            
+        if self.args.n_neighbors<MIN_N:
+            err=err+'The neighborhoods number n must be larger than '+str(MIN_N)+'.\n'
+        if err!='':
+            self.arg_parser.error(err)
+            
     def _init_arg_parser(self):
         self.arg_parser = argparse.ArgumentParser(description=DESCRIPTION)
         #self.arg_parser.add_argument(
@@ -99,7 +100,7 @@ class Chucky():
                 action = 'store',
                 required=True,
                 default = -1,
-                type = n_neighbors,
+                type = int,
                 help = """Number of neighbours to consider for neighborhood
                 discovery.""")
         self.arg_parser.add_argument(

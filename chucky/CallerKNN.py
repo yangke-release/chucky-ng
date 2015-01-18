@@ -40,7 +40,7 @@ import time
 import sys
 import re
 from scipy.sparse import *
-
+MIN_K=2
 #The following constant can be tuned for performance(all >=0 and <=1).
 
 GOOD_SEMANTIC_DISTANCE = 0.618 #0.4:#0.7827:#0.69:0.618
@@ -67,8 +67,12 @@ class KNN():
         self.limit = limit
     
     def setK(self, k):
-        self.k = k
-    
+	#When setting k you should coding as:
+        #setK(n_neighbors+1)
+        # that means k=num_of_neighbors+itself
+        #so:k>1 is always satisfied.
+	self.k = k
+	
     def setCallerConsideration(self, consider):
         self.considerCaller=consider
     def initialize(self):
@@ -82,8 +86,8 @@ class KNN():
         if csize<self.k:
             sys.stderr.write("Error: candidates num csize:%d<k:%d. please check before call this function.\n" %(csize,self.k))
             return False
-	elif self.k<2:
-	    sys.stderr.write("Error: Specified k(=%d) is too small, please given a larger one(k should larger than 1).\n" %(self.k))
+	elif self.k<MIN_K:
+	    sys.stderr.write("Error: Specified k(=%d) is too small, please given a larger one(k should larger than "+str(MIN_K)+").\n" %(self.k))
 	    return False
 	else:return True
             
