@@ -41,7 +41,7 @@ class Chucky():
         
     def checkArguments(self):
         err=''
-        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0:
+        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0 and self.args.function==None:
             err='At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n'
             
         if self.args.n_neighbors<MIN_N:
@@ -70,8 +70,8 @@ class Chucky():
                 action = 'store',
                 default = None,
                 help = 'Specify the function to analysis. If this option is configured, the analysis will only perform on this function.')
-        group=self.arg_parser.add_argument_group('source_sinks')
-        group.add_argument(
+        source_sink_group=self.arg_parser.add_argument_group('source_sinks')
+        source_sink_group.add_argument(
                 '--callee',
                 action='store',
                 dest='callees',
@@ -79,7 +79,7 @@ class Chucky():
                 default=[],
                 help='Specify the identifier name of callee type source/sink')
         
-        group.add_argument(
+        source_sink_group.add_argument(
                 '-p','--parameter',
                 action='store',
                 dest='parameters',
@@ -87,7 +87,7 @@ class Chucky():
                 default=[],
                 help='Specify the identifier name of parameter type source/sink')
         
-        group.add_argument(
+        source_sink_group.add_argument(
                 '-var','--variable',
                 action='store',
                 dest='variables',

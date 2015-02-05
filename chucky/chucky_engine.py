@@ -83,7 +83,7 @@ class ChuckyEngine():
 	    
 	if len(symbolUsers) <  self.k+1:
 	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str( self.k)+' required.\n')
-	    return []
+	    return -1,-1,-1,-1,[]
 	
         return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
 	
