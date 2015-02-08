@@ -46,14 +46,14 @@ class KNN():
             D = pairwise_distances(X, metric='cosine')
             longNNI = list(D[0,:].argsort(axis=0))
             NNI = self._checkKNNThresholdModelAndGetNNI(longNNI,D)
-            return [validNeighborIds[x] for x in NNI],[D[0,NNI[x]] for x in NNI]
+            return [validNeighborIds[x] for x in NNI],[D[0,x] for x in NNI]
         else:
             dataPointIndex = self.emb.rTOC[funcId]    
             X = self.emb.x
             D = pairwise_distances(X, metric='cosine')
             longNNI = list(D[dataPointIndex,:].argsort(axis=0))
             NNI = self._checkKNNThresholdModelAndGetNNI(longNNI,D)
-            return [self.emb.TOC[x] for x in NNI],[D[dataPointIndex,NNI[x]] for x in NNI]
+            return [self.emb.TOC[x] for x in NNI],[D[dataPointIndex,x] for x in NNI]
 
     def calculateDistances(self):
         
