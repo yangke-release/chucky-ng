@@ -51,9 +51,12 @@ class ReportHelper:
 	    for i in range(0,len(self.nearestNeighbors)):
 		n=self.nearestNeighbors[i]
 		s0=self.semantic_similarities[i]
-		s1=self.func_name_similarities[i]
-		s2=self.file_name_similarities[i]
-		s3=self.caller_set_similarities[i]
+		if hasattr(self,'func_name_similarities'):
+		    s1=self.func_name_similarities[i]
+		if hasattr(self,'file_name_similarities'):
+		    s2=self.file_name_similarities[i]
+		if hasattr(self,'caller_set_similarities'):
+		    s3=self.caller_set_similarities[i]
 		location=n.location()
 		x=self.parseLocationString(location)
 		(filename, startLine, startPos, startIndex, stopIndex)=x
@@ -79,11 +82,14 @@ class ReportHelper:
 		headinfo+='relative distances\n'
 		headinfo+='-----------------------------------------\n'
 		headinfo+='semantic:\t{:3.2f}\n'.format(s0)
-		headinfo+='function name:\t{:3.2f}\n'.format(s1)
-		headinfo+='file name:\t{:3.2f}\n'.format(s2)
-		headinfo+='caller set:\t{:3.2f}\n'.format(s3)
-		headinfo+='-----------------------------------------\n'
-		headinfo+='Note:2.00 means we don\'t calculate it or we don\'t care about it in this situation, especially for caller set distance.\n'
+		if hasattr(self,'func_name_similarities'):
+		    headinfo+='function name:\t{:3.2f}\n'.format(s1)
+		if hasattr(self,'file_name_similarities'):
+		    headinfo+='file name:\t{:3.2f}\n'.format(s2)
+		if hasattr(self,'caller_set_similarities'):
+		    headinfo+='caller set:\t{:3.2f}\n'.format(s3)
+		    headinfo+='-----------------------------------------\n'
+		    headinfo+='Note:2.00 means we don\'t calculate it or we don\'t care about it in this situation, especially for caller set distance.\n'
 		headinfo+='-----------------------------------------\n\n'
 		content+=headinfo
 		line=startLine
@@ -104,9 +110,12 @@ class ReportHelper:
 	filehead+='-----------------------------------------\n'
 	filehead+='Anomaly Score:\t{:3.2f}\n'.format(self.score) 
 	filehead+='Missing feature:\t{}\n'.format(self.feat)
-	filehead+='mean cos of cond vector:\t{:3.2f}\n'.format(self.mcc)
-	filehead+='cos with mean cond vector:\t{:3.2f}\n'.format(self.ccm)
-	filehead+='feature specificity:\t{:3.2f}\t(specificity of the significant feature from all features:spec=maxscore-(sum(allscore)-max_score)/(length-1))\n'.format(self.spec)
+	if hasattr(self,'mcc'):
+	    filehead+='mean cos of cond vector:\t{:3.2f}\n'.format(self.mcc)
+	if hasattr(self,'ccm'):
+	    filehead+='cos with mean cond vector:\t{:3.2f}\n'.format(self.ccm)
+	if hasattr(self,'spec'):
+	    filehead+='feature specificity:\t{:3.2f}\t(specificity of the significant feature from all features:spec=maxscore-(sum(allscore)-max_score)/(len(allscore)-1))\n'.format(self.spec)
 	filehead+='-----------------------------------------\n'
 	return filehead	
     def clear_path(self,report_path,report_file):
@@ -117,12 +126,3 @@ class ReportHelper:
 		shutil.rmtree(report_file)
 	    else:
 		os.remove(report_file)
-	
-	
-	
-               
-        
-        
-            
-            
-            
