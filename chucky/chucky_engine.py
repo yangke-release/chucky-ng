@@ -43,8 +43,8 @@ class ChuckyEngine():
         try:
 	    #mean_syntax,mean_fun_name,mean_file_name,mean_caller
             nearestNeighbors,s0,s1,s2,s3, = self._getKNearestNeighbors()
-            for n in nearestNeighbors:
-                print str(n)+"\t"+n.location()
+            #for n in nearestNeighbors:
+                #print str(n)+"\t"+n.location()
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)
