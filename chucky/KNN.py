@@ -46,14 +46,14 @@ class KNN():
             D = pairwise_distances(X, metric='cosine')
             longNNI = list(D[0,:].argsort(axis=0))
             NNI = self._checkKNNThresholdModelAndGetNNI(longNNI,D)
-            return [validNeighborIds[x] for x in NNI]
+            return [validNeighborIds[x] for x in NNI],[D[0,NNI[x]] for x in NNI]
         else:
             dataPointIndex = self.emb.rTOC[funcId]    
             X = self.emb.x
             D = pairwise_distances(X, metric='cosine')
             longNNI = list(D[dataPointIndex,:].argsort(axis=0))
             NNI = self._checkKNNThresholdModelAndGetNNI(longNNI,D)
-            return [self.emb.TOC[x] for x in NNI]
+            return [self.emb.TOC[x] for x in NNI],[D[dataPointIndex,NNI[x]] for x in NNI]
 
     def calculateDistances(self):
         
@@ -74,13 +74,10 @@ class KNN():
                 error_str='KNN skiped. The neighborhood quality does not match the specified top-k similarity threshold.('+str(self.k-1)+'th neighborhood similarity '+str(1-D[0,NNI[-1]])+'< similarity threshold '+str(self.sim_th)+' ).\n'
                 sys.stderr.write(error_str)
                 return[]
-            
         else:
             index=0
             while(index<len(NNI) and 1-D[0,NNI[index]]>self.sim_th):
                 index+=1
             NNI=NNI[:index]
             if(len(NNI)<=MIN_NEIGHBORHOODS_NUM):return []
-            if(len(NNI)!=index):
-                sys.stderr.write('Wrong index logic!!!!')
         return NNI

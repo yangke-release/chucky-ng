@@ -47,12 +47,12 @@ class NearestNeighborSelector:
         knn.setNoCache(False)
         knn.initialize()
         
-        ids = knn.getNeighborsFor(str(nodeId))
+        ids,similarities = knn.getNeighborsFor(str(nodeId))
         if not ids or ids==[]:return []
         elif str(nodeId) not in ids:
             ids.pop()
             ids=[str(nodeId)]+ids
-        return [Function(i) for i in ids]
+        return [Function(i) for i in ids],similarities
     
     '''
     def _createLimitFile(self, entities):
@@ -62,4 +62,3 @@ class NearestNeighborSelector:
         f.close()
         return filename
     '''
-            

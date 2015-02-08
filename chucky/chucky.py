@@ -13,12 +13,19 @@ used in conjunction with the symbol with those used in similar functions."""
 DEFAULT_N = 10 #Only useful when neigther the sim_th nor k is set.
 MIN_N = 2
 DEFAULT_DIR = ".chucky"
-
+DEFAULT_REPORT_PATH="report"
 PARAMETER = 'Parameter'
 VARIABLE = 'Variable'
 CALLEE = 'Callee'
-
-
+def generate_report_path(report_path):
+    if(report_path is None):return None
+    rep_num=0
+    suffix=''
+    while(os.path.exists(report_path+suffix)):
+	rep_num+=1
+	suffix='('+str(rep_num)+')'
+    os.makedirs(report_path+suffix)
+    return report_path+suffix
 class Chucky():
 
     def __init__(self):
@@ -39,11 +46,12 @@ class Chucky():
         self.engine = ChuckyEngine(
             self.args.chucky_dir,
             self.args.n_neighbors,
-            self.args.similarity_threshold)
+            self.args.similarity_threshold,
+	    self.args.output_report_directory)
     def checkArguments(self):
         err=''
-        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0:
-            err='At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n'
+        if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0 and self.args.function==None:
+            err='At least one source or sink or the function should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.Use the -f [FUNCTION] to specify the only target function.\n'
             
         if self.args.n_neighbors==None and self.args.similarity_threshold==None:
             err=err+'Neither neighborhood number n nor similarity threshold th is specified.\nPlease Use -n [number] or -s [digit] to specifiy it(0.0<th<1.0)!\n'
@@ -76,22 +84,22 @@ class Chucky():
                 action = 'store',
                 default = None,
                 help = 'Specify the function to analysis. If this option is configured, the analysis will only perform on this function.')        
-        group=self.arg_parser.add_argument_group('source_sinks')
-        group.add_argument(
+        source_sink_group=self.arg_parser.add_argument_group('source_sinks')
+        source_sink_group.add_argument(
                 '--callee',
                 action='store',
                 dest='callees',
                 nargs='+',
                 default=[],
                 help='Specify the identifier name of callee type source/sink')
-        group.add_argument(
+        source_sink_group.add_argument(
                 '-p','--parameter',
                 action='store',
                 dest='parameters',
                 nargs='+',
                 default=[],
                 help='Specify the identifier name of parameter type source/sink')
-        group.add_argument(
+        source_sink_group.add_argument(
                 '-var','--variable',
                 action='store',
                 dest='variables',
@@ -113,6 +121,17 @@ class Chucky():
                 help = """The directory holding chucky's data such as cached
                 symbol embeddings and possible annotations of sources and
                 sinks.""")
+        self.arg_parser.add_argument(
+	        '-o', '--output-report-directory',
+	        action = 'store',
+	        type = generate_report_path,
+	        default = DEFAULT_REPORT_PATH,
+	        help = """The report output directory of chucky. For each target function under analyzationthe. Chucky will generate a detail report.""")
+	self.arg_parser.add_argument(
+	        '-r', '--report',
+	        action = 'store_true',
+	        default = False,
+	        help = """Output the detail report for each function under analyzation.""")        
         self.arg_parser.add_argument(
                 '--interactive',
                 action = 'store_true',
@@ -183,6 +202,9 @@ class Chucky():
     """     
     def execute(self):
         needcache,jobsdict = self.job_generator.generate()
+	if jobsdict is None or len(jobsdict)==0:
+	    sys.stderr.write("[Warning] No jobs found!\n");
+	    return	
         jobs=[]
         for configs in jobsdict.values():
             jobs+=list(configs)
@@ -225,6 +247,5 @@ class Chucky():
                     return False
             self.engine.analyze(job)        
         return True
-
 if __name__ == '__main__':
     Chucky().execute()
