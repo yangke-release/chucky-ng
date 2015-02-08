@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -rf report\(*\)
+rm -rf report

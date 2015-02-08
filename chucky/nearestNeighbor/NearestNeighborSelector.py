@@ -48,11 +48,11 @@ class NearestNeighborSelector:
         knn.setLimitArray(limit)
         knn.initialize()
         
-        ids = knn.getNeighborsFor(str(nodeId))
+        ids,similarities = knn.getNeighborsFor(str(nodeId))
         if str(nodeId) not in ids:
             ids.pop()
             ids.append(str(nodeId))
-        return [Function(i) for i in ids]
+        return [Function(i) for i in ids],similarities
     
     '''
     def _createLimitFile(self, entities):

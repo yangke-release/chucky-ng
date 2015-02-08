@@ -14,14 +14,15 @@ from GlobalAPIEmbedding import GlobalAPIEmbedding
 from scipy.sparse import *
 from conditionAnalyser.FunctionConditions import FunctionConditions
 from conditionAnalyser.ConditionPythonEmbedder import Embedder
-
-EXPR_CACHE_DIR="exprcache"
+from ReportHelper import ReportHelper
+DEFAULT_REPORT_PATH='report'
 
 class ChuckyEngine():
 
-    def __init__(self, basedir):
+    def __init__(self, basedir,report_path):
         self.basedir = basedir
         self.logger = logging.getLogger('chucky')
+	self.report_path=report_path
         jutils.connectToDatabase()
 	self.embedder=Embedder()	
 	
@@ -31,9 +32,9 @@ class ChuckyEngine():
         self.workingEnv = ChuckyWorkingEnvironment(self.basedir, self.logger)
         self.globalAPIEmbedding = GlobalAPIEmbedding(self.workingEnv.cachedir)
         
-        try:            
-            nearestNeighbors = self._getKNearestNeighbors()
-
+        try:
+	    x = self._getKNearestNeighbors()
+	    (nearestNeighbors,semantic_similarities)=x	    
             #for n in nearestNeighbors:
                 #print str(n)+"\t"+n.location()
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
@@ -41,7 +42,7 @@ class ChuckyEngine():
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)
 		if termDocumentMatrix:
 		    result = self._anomaly_rating(termDocumentMatrix,dataPointIndex)
-		    self._outputResult(result)
+		    self._outputResult(nearestNeighbors,semantic_similarities,result)
 		else:
 		    self.logger.warning("Could not find any conditions in all neighbors! Job skiped!")
         except subprocess.CalledProcessError as e:
@@ -76,7 +77,7 @@ class ChuckyEngine():
 	    
 	if len(symbolUsers) < self.job.n_neighbors+1:
 	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str(self.job.n_neighbors)+' required.\n')
-	    return []
+	    return [],[]
 	
 	
 	    
@@ -139,13 +140,28 @@ class ChuckyEngine():
 	    result.append((float(score), feat_string))
 	return result
 
-    def _outputResult(self, result):
+    def _outputResult(self,nearestNeighbors,data0,result):
         if len(result)==0:
             self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s)",str(self.job.function.node_id))
             score=0
             feat="NULL"
         else:
-            score, feat = max(result)
+	    score, feat= max(result)
+	    s1=0.0
+	    for t in result:
+		s1+=t[0]
+	    if len(result)==1:
+		spec=0
+	    else:
+		spec=score-(s1-score)/(len(result)-1)
+	if(self.report_path is not None):
+	    helper=ReportHelper(self.job.function,nearestNeighbors,self.report_path)
+	    helper.setSourceSinks(self.job.sourcesinks)
+	    helper.setScore(score)
+	    helper.setFeature(feat)
+	    helper.setSemanticSimilarities(data0)
+	    helper.setSpecificity(spec)
+	    helper.generate()
         print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,self.job.function.location())
 	
     def calculateCenterOfMass(self, index):

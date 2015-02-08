@@ -27,9 +27,6 @@ class KNN():
         return self.loader.load(dirname, svd_k=0)
     
     def getNeighborsFor(self, funcId):
-        
-        nReturned = 0
-
         if self.limit:
             validNeighborIds = [funcId] + [x for x in self.limit if x != funcId]
             validNeighbors = [self.emb.rTOC[str(x)] for x in validNeighborIds]
@@ -37,13 +34,13 @@ class KNN():
             X = self.emb.x[validNeighbors, :]
             D = pairwise_distances(X, metric='cosine')
             NNI = list(D[0,:].argsort(axis=0))[:self.k]
-            return [validNeighborIds[x] for x in NNI]
+            return [validNeighborIds[x] for x in NNI],[D[0,x] for x in NNI]
         else:
             dataPointIndex = self.emb.rTOC[funcId]    
             X = self.emb.x
             D = pairwise_distances(X, metric='cosine')
             NNI = list(D[dataPointIndex,:].argsort(axis=0))[:self.k]
-            return [self.emb.TOC[x] for x in NNI]
+            return [self.emb.TOC[x] for x in NNI],[D[dataPointIndex,x] for x in NNI]
 
     def calculateDistances(self):
         
