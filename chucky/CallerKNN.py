@@ -207,9 +207,7 @@ class KNN():
 	
         mNNI=mD.argsort(axis=0)
         result =[validNeighborIds[NNI[x]] for x in mNNI[:self.k]]
-        result = self.modifyResult(result,D0,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId)
-        
-        return result
+        return self.modifyResult(result,D0,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId)
     
     def modifyResult(self,result,D,d1,d2,d3,mNNI,NNI,dataPointIndex,funcId):
         #check and record something
@@ -217,19 +215,23 @@ class KNN():
             result.pop()
             result=[str(funcId)]+result
             nums=[NNI[x] for x in mNNI[:self.k-1]]
-            data_d1=[d1[x] for x in mNNI[:self.k-1]]
-            data_d2=[d2[x] for x in mNNI[:self.k-1]]
-            data_d3=[d3[x] for x in mNNI[:self.k-1]]
+            data1=[d1[x] for x in mNNI[:self.k-1]]
+            data2=[d2[x] for x in mNNI[:self.k-1]]
+            data3=[d3[x] for x in mNNI[:self.k-1]]
         else:
             nums=[NNI[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
             data1=[d1[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
             data2=[d2[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
             data3=[d3[x] for x in mNNI[:self.k] if NNI[x]!=dataPointIndex]
-        mean_syntax=D[dataPointIndex,nums].mean(axis=0)
-        mean1=sum(data1)/(self.k-1)#func_name
-        mean2=sum(data2)/(self.k-1)#file_name
-        mean3=sum(data3)/(self.k-1)#caller 
-        return (mean_syntax,mean1,mean2,mean3,result)
+	#mean_syntax=D[dataPointIndex,nums].mean(axis=0)
+	#mean1=sum(data1)/(self.k-1)#func_name
+	#mean2=sum(data2)/(self.k-1)#file_name
+	#mean3=sum(data3)/(self.k-1)#caller 	
+        semantic=[0]+[D[dataPointIndex,x] for x in nums]#semantic_similarity_array
+        func_name=[0]+data1
+        file_name=[0]+data2
+        caller=[0]+data3
+        return (result,semantic,func_name,file_name,caller)
     
     def merge4D(self,D0,d1,d2,d3,NNI,index,raw_nids,funcId):
         D=D0[index,NNI].copy()

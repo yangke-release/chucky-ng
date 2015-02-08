@@ -17,16 +17,22 @@ from conditionAnalyser.ConditionPythonEmbedder import Embedder
 
 from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import pairwise_distances
-EXPR_CACHE_DIR="exprcache"
-
+from ReportHelper import ReportHelper
+DEFAULT_REPORT_PATH='report'
+def parseLocationString(string):
+    x = string.split(':')
+    for i in range(1,len(x)):
+	x[i] = int(x[i])
+    return x
 class ChuckyEngine():
 
-    def __init__(self, basedir,n_neighbors):
+    def __init__(self, basedir,n_neighbors,report_path):
 	self.basedir = basedir
 	self.k=n_neighbors	
         self.logger = logging.getLogger('chucky')
         jutils.connectToDatabase()
-	self.embedder=Embedder()	
+	self.embedder=Embedder()
+	self.report_path=report_path
 	
     def analyze(self, job):
 
@@ -36,17 +42,15 @@ class ChuckyEngine():
         
         try:
 	    #mean_syntax,mean_fun_name,mean_file_name,mean_caller
-            m0,m1,m2,m3,nearestNeighbors = self._getKNearestNeighbors()
-
-            #for n in nearestNeighbors:
-                #print str(n)+"\t"+n.location()
+            nearestNeighbors,s0,s1,s2,s3, = self._getKNearestNeighbors()
+            for n in nearestNeighbors:
+                print str(n)+"\t"+n.location()
 	    dataPointIndex=self.checkNeighborsAndGetIndex(nearestNeighbors)
 	    if dataPointIndex is not None:
-		self.th_cut_neighbor_num=len(nearestNeighbors)-1
 		termDocumentMatrix=self._calculateCheckModels(nearestNeighbors)
 		if termDocumentMatrix:
 		    mcc,ccm,result = self._anomaly_rating(termDocumentMatrix,dataPointIndex)
-		    self._outputResult(m0,m1,m2,m3,mcc,ccm,result)
+		    self._outputResult(nearestNeighbors,s0,s1,s2,s3,mcc,ccm,result)
 		else:
 		    self.logger.warning("Could not find any conditions in all neighbors! Job skiped!\n")
         except subprocess.CalledProcessError as e:
@@ -158,8 +162,11 @@ class ChuckyEngine():
         #else:
             #score, feat = max(result)
         #print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,self.job.function.location(),self.th_cut_neighbor_num)
-    def _outputResult(self,m0,m1,m2,m3,mcc,ccm, result):
-        
+    def _outputResult(self,nearestNeighbors,data0,data1,data2,data3,mcc,ccm, result):
+	m0=sum(data0)/(self.k-1)#semantic
+	m1=sum(data1)/(self.k-1)#func_name
+	m2=sum(data2)/(self.k-1)#file_name
+	m3=sum(data3)/(self.k-1)#caller         
         #score, feat = max(result)
 	length=len(result)
 	if length==0:
@@ -175,8 +182,22 @@ class ChuckyEngine():
 	    if length==1:
 		spec=0
 	    else:
-		spec=score-(s1-score)/(length-1)        
-        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,m0,m1,m2,m3,mcc,ccm,spec,self.job.function.location(),self.th_cut_neighbor_num)	
+		spec=score-(s1-score)/(length-1)
+	if(self.report_path is not None):
+	    helper=ReportHelper(self.job.function,nearestNeighbors,self.report_path)
+	    helper.setSourceSinks(self.job.sourcesinks)
+	    helper.setScore(score)
+	    helper.setFeature(feat)
+	    helper.setSpecificity(spec)
+	    helper.setMeanConditionCos(mcc)
+	    helper.setConditionCosWithMean(ccm)
+	    helper.setSemanticSimilarities(data0)
+	    helper.setFuncNameSimilarities(data1)
+	    helper.setFileNameSimilarities(data2)
+	    helper.setCallerSetSimilarities(data3)
+	    helper.generate()
+	    
+        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,m0,m1,m2,m3,mcc,ccm,spec,self.job.function.location(),len(nearestNeighbors)-1)	
     def calculateCenterOfMass(self, index):
 	r,c=self.x.shape
 	if r<=1:

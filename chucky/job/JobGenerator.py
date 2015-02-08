@@ -139,14 +139,14 @@ class JobGenerator(object):
             func_job_map=dict()
             if self.callee_names:
                 func_job_map=self.getFuncJobMapBySourceSinkNames(self.callee_names,CALLEE,func_job_map)
-                if len(func_job_map)==0:return dict()
+                if len(func_job_map)==0:return False,dict()
             if self.parameter_names:
                 func_job_map=self.getFuncJobMapBySourceSinkNames(self.parameter_names,PARAMETER,func_job_map)
-                if len(func_job_map)==0:return dict()
+                if len(func_job_map)==0:return False,dict()
             if self.variable_names:
                 func_job_map=self.getFuncJobMapBySourceSinkNames(self.variable_names,VARIABLE,func_job_map)
-                if len(func_job_map)==0:return dict()
-            if len(func_job_map)==0:return dict()
+                if len(func_job_map)==0:return False,dict()
+            if len(func_job_map)==0:return False,dict()
             
             configurations=set()
             

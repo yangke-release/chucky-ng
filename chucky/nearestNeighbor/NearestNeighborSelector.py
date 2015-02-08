@@ -52,16 +52,7 @@ class NearestNeighborSelector:
             #ids=[str(nodeId)]+ids
         #return [Function(i) for i in ids]
         #ids = knn.getNeighborsFor(str(nodeId))
-        m0,m1,m2,m3,ids = knn.getSimilarContextNeighborsFor(str(nodeId))
+        ids,m0,m1,m2,m3 = knn.getSimilarContextNeighborsFor(str(nodeId))
         #mean_syntax,mean_fun_name,mean_file_name,mean_caller
-        return (m0,m1,m2,m3,[Function(i) for i in ids])        
-    
-    '''
-    def _createLimitFile(self, entities):
-        filename = os.path.join(self.cachedir, 'limitfile')
-        f = file(filename, 'w')
-        f.writelines([str(e.getId()) + '\n' for e in entities] )
-        f.close()
-        return filename
-    '''
+        return ([Function(i) for i in ids],m0,m1,m2,m3) 
             

@@ -13,7 +13,7 @@ used in conjunction with the symbol with those used in similar functions."""
 DEFAULT_N = 10 #Only useful when neigther the sim_th nor k is set.
 MIN_N = 2
 DEFAULT_DIR = ".chucky"
-
+DEFAULT_REPORT_PATH="report"
 PARAMETER = 'Parameter'
 VARIABLE = 'Variable'
 CALLEE = 'Callee'
@@ -32,12 +32,16 @@ class Chucky():
                     parameters = self.args.parameters,
                     variables = self.args.variables)
         self.job_generator.limit = self.args.limit
+	self.report_path=None
+	if self.args.report:
+	    self.report_path=self._generate_report_path(self.args.output_report_directory)
         if self.args.n_neighbors == -1:
                     self.logger.warning('Use neighborhood number '+str(DEFAULT_N)+' as the default k!\n')
                     self.args.n_neighbors = DEFAULT_N
         self.engine = ChuckyEngine(
             self.args.chucky_dir,
-            self.args.n_neighbors)
+            self.args.n_neighbors,
+	    self.report_path)
         
     def checkArguments(self):
         err=''
@@ -110,8 +114,17 @@ class Chucky():
                 help = """The directory holding chucky's data such as cached
                 symbol embeddings and possible annotations of sources and
                 sinks.""")
-        
-        self.arg_parser.add_argument(
+	self.arg_parser.add_argument(
+	        '-o', '--output-report-directory',
+	        action = 'store',
+	        default = DEFAULT_REPORT_PATH,
+	        help = """The report output directory of chucky. For each target function under analyzationthe. Chucky will generate a detail report.""")
+	self.arg_parser.add_argument(
+	        '-r', '--report',
+	        action = 'store_true',
+	        default = False,
+	        help = """Output the detail report for each function under analyzation.""")
+	self.arg_parser.add_argument(
                 '--interactive',
                 action = 'store_true',
                 default = False,
@@ -176,6 +189,9 @@ class Chucky():
     """     
     def execute(self):
         needcache,jobsdict = self.job_generator.generate()
+	if len(jobsdict)==0:
+	    sys.stderr.write("[Warning] No jobs found!\n");
+	    return
         jobs=[]
         for configs in jobsdict.values():
             jobs+=list(configs)
@@ -218,6 +234,14 @@ class Chucky():
                     return False
             self.engine.analyze(job)        
         return True
-
+    
+    def _generate_report_path(self,report_path):
+	rep_num=0
+	suffix=''
+	while(os.path.exists(report_path+suffix)):
+	    rep_num+=1
+	    suffix='('+str(rep_num)+')'
+	os.makedirs(report_path+suffix)
+	return report_path+suffix    
 if __name__ == '__main__':
     Chucky().execute()

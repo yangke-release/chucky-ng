@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-
+#Copy this script to chucky-ng/chucky directory. Use python ROC.py to run it.
 #This script generates the points for ROC curves averaged in each program by taking the output of the script "neighbor" as input .
 #You can export the output of this script to the drawing program for ROC diagram painting.
 import os
