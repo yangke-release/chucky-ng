@@ -46,7 +46,7 @@ class Chucky():
     def checkArguments(self):
         err=''
         if len(self.args.callees) ==0 and len(self.args.parameters)==0 and len(self.args.variables)==0 and self.args.function==None:
-            err='At least one source or sink should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.\n'
+            err='At least one source or sink or the function should be provided.\nUse --callee [CALEE_NAME_LIST] or --parameter [PARAMETER_NAME_LIST] or --variable [VARIABLE_NAME_LIST] or combination of them to specify the source/sink set.Use the -f [FUNCTION] to specify the only target function.\n'
             
         if self.args.n_neighbors<MIN_N:
             err=err+'The neighborhoods number n must be larger than '+str(MIN_N)+'.\n'
