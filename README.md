@@ -32,17 +32,18 @@ Suppose we have already parse the code and we have configured and started the ne
 (For parsing the code and database configuration please refer to the [document](http://joern.readthedocs.org/en/latest/) of [joern](https://github.com/fabsx00/joern). Don't worry, the Following quick start example will also mention a little about this.)
 
     $ cd chucky-ng/chucky
-    $ python chucky.py [-h] [-f FUNCTION] [--callee CALLEES [CALLEES ...]]
+    $ python chucky.py  [-h] [-f FUNCTION] [--callee CALLEES [CALLEES ...]]
                  [-p PARAMETERS [PARAMETERS ...]]
                  [-var VARIABLES [VARIABLES ...]] -n N_NEIGHBORS
-                 [-c CHUCKY_DIR] [--interactive] [-l LIMIT] [-d | -v | -q]
+                 [-c CHUCKY_DIR] [-o OUTPUT_REPORT_DIRECTORY] [-r]
+                 [--interactive] [-l LIMIT] [-d | -v | -q]
 Example 1: 
 
     $ python chucky.py --parameter length -n 25 --interactive 
     
 Example 2: 
 
-    $ python chucky.py --p length --callee png_free --var slength -n 3 -l png_handle_sCAL
+    $ python chucky.py --p length --callee png_free --var slength -n 3 -l png_handle_sCAL -r
     
 positional arguments:
 
@@ -63,6 +64,13 @@ optional arguments:
                         The directory holding chucky's data such as cached
                         symbol embeddings and possible annotations of sources
                         and sinks.
+    -o OUTPUT_REPORT_DIRECTORY, --output-report-directory OUTPUT_REPORT_DIRECTORY
+                        The report output directory of chucky. For each target
+                        function under analyzationthe. Chucky will generate a
+                        detail report.
+    -r, --report          Output the detail report for each function under
+                        analyzation.
+
     --interactive         Enable interactive mode.
     -l LIMIT, --limit LIMIT
                         Limit analysis to functions with given name
@@ -157,6 +165,7 @@ About the Modification.
     * Use the combination of source/sink as the key feature to find candidate neighborhood.
     * Use the union of the tainted condition features as the condition embedding feature.
     * Refactor the job generation.
+4. Add a report module to show the detail report.
 
 For more information or bug report please do not hesitate to contact me. Ke Yang(123yangke321@sina.com) 
  

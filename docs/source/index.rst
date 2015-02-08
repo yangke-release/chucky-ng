@@ -59,6 +59,7 @@ About the Modification.
     * Use the combination of source/sink as the key feature to find candidate neighborhood.
     * Use the union of the tainted condition features as the condition embedding feature.
     * Refactor the job generation and remove the redundant function selection to improve the performance.
+4. Add a report module to show the detail report.
 
 Note: the advancement of the modification still needs to be judged and more evaluation is required. Connect Ke Yang(123yangke321@sina.com) for more information.
 

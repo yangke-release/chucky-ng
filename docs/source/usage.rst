@@ -4,13 +4,13 @@ Example 1
 ---------
 :: 
 
-    $ python chucky.py --parameter length -n 25 --interactive
+    $ python chucky.py --p length -n 25 --interactive
 
 Example 2
 ---------
 ::
 
-    $ python chucky.py --p length --callee png_free --var slength -n 3 -l png_handle_sCAL
+    $ python chucky.py -p length --callee png_free -var slength -n 3 -l png_handle_sCAL -r
 
 Usage Pattern
 -------------
@@ -21,7 +21,8 @@ Suppose we have already parsed the code and we have configured and started the n
     $ python chucky.py [-h] [-f FUNCTION] [--callee CALLEES [CALLEES ...]]
                  [-p PARAMETERS [PARAMETERS ...]]
                  [-var VARIABLES [VARIABLES ...]] -n N_NEIGHBORS
-                 [-c CHUCKY_DIR] [--interactive] [-l LIMIT] [-d | -v | -q]
+                 [-c CHUCKY_DIR] [-o OUTPUT_REPORT_DIRECTORY] [-r]
+                 [--interactive] [-l LIMIT] [-d | -v | -q]
 
 optional arguments::
 
@@ -34,6 +35,10 @@ optional arguments::
     -c CHUCKY_DIR, --chucky-dir CHUCKY_DIR
                         The directory holding chucky's data such as cached
                         symbol embeddings and possible annotations of sources and sinks.
+    -o OUTPUT_REPORT_DIRECTORY, --output-report-directory OUTPUT_REPORT_DIRECTORY
+                        The report output directory of chucky. For each target function under
+                        analyzation chucky will generate a detail report.
+    -r, --report        Output the detail report for each function under analyzation.
     --interactive       Enable interactive mode.
     -l LIMIT, --limit LIMIT
                         Limit analysis to functions with given name.
