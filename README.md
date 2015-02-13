@@ -13,7 +13,7 @@ Dependencies
 --
 + joern >= 2.0 <https://github.com/fabsx00/joern>
 + joern-tools >=0.1 <https://github.com/fabsx00/joern-tools>
-+ Neo4j 1.9 <http://www.neo4j.org>
++ Neo4j >=1.9 <http://www.neo4j.org>
 + Python 2.7
 
 This version is for Debian & Ubuntu Linux only.
