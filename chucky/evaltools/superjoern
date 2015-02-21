@@ -1,0 +1,24 @@
+#!/bin/bash
+#ocfs2_xattr_set_acl
+#jffs2_acl_setxattr
+if [[ "$#" -eq 1 && "$1" != "-f" || "$#" -eq 2 ]];then
+	filepath=$1
+fi
+filelist=`ls $filepath`
+for file in $filelist
+do
+	if [ ! -d $filepath/$file ];then
+		continue 
+	fi
+	if [[ "$#" -eq 1 && "$1" = "-f" || "$#" -eq 2 && "$2" = "-f" ]];then
+		if [ -d $filepath/$file/.joernIndex ];then
+			rm -rf $filepath/$file/.joernIndex
+		fi
+	fi
+	if [ ! -d $filepath/$file/.joernIndex ];then
+		cd $filepath/$file;
+		joern *$file*
+		cd -
+	fi
+done
+

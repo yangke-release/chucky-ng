@@ -109,18 +109,24 @@ do
     		dirname="$dbvar=$dir/$funcname/$db"
 		sed "$line s/^/#/g" -i $cfgfile &&sed "$line i$dirname" -i $cfgfile
 		neo4j restart
-		rm -rf .chucky tfidf.fv
 		out=neighbors
 		outdir=$out/$projname
+		timedir="${outdir}/time"
 		if [ ! -d  $out ];then
 			mkdir $out
 		fi
 		if [ ! -d  $outdir ];then
 			mkdir $outdir
 		fi
+		if [ ! -d  $timedir ];then
+			mkdir $timedir
+		fi
 		outfile=$outdir/$funcname
+		timerec="$timedir/${funcname}-time"
+		cachedir=".chucky_cache/${projname}/${funcname}"
+		#rm -rf .chucky/${projname}/${funcname} tfidf.fv
 		if [ ! -f $outfile ];then
-			eval "time python chucky.py --$type $symbol -n 25  -l ${funcname%-pds} |tee $outfile"
+			eval "(time python chucky.py --$type $symbol -n 25 -c $cachedir -l ${funcname%-pds} |tee $outfile) 2>$timerec"
 		fi
 		#echo "$funcname" | grep -q "\-pds"  
 		#if [ $? -eq 0 ]; then  

@@ -153,15 +153,7 @@ class ChuckyEngine():
 	    self.logger.debug('%+1.5f %s.', float(score), feat_string)
 	    result.append((float(score), feat_string))
 	return mean_cos_distance,cos_distance_with_mean,result
-
-    #def _outputResult(self, result):
-        #if len(result)==0:
-            #self.logger.debug("Condition Mean Vector is Identical with the Condition Vector in considered Function(%s).\n",str(self.job.function.node_id))
-            #score=0
-            #feat="ALL"
-        #else:
-            #score, feat = max(result)
-        #print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,self.job.function.location(),self.th_cut_neighbor_num)
+    
     def _outputResult(self,nearestNeighbors,data0,data1,data2,data3,mcc,ccm, result):
 	m0=sum(data0)/(self.k-1)#semantic
 	m1=sum(data1)/(self.k-1)#func_name

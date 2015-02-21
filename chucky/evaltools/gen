@@ -1,0 +1,106 @@
+#!/bin/bash
+funcs0="yahoo_process_status,\
+yahoo_process_p2p,\
+got_sessionreq,\
+purple_ntlm_parse_type2,\
+msim_msg_get_binary_from_element,\
+digest_md5_handle_challenge,\
+jabber_scram_feed_parser,\
+parse_server_step1,\
+scram_handle_success,\
+msn_oim_report_to_user,\
+msn_switchboard_show_ink,\
+scram_handle_challenge,\
+jabber_data_create_from_xml,\
+do_buddy_avatar_update_data,\
+jabber_vcard_parse_avatar,\
+jabber_ibb_parse,\
+jabber_vcard_save_mine,\
+jabber_vcard_parse"
+funcs1="png_handle_sCAL,\
+png_handle_sPLT,\
+png_handle_tRNS,\
+png_handle_bKGD,\
+png_handle_pHYs,\
+png_handle_oFFs,\
+png_handle_tIME,\
+png_handle_tEXt,\
+png_handle_zTXt,\
+png_handle_iTXt,\
+png_handle_unknown,\
+png_handle_IHDR,\
+png_handle_PLTE,\
+png_handle_IEND,\
+png_handle_gAMA,\
+png_handle_sBIT,\
+png_handle_cHRM,\
+png_handle_sRGB,\
+png_handle_iCCP"
+funcs2="TIFFFetchString,\
+TIFFFetchSubjectDistance,\
+TIFFFetchByteArray,\
+TIFFFetchShortArray,\
+TIFFFetchShortPair,\
+TIFFFetchLongArray,\
+TIFFFetchPerSampleShorts,\
+TIFFFetchPerSampleLongs,\
+TIFFFetchPerSampleAnys"
+funcs3="PropertyOpForwarder,\
+array_sort,\
+array_splice,array_slice,\
+array_indexOfHelper,\
+array_extra,LookupGetterOrSetter,\
+DefineGetterOrSetter,\
+array_unshift,\
+array_concat,\
+array_join,\
+array_push,\
+js_Array"
+funcs4="ext2_xattr_set_acl,\
+ext3_xattr_set_acl,\
+ext4_xattr_set_acl,\
+jffs2_acl_setxattr,\
+posix_acl_set,\
+ocfs2_xattr_set_acl,\
+btrfs_xattr_acl_set,\
+generic_acl_set"
+if [ $# -eq 1 ];then
+	dbpath=$1
+else
+	echo "Error:Missing Argument! Please specify the directory." 1>&2
+	exit
+fi
+projnames=(pidgin libpng tiff firefox linux)
+suffixarray=(2.7.3 1.2.44 3.9.4 4.0-js 2.6.34.13-fs)
+for ((i=0;i<5;i++))
+do
+	projname=${projnames[i]}
+	type=${types[i]}
+	symbol=${symbols[i]}
+	suffix=${suffixarray[i]}
+	dir=$dbpath/$projname
+	if [ ! -d $dir ];then
+		mkdir $dir
+	fi
+	backpath=`pwd`
+	cd $dir
+	eval arraystr="\${funcs${i}}"
+	#echo $funcarray
+	OLD_IFS="$IFS"
+	IFS=","
+	funcs=($arraystr)
+	for funcname in ${funcs[@]}
+	do
+		if [ ! -d $funcname ];then
+			mkdir $funcname
+		fi
+		cd $funcname
+		if [ ! -d $projname-$suffix-$funcname ];then
+			mkdir $projname-$suffix-$funcname
+		fi
+		cd -;
+ 	done
+	IFS="$OLD_IFS"
+	cd "$backpath";
+done
+
