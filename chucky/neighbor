@@ -82,11 +82,10 @@ posix_acl_set,\
 ocfs2_xattr_set_acl,\
 btrfs_xattr_acl_set,\
 generic_acl_set"
-
 projnames=(pidgin libpng tiff firefox linux)
 types=(callee parameter parameter parameter parameter)
 symbols=(purple_base64_decode length dir argc dentry)
-
+#rm -rf .chucky_cache neighbors
 for ((i=0;i<5;i++))
 do
 	projname=${projnames[i]}
@@ -124,7 +123,7 @@ do
 		outfile=$outdir/$funcname
 		timerec="$timedir/${funcname}-time"
 		cachedir=".chucky_cache/${projname}/${funcname}"
-		#rm -rf .chucky/${projname}/${funcname} tfidf.fv
+		#rm -rf .chucky_cache/${projname}/${funcname} tfidf.fv
 		if [ ! -f $outfile ];then
 			eval "(time python chucky.py --$type $symbol -n 25 -c $cachedir -l ${funcname%-pds} |tee $outfile) 2>$timerec"
 		fi

@@ -1,6 +1,7 @@
 
 import os
-from joerntools.APIEmbedder import APIEmbedder
+#from joerntools.APIEmbedder import APIEmbedder
+from embedding.MemoryAPIEmbedder import APIEmbedder
 
 class GlobalAPIEmbedding():
     def __init__(self, cachedir):
