@@ -11,7 +11,7 @@ DESCRIPTION = """Chucky analyzes functions for anomalies. To this end, the
 usage of symbols used by a function is analyzed by comparing the checks
 used in conjunction with the symbol with those used in similar functions."""
 DEFAULT_N = 10 #Only useful when neigther the sim_th nor k is set.
-MIN_N = 2
+MIN_N = 1
 DEFAULT_DIR = ".chucky"
 DEFAULT_REPORT_PATH="report"
 PARAMETER = 'Parameter'

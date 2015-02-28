@@ -28,9 +28,9 @@ class ChuckyEngine():
 
     def __init__(self, basedir,n_neighbors,report_path):
 	self.basedir = basedir
-	self.k=n_neighbors	
-        self.logger = logging.getLogger('chucky')
-        jutils.connectToDatabase()
+	self.k=n_neighbors
+	self.logger = logging.getLogger('chucky')
+	jutils.connectToDatabase()
 	self.embedder=Embedder()
 	self.report_path=report_path
 	
@@ -87,7 +87,7 @@ class ChuckyEngine():
 	    
 	if len(symbolUsers) <  self.k+1:
 	    self.logger.warning('Job skipped, '+str(len(symbolUsers)-1)+' neighbors found, but '+str( self.k)+' required.\n')
-	    return -1,-1,-1,-1,[]
+	    return [],[],[],[],[]
 	
         return self.knn.getNearestNeighbors(self.job.function, symbolUsers)
 	
@@ -155,10 +155,10 @@ class ChuckyEngine():
 	return mean_cos_distance,cos_distance_with_mean,result
     
     def _outputResult(self,nearestNeighbors,data0,data1,data2,data3,mcc,ccm, result):
-	m0=sum(data0)/(self.k-1)#semantic
-	m1=sum(data1)/(self.k-1)#func_name
-	m2=sum(data2)/(self.k-1)#file_name
-	m3=sum(data3)/(self.k-1)#caller         
+	m0=sum(data0)/(self.k)#semantic
+	m1=sum(data1)/(self.k)#func_name
+	m2=sum(data2)/(self.k)#file_name
+	m3=sum(data3)/(self.k)#caller
         #score, feat = max(result)
 	length=len(result)
 	if length==0:

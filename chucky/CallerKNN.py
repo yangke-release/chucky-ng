@@ -191,10 +191,20 @@ class KNN():
         for i in range(len(s)-n+1):
             result.add(s[i:i+n])
         return result
-            
+    def fixZeroVector(self,D0,X):
+	#It is meaningless to calculate cosine with zero vector ,
+	#but given a defult distance:0.0 not 1.0 may be better.
+	#example1
+	#doc1:A,B,C
+	#doc2:A,B,C,C
+	#Then the tfidf matrix is [0,0,0;0,0,0]
+	if X.sum()==0:
+	    D0=D0*0
+	return D0
     def calculateDistance(self,X,validNeighborIds,dataPointIndex,high,funcId):
 	
         D0 = pairwise_distances(X, metric='cosine')
+        D0 = self.fixZeroVector(D0,X)
         NNI = list(D0[dataPointIndex,:].argsort(axis=0))[:int(high)]
         raw_nids=[validNeighborIds[x] for x in NNI]
 	
