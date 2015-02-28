@@ -44,6 +44,7 @@ class KNN():
             
             X = self.emb.x[validNeighbors, :]
             D = pairwise_distances(X, metric='cosine')
+            if X.sum()==0:D=D*0#Fix the zero matrix cosine distance calculation to 0.0 not 1.0.
             longNNI = list(D[0,:].argsort(axis=0))
             NNI = self._checkKNNThresholdModelAndGetNNI(longNNI,D)
             return [validNeighborIds[x] for x in NNI],[D[0,x] for x in NNI]
@@ -51,6 +52,7 @@ class KNN():
             dataPointIndex = self.emb.rTOC[funcId]    
             X = self.emb.x
             D = pairwise_distances(X, metric='cosine')
+            if X.sum()==0:D=D*0#Fix the zero matrix cosine distance calculation to 0.0 not 1.0.
             longNNI = list(D[dataPointIndex,:].argsort(axis=0))
             NNI = self._checkKNNThresholdModelAndGetNNI(longNNI,D)
             return [self.emb.TOC[x] for x in NNI],[D[dataPointIndex,x] for x in NNI]
