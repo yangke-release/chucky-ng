@@ -81,9 +81,11 @@ class APIEmbedder(object):
         
         featureArray = FeatureArray()
         for index,(funcId, symbols) in enumerate(functions):
+            for i in range(len(symbols)):
+               symbols[i]= symbols[i]+'\n'
             featureArray.add(index, symbols)#label,items
             self.toc.write("%d\n" % (funcId))
-        self.toc.flush()  
+        self.toc.flush()
         return featureArray
     
     def _createTermDocumentMatrix(self, featureArray):
