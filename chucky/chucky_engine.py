@@ -7,7 +7,6 @@ import shutil
 import sys
 
 from nearestNeighbor.NearestNeighborSelector import NearestNeighborSelector
-from ChuckyWorkingEnvironment import ChuckyWorkingEnvironment
 from nearestNeighbor.FunctionSelector import FunctionSelector
 from GlobalAPIEmbedding import GlobalAPIEmbedding
 
@@ -37,10 +36,11 @@ class ChuckyEngine():
     def analyze(self, job):
 
         self.job=job
-        self.workingEnv = ChuckyWorkingEnvironment(self.basedir, self.logger)
-        self.globalAPIEmbedding = GlobalAPIEmbedding(self.workingEnv.cachedir)
-        
+	cachedir=os.path.join(self.basedir, 'cache')
+        self.globalAPIEmbedding = GlobalAPIEmbedding(cachedir)
+	
         try:
+	    pass
 	    #mean_syntax,mean_fun_name,mean_file_name,mean_caller
             nearestNeighbors,s0,s1,s2,s3, = self._getKNearestNeighbors()
             #for n in nearestNeighbors:
@@ -55,10 +55,8 @@ class ChuckyEngine():
 		    self.logger.warning("Could not find any conditions in all neighbors! Job skiped!\n")
         except subprocess.CalledProcessError as e:
             self.logger.error(e)
-            self.logger.error('Do not clean up.')
         else:
-            self.logger.debug('Cleaning up.')
-            self.workingEnv.destroy()
+	    pass
 
     """
     Determine the k nearest neighbors for the
@@ -67,8 +65,8 @@ class ChuckyEngine():
     def _getKNearestNeighbors(self):
 	considerCaller=False
 	if len(self.job.sourcesinks.parameter_set)>0:
-	    considerCaller=True	
-        self.knn = NearestNeighborSelector(self.workingEnv.basedir, self.workingEnv.bagdir,considerCaller)
+	    considerCaller=True
+	self.knn = NearestNeighborSelector(self.basedir,considerCaller)
         self.knn.setK(self.k)
 	
 	'''

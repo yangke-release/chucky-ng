@@ -17,8 +17,7 @@ class NearestNeighborSelector:
     @param embeddingDir: the directory to store the embedding.    
     """
     
-    def __init__(self, basedir, embeddingDir,considerCaller=False):
-        self.embeddingDir = embeddingDir
+    def __init__(self, basedir, considerCaller=False):
         self.k = DEFAULT_K
         self.cachedir = os.path.join(basedir, "cache")
         self.considerCaller=considerCaller

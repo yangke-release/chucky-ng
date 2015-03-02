@@ -4,10 +4,9 @@ import os
 from embedding.MemoryAPIEmbedder import APIEmbedder
 
 class GlobalAPIEmbedding():
-    def __init__(self, cachedir):
+    def __init__(self, embeddingdir):
         
-        self.cachedir = cachedir
-        self.embeddingdir = cachedir
+        self.embeddingdir = embeddingdir
         self.embeddingFilename = 'embedding.libsvm'
         
         if not self._embeddingExists():
