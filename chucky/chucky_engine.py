@@ -40,7 +40,6 @@ class ChuckyEngine():
         self.globalAPIEmbedding = GlobalAPIEmbedding(cachedir)
 	
         try:
-	    pass
 	    #mean_syntax,mean_fun_name,mean_file_name,mean_caller
             nearestNeighbors,s0,s1,s2,s3, = self._getKNearestNeighbors()
             #for n in nearestNeighbors:
