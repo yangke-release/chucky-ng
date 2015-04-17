@@ -65,7 +65,8 @@ class ReportHelper:
 		#fix un_absolute path
 		if(filename[:1]!='/'):
 		    source_file_path=ReportHelper.parent_location+'/'+filename
-		
+		else:
+		    source_file_path=filename
 		source_file = open(source_file_path, 'rb')
 		file_output = open(report_file,'a')			
 		source_file.read(startIndex)
