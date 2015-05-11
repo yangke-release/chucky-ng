@@ -73,6 +73,7 @@ Contents:
    installation
    usage
    quick_start
+   evaluation_tutorial
 ..
    Indices and tables
    ==================
