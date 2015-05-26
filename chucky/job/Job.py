@@ -17,7 +17,8 @@ class ChuckyJob(object):
         self.function=function
         self.sourcesinks = SourceSinkSet(callee_set.copy(),parameter_set.copy(),variable_set.copy())
         self.needcache=needcache
-        #when analyse limited functions or the specified one function,this should be None.To notify the SymbolUser Selector to select the symbol users rather than directly use the jobset.
+        #When analyse limited functions or the specified one function, this should be None.
+        #To notify the SymbolUser Selector to select the symbol users rather than directly use the jobset.
         self.job_set=None         
         self.logger = logging.getLogger('chucky')
         
@@ -44,7 +45,6 @@ class ChuckyJob(object):
         jobset=set()
         if(len(c_itemset)+len(p_itemset)+len(v_itemset)==3):
             raise Exception("Error:Zero sourc/sink in this job!!")
-            return jobset
         for cs in c_itemset:
             if len(c_itemset)==1:
                 cs=set()

@@ -18,6 +18,7 @@ from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import pairwise_distances
 from ReportHelper import ReportHelper
 DEFAULT_REPORT_PATH='report'
+DEBUG=False
 def parseLocationString(string):
     x = string.split(':')
     for i in range(1,len(x)):
@@ -186,7 +187,12 @@ class ChuckyEngine():
 	    helper.setCallerSetSimilarities(data3)
 	    helper.generate()
 	    
-        print '{:< 6.5f}\t{:30}\t{:10}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,m0,m1,m2,m3,mcc,ccm,spec,self.job.function.location(),len(nearestNeighbors)-1)	
+        if DEBUG:
+ 	    print '{:< 3.2f}\t{:30}\t{:10}\t{}\t{}\t{:<3.2f}\t{:<3.2f}\t{:<3.2f}\t{:<3.2f}\t{:<3.2f}\t{:<3.2f}\t{:<3.2f}\t{}\t{}'.format(score, self.job.function, self.job.function.node_id,str(self.job.sourcesinks),feat,m0,m1,m2,m3,mcc,ccm,spec,self.job.function.location(),len(nearestNeighbors)-1)
+ 	else:
+ 	    words=self.job.function.location().split(':')
+ 	    location=words[0]+':'+words[1]
+ 	    print '{:< 3.2f}\t{:<3.2f}\t{:17}\t{}\t{:<3.2f}\t{:<3.2f}\t{}'.format(score,(1.0-m0)*score,self.job.function,feat,m0,spec,location)	
     def calculateCenterOfMass(self, index):
 	r,c=self.x.shape
 	if r<=1:

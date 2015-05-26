@@ -68,14 +68,12 @@ class SourceSinkSet:
         symbol = Symbol()
         symbol.setName(code)
         symbol.setType(identifierType)
+        symbol.setDeclType(decl_type)
         if identifierType == CALLEE:
-            symbol.setDeclType(decl_type)            
             self.addToCalleeSet(symbol)
-        elif identifierType == PARAMETER:
-            symbol.setDeclType(decl_type)            
+        elif identifierType == PARAMETER:           
             self.addToParameterSet(symbol)
-        elif identifierType == VARIABLE:
-            symbol.setDeclType(decl_type)            
+        elif identifierType == VARIABLE:            
             self.addToVariableSet(symbol)
         else: raise Exception(identifierType,'This source type is Unsupported!!')        
             

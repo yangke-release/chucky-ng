@@ -18,7 +18,7 @@ on user queries.
 class JobGenerator(object):
 
     def __init__(self,function,callees,parameters,variables):
-        self.function = function
+        self.function_name = function
         self.callee_names = callees
         self.parameter_names = parameters        
         self.variable_names = variables
@@ -33,28 +33,21 @@ class JobGenerator(object):
         functions = FunctionLookup.lookup_functions_by_name(identifier)
         for function in functions:
             parameters = function.parameters()
-            parameters = map(lambda x : (x.code, x.declaration_type()), parameters)
-            parameters = set(parameters)
-            for parameter, parameter_type in parameters:
-                job=ChuckyJob(function)
-                job.addSourceSinkByString(parameter,parameter_type,PARAMETER)
-                configurations.append(job)
+            configurations+=self._jobs_from_symbols(parameters,function,PARAMETER)
             variables = function.variables()
-            variables = map(lambda x : (x.code, x.declaration_type()), variables)
-            variables = set(variables)
-            for variable, variable_type in variables:
-                job=ChuckyJob(function)            
-                job.addSourceSinkByString(variable,variable_type,VARIABLE)
-                configurations.append(job)
+            configurations+=self._jobs_from_symbols(variables,function,VARIABLE)
             callees = function.callees()
-            callees = map(lambda x : x.code, callees)
-            callees = set(callees)
-            for callee in callees:
-                job=ChuckyJob(function)
-                job.addSourceSinkByString(callee,function.name,CALLEE)
-                configurations.append(job)
+            configurations+=self._jobs_from_symbols(callees,function,CALLEE)
                 
         return configurations
+    
+    def _jobs_from_symbols(self, symbols,function,symbol_type):
+        def f(x):
+            job=ChuckyJob(function)
+            decl_type=function.name if symbol_type==CALLEE else x.declaration_type()
+            job.addSourceSinkByString(x.code, decl_type,symbol_type) 
+            return job
+        return map(f, symbols)    
     
     def getIdentiferInstances(self,name,identifier_type):
         if identifier_type==CALLEE:
@@ -85,7 +78,7 @@ class JobGenerator(object):
     
     A meta-identifier is the abstract type with three key property:
     SOURCE_SINK_TYPE, DECLAEATION_TYPE, SOURCE_SINK_NAME.
-    For a concrete runable job, two source/sink with same SOURCE_SINK_NAME and SOURCE_SINK_TYPE but different DECLAEATION_TYPE should not be existed.
+    For a concrete runable job, two source/sink with same SOURCE_SINK_NAME and SOURCE_SINK_TYPE but different DECLAEATION_TYPE should not exist.
     That means in a job for specific SOURCE_SINK_TYPE and SOURCE_SINK_NAME there should be only one meta-identifier. 
     
     @Parameter
@@ -131,11 +124,9 @@ class JobGenerator(object):
     @returns a source/sinks to job set map: SourceSinkSet->set(ChuckyJobs).
     """   
     def generate(self):
-        if self.function:
-            needcache=False
-            configurations=self.genJobsForFunc(self.function)  
+        if self.function_name:
+            configurations=self.genJobsForFunc(self.function_name)  
         else:
-            needcache=True
             func_job_map=dict()
             if self.callee_names:
                 func_job_map=self.getFuncJobMapBySourceSinkNames(self.callee_names,CALLEE,func_job_map)
@@ -156,7 +147,7 @@ class JobGenerator(object):
             
         configurations = list(set(configurations))
         d=self.generate_sourcesinks_job_map(configurations)
-        if not self.function:
+        if not self.function_name:
             for configs in d.values():
                 for config in configs:
                     config.setJobSet(configs)
@@ -168,9 +159,8 @@ class JobGenerator(object):
                 configurations = list(set([c for c in configurations if int(self.limit) == c.function.node_id]))
             else:
                 configurations = [c for c in configurations if re.search(self.limit, c.function.name)]
-                return needcache,self.generate_sourcesinks_job_map(configurations)
-             
-        return needcache, d
+                return self.generate_sourcesinks_job_map(configurations)
+        return d
     def generate_sourcesinks_job_map(self,jobs):
         d=dict()        
         for job in jobs:

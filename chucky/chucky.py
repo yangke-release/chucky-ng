@@ -188,7 +188,7 @@ class Chucky():
     the engine to perform an analysis for each job.
     """     
     def execute(self):
-        needcache,jobsdict = self.job_generator.generate()
+        jobsdict = self.job_generator.generate()
 	if len(jobsdict)==0:
 	    sys.stderr.write("[Warning] No jobs found!\n");
 	    return
@@ -196,7 +196,7 @@ class Chucky():
         for configs in jobsdict.values():
             jobs+=list(configs)
         jobs_total_num=len(jobs)        
-        if needcache:
+        if self.args.function is None:
             jobsetnum=len(jobsdict)
             jobcount=0
             for j,(key,jobset) in enumerate(jobsdict.items(),1):
