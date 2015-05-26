@@ -140,7 +140,7 @@ Following table explains some of the key column.
 
 | column 1      |column 2        |column3               | column 4		            | column 5               | column 6               |  column 7                                 |  
 | ------------- |:--------------:|:--------------------:|:-------------------------:|:----------------------:|:----------------------:|:-----------------------------------------:|
-| anomaly score | anomaly_score* |function name         | sinificant missing symbol | mean cosine distance   |specificity             |                                           |
+| anomaly score | anomaly_score* |function name         | sinificant missing symbol | mean cosine distance   |specificity             |   location  |
 | 0.88000       | 0.32           |png\_handle\_sCAL     | length                    | 0.63                   |0.87                    |libpng-1.2.44/pngrutil.c:1784:0:52039:56355|
 
 For the vulnerable function **png\_handle\_sCAL** as reported in CVE-2011-2692, we can see from the result that it is ranked in top 5(all the top 5 functions have the highest anomaly score 0.88).
