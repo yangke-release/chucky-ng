@@ -19,7 +19,7 @@ with the symbol with those used in similar functions.
 The Implementation
 ------------------
 This implemetation of Chucky interactive with the database parsed by `joern <http://github.com/fabsx00/joern>`_ (another tools developed by Fabian et al). 
-After a Robust Parsing by joern, conditions, assignments and API symbols are extracted from every function and all the code information are stored in the graph database as Code Property Graphs including AST,CFG and DDG. Joern use Neo4j to store these information.
+After a Robust Parsing by joern, conditions, assignments and API symbols are extracted from each function and all the code information are stored in the graph database as Code Property Graphs including AST,CFG and DDG. Joern use Neo4j to store these information.
 
 There are five step for Chucky to complete the analyze.
 
@@ -44,7 +44,7 @@ There are five step for Chucky to complete the analyze.
 
 All the analysis are based on the extensible query language defined in `joern-tools <http://github.com/fabsx00/joern-tools/>`_ by `Gremlin <https://github.com/tinkerpop/gremlin/>`_ and a wrapped inteface defined by `python-joern <http://github.com/fabsx00/python-joern/>`_.
 
-For the orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <http://user.informatik.uni-goettingen.de/~fyamagu/pdfs/2013-ccs.pdf>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
+For the orginal idea, please refer to `Chucky: Exposing Missing Checks in Source Code for Vulnerability Discovery <https://user.informatik.uni-goettingen.de/~krieck/docs/2013-ccs.pdf>`_ Fabian Yamaguchi, Christian Wressnegger, Hugo Gascon, and K. Rieck *ACM Conference on Computer and Communications Security (CCS)*
 
 About the Modification.
 -----------------------
